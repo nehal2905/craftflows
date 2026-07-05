@@ -74,7 +74,7 @@ export default function Faq() {
     <section className="section faq" id="faq" aria-labelledby="faq-title">
       <div className="divider" aria-hidden="true" />
       <div className="wrap wrap--narrow">
-        <Reveal as="p" className="eyebrow">FAQ</Reveal>
+        <Reveal as="p" className="eyebrow eyebrow--strong">Frequently asked questions</Reveal>
         <Reveal as="h2" className="section__title" id="faq-title" delay={0.04}>
           <a href="#faq" className="title-link">
             Everything people ask<br className="br-desk" /> before booking.

@@ -122,6 +122,14 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .section { position: relative; padding-block: clamp(5rem, 11vw, 8.5rem); }
 .section--tight { padding-block: clamp(3.5rem, 8vw, 6rem); }
 
+/* subtle sheen falling from each section's top edge — just enough to
+   separate sections without breaking the monochrome calm */
+.section::after {
+  content: ""; position: absolute; inset: 0;
+  pointer-events: none;
+  background: radial-gradient(58% 34% at 50% 0%, rgba(255, 255, 255, 0.035), transparent 72%);
+}
+
 /* anchored sections stop below the floating topbar pill (~70px tall
    including its offset) instead of sliding underneath it */
 .section[id] { scroll-margin-top: 6rem; }
@@ -138,14 +146,19 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .eyebrow {
   display: inline-flex; align-items: center;
   font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 0.72rem; font-weight: 700;
+  font-size: 0.88rem; font-weight: 700;
   letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--ink);
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.2rem;
   border-radius: 999px;
   border: 1px solid var(--line-2);
   background: #141416;
   margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
+}
+/* extra-emphasis variant (FAQ) — white pill, dark type */
+.eyebrow--strong {
+  background: var(--ink); color: #0A0A0A;
+  border-color: var(--ink);
 }
 
 /* section headings share one scale */
@@ -210,14 +223,26 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .topbar__brand b { font-weight: 700; }
 .topbar__mark { width: 46px; height: 23px; color: var(--ink); }
 
-.topbar__nav { display: none; align-items: center; gap: 0.25rem; margin-left: auto; }
-@media (min-width: 800px) { .topbar__nav { display: inline-flex; } }
+/* centered nav pill; the active section carries a solid highlight */
+.topbar__nav {
+  display: none; align-items: center; gap: 0.15rem;
+  margin-inline: auto;
+  padding: 0.3rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.045);
+}
+@media (min-width: 900px) { .topbar__nav { display: inline-flex; } }
 .topbar__nav a {
-  font-size: 0.9rem; color: var(--ink-2);
-  padding: 0.4rem 0.75rem; border-radius: 999px;
+  font-size: 0.88rem; color: var(--ink-2);
+  padding: 0.45rem 0.9rem; border-radius: 999px;
+  white-space: nowrap;
   transition: color 0.25s var(--ease-out), background 0.25s var(--ease-out);
 }
 .topbar__nav a:hover { color: var(--ink); background: var(--fill-2); }
+.topbar__nav a.is-active {
+  background: var(--ink); color: #0A0A0A; font-weight: 600;
+}
 
 /* below 800px the nav collapses; keep the CTA hugging the right edge */
 .topbar__cta-wrap { margin-left: auto; }
