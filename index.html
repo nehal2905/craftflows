@@ -18,12 +18,12 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
   <link rel="apple-touch-icon" href="/assets/favicon-180.png" />
 
-  <!-- Fonts: Satoshi (display+UI) via Fontshare, JetBrains Mono (functional labels) via Google -->
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
+  <!-- Fonts are self-hosted (declared in the bundled CSS): zero third-party
+       connections. Preload the weights the hero paints with so the swap
+       window is effectively zero on same-origin HTTP/2. -->
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/satoshi-500.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/satoshi-400.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/satoshi-700.woff2" crossorigin />
 </head>
 <body>
   <div id="root"></div>

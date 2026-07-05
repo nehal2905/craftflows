@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -13,7 +13,7 @@ const EASE = [0.22, 1, 0.36, 1];
  */
 export default function Reveal({ as = 'div', delay = 0, children, ...rest }) {
   const reduce = useReducedMotion();
-  const Tag = motion[as] ?? motion.div;
+  const Tag = m[as] ?? m.div;
 
   if (reduce) {
     return <Tag {...rest}>{children}</Tag>;

@@ -1,16 +1,20 @@
+import { lazy, Suspense } from 'react';
 import ScrollProgress from './components/ScrollProgress.jsx';
 import TopBar from './components/TopBar.jsx';
 import Hero from './components/Hero.jsx';
 import Trust from './components/Trust.jsx';
-import Problem from './components/Problem.jsx';
-import HowItWorks from './components/HowItWorks.jsx';
-import RoiCalculator from './components/RoiCalculator.jsx';
-import Testimonials from './components/Testimonials.jsx';
-import Offer from './components/Offer.jsx';
-import Faq from './components/Faq.jsx';
-import LeadMagnet from './components/LeadMagnet.jsx';
-import Book from './components/Book.jsx';
-import Footer from './components/Footer.jsx';
+
+/* Everything below the fold loads as a separate chunk so the hero (the
+   LCP content) isn't gated on parsing code the visitor can't see yet. */
+const Problem = lazy(() => import('./components/Problem.jsx'));
+const HowItWorks = lazy(() => import('./components/HowItWorks.jsx'));
+const RoiCalculator = lazy(() => import('./components/RoiCalculator.jsx'));
+const Testimonials = lazy(() => import('./components/Testimonials.jsx'));
+const Offer = lazy(() => import('./components/Offer.jsx'));
+const Faq = lazy(() => import('./components/Faq.jsx'));
+const LeadMagnet = lazy(() => import('./components/LeadMagnet.jsx'));
+const Book = lazy(() => import('./components/Book.jsx'));
+const Footer = lazy(() => import('./components/Footer.jsx'));
 
 export default function App() {
   return (
@@ -23,17 +27,21 @@ export default function App() {
       <main id="top">
         <Hero />
         <Trust />
-        <Problem />
-        <HowItWorks />
-        <RoiCalculator />
-        <Testimonials />
-        <Offer />
-        <Faq />
-        <LeadMagnet />
-        <Book />
+        <Suspense fallback={null}>
+          <Problem />
+          <HowItWorks />
+          <RoiCalculator />
+          <Testimonials />
+          <Offer />
+          <Faq />
+          <LeadMagnet />
+          <Book />
+        </Suspense>
       </main>
 
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </>
   );
 }

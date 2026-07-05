@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useMotionValue, useSpring, useReducedMotion } from 'framer-motion';
+import { m, useMotionValue, useSpring, useReducedMotion } from 'framer-motion';
 
 /**
  * Cursor-aware card wrapper:
@@ -26,7 +26,7 @@ export default function Spotlight({
   const rotateX = useSpring(rx, { stiffness: 180, damping: 20, mass: 0.4 });
   const rotateY = useSpring(ry, { stiffness: 180, damping: 20, mass: 0.4 });
 
-  const Tag = motion[as] ?? motion.div;
+  const Tag = m[as] ?? m.div;
   const tilting = tilt && !reduce;
 
   const onMove = (e) => {

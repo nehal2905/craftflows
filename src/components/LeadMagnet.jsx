@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { m, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Reveal from './Reveal.jsx';
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -45,7 +45,7 @@ export default function LeadMagnet() {
             <div>
               <AnimatePresence mode="wait" initial={false}>
                 {sent ? (
-                  <motion.p
+                  <m.p
                     key="ok"
                     className="magnet__success"
                     role="status"
@@ -58,9 +58,9 @@ export default function LeadMagnet() {
                       <path d="m8.5 12.5 2.5 2.5 5-5.5" />
                     </svg>
                     Check your email client&mdash;your checklist request is ready to send.
-                  </motion.p>
+                  </m.p>
                 ) : (
-                  <motion.form
+                  <m.form
                     key="form"
                     className="magnet__form"
                     onSubmit={submit}
@@ -91,7 +91,7 @@ export default function LeadMagnet() {
                       </svg>
                       No spam, no drip sequence. One email with the checklist, that&rsquo;s it.
                     </p>
-                  </motion.form>
+                  </m.form>
                 )}
               </AnimatePresence>
             </div>

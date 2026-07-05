@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { m, useInView, useReducedMotion } from 'framer-motion';
 import Reveal from './Reveal.jsx';
 import GuaranteeSeal from './GuaranteeSeal.jsx';
 
@@ -25,7 +25,7 @@ export default function Offer() {
               Delivered in <strong>14 days</strong>.
             </h2>
 
-            <motion.p
+            <m.p
               ref={guaranteeRef}
               className={`offer__guarantee${inView || reduce ? ' in' : ''}`}
               initial={reduce ? false : { opacity: 0, y: 20 }}
@@ -34,7 +34,7 @@ export default function Offer() {
             >
               If it doesn&rsquo;t save the hours we promised,<br className="br-desk" />
               <span className="offer__mark">you don&rsquo;t pay.</span>
-            </motion.p>
+            </m.p>
           </div>
         </Reveal>
       </div>

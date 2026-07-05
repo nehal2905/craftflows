@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useMotionValue, useSpring, useReducedMotion } from 'framer-motion';
+import { m, useMotionValue, useSpring, useReducedMotion } from 'framer-motion';
 
 /**
  * Magnetic wrapper — children gently gravitate toward the cursor while
@@ -27,7 +27,7 @@ export default function Magnetic({ children, strength = 0.25, className }) {
   };
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       className={className}
       style={{ x: sx, y: sy, display: 'inline-block' }}
@@ -35,6 +35,6 @@ export default function Magnetic({ children, strength = 0.25, className }) {
       onMouseLeave={onLeave}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

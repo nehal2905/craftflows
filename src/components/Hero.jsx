@@ -1,5 +1,5 @@
 import {
-  motion,
+  m,
   useMotionValue,
   useSpring,
   useReducedMotion,
@@ -55,8 +55,8 @@ function CursorMist({ reduce }) {
   if (reduce) return null;
   return (
     <div className="hero__mist" ref={ref} aria-hidden="true">
-      <motion.div className="hero__mist-blob hero__mist-blob--b" style={{ x: bx, y: by }} />
-      <motion.div className="hero__mist-blob hero__mist-blob--a" style={{ x: ax, y: ay }} />
+      <m.div className="hero__mist-blob hero__mist-blob--b" style={{ x: bx, y: by }} />
+      <m.div className="hero__mist-blob hero__mist-blob--a" style={{ x: ax, y: ay }} />
     </div>
   );
 }
@@ -79,7 +79,7 @@ function InteractiveOrb({ reduce }) {
   }, [reduce, mx, my]);
 
   if (reduce) return <div className="hero__orb" />;
-  return <motion.div className="hero__orb" style={{ x, y }} />;
+  return <m.div className="hero__orb" style={{ x, y }} />;
 }
 
 export default function Hero() {
@@ -93,18 +93,16 @@ export default function Hero() {
   const contentY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -70]);
   const bgY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 90]);
 
-  let wordIndex = 0;
-
   return (
     <section className="hero" ref={ref} aria-labelledby="hero-title">
-      <motion.div className="hero__bg" style={{ y: bgY }} aria-hidden="true">
+      <m.div className="hero__bg" style={{ y: bgY }} aria-hidden="true">
         <div className="hero__grid" />
         <InteractiveOrb reduce={reduce} />
         <CursorMist reduce={reduce} />
-      </motion.div>
+      </m.div>
 
-      <motion.div className="hero__inner" style={{ y: contentY }}>
-        <motion.div
+      <m.div className="hero__inner" style={{ y: contentY }}>
+        <m.div
           className="hero__lockup"
           initial={reduce ? false : { opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -112,21 +110,22 @@ export default function Hero() {
         >
           <InfinityMark />
           <p className="wordmark"><b>crafted</b> flows</p>
-        </motion.div>
+        </m.div>
 
-        <motion.p
+        <m.p
           className="eyebrow hero__badge"
           initial={reduce ? false : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: EASE, delay: 0.2 }}
         >
           Done-for-you automation studio
-        </motion.p>
+        </m.p>
 
         {/*
-          Word spacing is deterministic: each word is an inline-block with a
-          fixed 0.24em right margin — no whitespace characters are injected,
-          so the splitting can never produce doubled or non-collapsing gaps.
+          LCP-critical content: the title and subtitle render statically so
+          they paint on the very first frame — no opacity/transform entrance.
+          Word spacing stays deterministic: each word is an inline-block with
+          a fixed 0.24em right margin, no whitespace characters injected.
         */}
         <h1
           className="hero__title"
@@ -135,42 +134,29 @@ export default function Hero() {
         >
           {TITLE_LINES.map((line, li) => (
             <span className="hero__line" key={li} aria-hidden="true">
-              {line.map((word) => {
+              {line.map((word, wi) => {
                 const w = typeof word === 'string' ? { text: word } : word;
-                const i = wordIndex++;
-                const inner = w.em ? <em>{w.text}</em> : w.text;
                 return (
-                  <motion.span
-                    key={i}
-                    className="word"
-                    initial={reduce ? false : { opacity: 0, y: '0.55em' }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: EASE, delay: 0.3 + i * 0.06 }}
-                  >
-                    {inner}
-                  </motion.span>
+                  <span key={wi} className="word">
+                    {w.em ? <em>{w.text}</em> : w.text}
+                  </span>
                 );
               })}
             </span>
           ))}
         </h1>
 
-        <motion.p
-          className="hero__sub"
-          initial={reduce ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: EASE, delay: 0.85 }}
-        >
+        <p className="hero__sub">
           Crafted Flows builds custom automations that run your client reporting, onboarding,
           and lead routing&mdash;using the tools you already use. <strong>Done for you, or you
           don&rsquo;t pay.</strong>
-        </motion.p>
+        </p>
 
-        <motion.div
+        <m.div
           className="hero__cta"
           initial={reduce ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: EASE, delay: 1 }}
+          transition={{ duration: 0.55, ease: EASE, delay: 0.15 }}
         >
           <Magnetic>
             <a className="btn btn--primary btn--lg" href="#book">
@@ -181,13 +167,13 @@ export default function Hero() {
           <Magnetic strength={0.15}>
             <a className="btn btn--lg" href="#how">How it works</a>
           </Magnetic>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="hero__proof"
           initial={reduce ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.9, ease: EASE, delay: 1.3 }}
+          transition={{ duration: 0.8, ease: EASE, delay: 0.4 }}
         >
           <span className="hero__proof-label">Wired into the stack you already run</span>
 
@@ -211,20 +197,20 @@ export default function Hero() {
               ))}
             </div>
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
 
-      <motion.a
+      <m.a
         className="hero__scroll"
         href="#problem"
         aria-label="Scroll to see the problem we solve"
         initial={reduce ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.9, delay: 1.8 }}
+        transition={{ duration: 0.9, delay: 0.9 }}
       >
         <span>the problem</span>
         <span className="hero__scroll-line" aria-hidden="true"></span>
-      </motion.a>
+      </m.a>
     </section>
   );
 }

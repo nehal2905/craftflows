@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 
 const PATH =
   'M60 30 C 76 6 108 6 108 30 C 108 54 76 54 60 30 C 44 6 12 6 12 30 C 12 54 44 54 60 30 Z';
@@ -38,7 +38,7 @@ export default function InfinityMark() {
       role="img"
       aria-label="Crafted Flows infinity mark"
     >
-      <motion.path
+      <m.path
         id="mark-base"
         d={PATH}
         stroke="#FAFAFA"

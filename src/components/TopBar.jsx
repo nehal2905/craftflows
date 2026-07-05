@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, useScroll, useMotionValueEvent, useReducedMotion } from 'framer-motion';
+import { m, useScroll, useMotionValueEvent, useReducedMotion } from 'framer-motion';
 import Magnetic from './Magnetic.jsx';
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -15,7 +15,7 @@ export default function TopBar() {
   });
 
   return (
-    <motion.header
+    <m.header
       className="topbar"
       initial={false}
       animate={
@@ -52,6 +52,6 @@ export default function TopBar() {
           <a className="btn btn--primary btn--sm" href="#book" tabIndex={visible ? 0 : -1}>Book audit</a>
         </Magnetic>
       </div>
-    </motion.header>
+    </m.header>
   );
 }

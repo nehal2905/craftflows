@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 import Reveal from './Reveal.jsx';
 import Spotlight from './Spotlight.jsx';
 
@@ -55,14 +55,14 @@ function Connector({ delay }) {
   const reduce = useReducedMotion();
   return (
     <span className="step__connector" aria-hidden="true">
-      <motion.span
+      <m.span
         className="step__connector-line"
         initial={reduce ? false : { scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true, amount: 1 }}
         transition={{ duration: 0.6, ease: EASE, delay }}
       />
-      <motion.span
+      <m.span
         className="step__connector-head"
         initial={reduce ? false : { opacity: 0 }}
         whileInView={{ opacity: 1 }}

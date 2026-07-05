@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { m, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Reveal from './Reveal.jsx';
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -49,7 +49,7 @@ function FaqItem({ item, isOpen, onToggle, id }) {
       </h3>
       <AnimatePresence initial={false}>
         {isOpen && (
-          <motion.div
+          <m.div
             className="faq__answer-wrap"
             id={`faq-answer-${id}`}
             role="region"
@@ -60,7 +60,7 @@ function FaqItem({ item, isOpen, onToggle, id }) {
             transition={{ duration: 0.45, ease: EASE }}
           >
             <p className="faq__answer">{item.a}</p>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </li>
