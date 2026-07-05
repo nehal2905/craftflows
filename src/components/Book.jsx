@@ -9,7 +9,7 @@ export default function Book() {
         <Reveal as="p" className="eyebrow">Free audit</Reveal>
 
         <Reveal as="h2" className="book__title" id="book-title" delay={0.04}>
-          See what we&rsquo;d automate first.
+          <a href="#book" className="title-link">See what we&rsquo;d automate first.</a>
         </Reveal>
 
         <Reveal as="p" className="book__sub" delay={0.08}>

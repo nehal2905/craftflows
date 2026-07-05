@@ -15,7 +15,7 @@ export default function LeadMagnet() {
     if (!email.trim()) return;
     // No backend yet — hand off to the inbox so no lead is lost.
     window.location.href =
-      `mailto:hello@craftedflows.com?subject=${encodeURIComponent('Send me the Agency Automation Checklist')}` +
+      `mailto:hello@craftedflows.com?subject=${encodeURIComponent('Send me the Business Automation Checklist')}` +
       `&body=${encodeURIComponent(`Please send the checklist to: ${email}`)}`;
     setSent(true);
   };
@@ -29,14 +29,14 @@ export default function LeadMagnet() {
             <div>
               <p className="eyebrow">Not ready for a call?</p>
               <h2 className="magnet__title" id="magnet-title">
-                Get the Agency Automation Checklist.
+                Get the Business Automation Checklist.
               </h2>
               <p className="magnet__sub">
                 The exact 21-point checklist we run in every audit&mdash;find the workflows
                 silently draining your week, ranked by hours recovered.
               </p>
               <ul className="magnet__list">
-                <li>The 8 workflows agencies most commonly overspend on</li>
+                <li>The 8 workflows businesses most commonly overspend on</li>
                 <li>A scoring sheet to rank them by hours saved</li>
                 <li>Which ones to automate first (and which to skip)</li>
               </ul>
@@ -76,7 +76,7 @@ export default function LeadMagnet() {
                       type="email"
                       required
                       autoComplete="email"
-                      placeholder="you@youragency.com"
+                      placeholder="you@yourbusiness.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />

@@ -81,7 +81,9 @@ export default function HowItWorks() {
         <div className="how__head">
           <Reveal as="p" className="eyebrow">The process</Reveal>
           <Reveal as="h2" className="section__title" id="how-title" delay={0.04}>
-            One continuous flow,<br className="br-desk" /> start to finish.
+            <a href="#how" className="title-link">
+              One continuous flow,<br className="br-desk" /> start to finish.
+            </a>
           </Reveal>
           <Reveal as="p" className="section__sub" delay={0.08}>
             Three steps. No new software to buy, no team retraining&mdash;just the busywork, gone.
@@ -94,8 +96,10 @@ export default function HowItWorks() {
               <Spotlight className="step card">
                 <span className="step__ghost" aria-hidden="true">{step.index}</span>
                 <span className="step__icon">{ICONS[step.icon]}</span>
-                <span className="step__index">Step {step.index}</span>
-                <h3 className="step__title">{step.title}</h3>
+                <h3 className="step__title">
+                  <span className="visually-hidden">Step {step.index}: </span>
+                  {step.title}
+                </h3>
                 <p className="step__body">{step.body}</p>
               </Spotlight>
               {i < STEPS.length - 1 && <Connector delay={0.35 + i * 0.2} />}

@@ -73,10 +73,10 @@ export default function RoiCalculator() {
       <div className="wrap">
         <Reveal as="p" className="eyebrow">ROI calculator</Reveal>
         <Reveal as="h2" className="section__title" id="roi-title" delay={0.04}>
-          What is the busywork costing you?
+          <a href="#roi" className="title-link">What is the busywork costing you?</a>
         </Reveal>
         <Reveal as="p" className="section__sub" delay={0.08}>
-          Drag the sliders to match your agency. The numbers update as you move&mdash;and they
+          Drag the sliders to match your business. The numbers update as you move&mdash;and they
           assume automation only takes over 70% of the repetitive work, which is conservative.
         </Reveal>
 
@@ -150,7 +150,12 @@ export default function RoiCalculator() {
 
               <div className="roi__cta">
                 <Magnetic strength={0.15}>
-                  <a className="btn btn--primary" href="#book">
+                  <a
+                    className="btn btn--primary"
+                    href="https://cal.com/craftedflows/audit"
+                    target="_blank"
+                    rel="noopener"
+                  >
                     Recover these hours
                     <span className="btn__arrow" aria-hidden="true">→</span>
                   </a>

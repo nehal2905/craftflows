@@ -21,8 +21,10 @@ export default function Offer() {
             <p className="eyebrow">The offer</p>
 
             <h2 className="offer__title" id="offer-title">
-              <strong>Fixed build fee</strong>, plus a monthly retainer.
-              Delivered in <strong>14 days</strong>.
+              <a href="#offer" className="title-link">
+                <strong>Fixed build fee</strong>, plus a monthly retainer.
+                Delivered in <strong>14 days</strong>.
+              </a>
             </h2>
 
             <m.p

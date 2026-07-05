@@ -14,7 +14,7 @@ import ToolOrbit from './ToolOrbit.jsx';
 const EASE = [0.22, 1, 0.36, 1];
 
 const TITLE_LINES = [
-  ['Stop', 'burning', 'agency', 'hours'],
+  ['Stop', 'burning', 'business', 'hours'],
   ['on', 'unbillable', { text: 'busywork.', em: true }],
 ];
 
@@ -130,7 +130,7 @@ export default function Hero() {
         <h1
           className="hero__title"
           id="hero-title"
-          aria-label="Stop burning agency hours on unbillable busywork."
+          aria-label="Stop burning business hours on unbillable busywork."
         >
           {TITLE_LINES.map((line, li) => (
             <span className="hero__line" key={li} aria-hidden="true">
@@ -159,7 +159,12 @@ export default function Hero() {
           transition={{ duration: 0.55, ease: EASE, delay: 0.15 }}
         >
           <Magnetic>
-            <a className="btn btn--primary btn--lg" href="#book">
+            <a
+              className="btn btn--primary btn--lg"
+              href="https://cal.com/craftedflows/audit"
+              target="_blank"
+              rel="noopener"
+            >
               Book a 15-min automation audit
               <span className="btn__arrow" aria-hidden="true">→</span>
             </a>

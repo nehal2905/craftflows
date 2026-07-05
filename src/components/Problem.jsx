@@ -3,7 +3,7 @@ import Counter from './Counter.jsx';
 import Spotlight from './Spotlight.jsx';
 
 const STATS = [
-  { value: 30, suffix: '%', label: 'of agency hours sunk into unbillable admin work' },
+  { literal: 'Most', label: 'business hours sunk into unbillable admin work' },
   { value: 10, prefix: '+', suffix: 'h', label: 'lost every single week to copy-paste reporting', pain: true },
   { literal: 'Zero', label: 'new tools your team has to learn\u2014we use your stack' },
 ];
@@ -16,7 +16,9 @@ export default function Problem() {
         <Reveal as="p" className="eyebrow">The problem</Reveal>
 
         <Reveal as="h2" className="problem__title" id="problem-title" delay={0.04}>
-          The <span className="big-figure">30%</span> of agency work<br className="br-desk" /> nobody bills for.
+          <a href="#problem" className="title-link">
+            The <span className="big-figure">brunt</span> of business work<br className="br-desk" /> nobody bills for.
+          </a>
         </Reveal>
 
         <Reveal as="p" className="lead" delay={0.08}>

@@ -15,7 +15,7 @@ const FAQS = [
   },
   {
     q: 'What software do you work with?',
-    a: 'The tools agencies already run: Slack, Notion, HubSpot, Airtable, Google Workspace, Asana, ClickUp, Stripe, and hundreds more via Zapier, Make, or direct APIs. If your stack has an API, we can almost certainly wire it in.',
+    a: 'The tools businesses already run: Slack, Notion, HubSpot, Airtable, Google Workspace, Asana, ClickUp, Stripe, and hundreds more via Zapier, Make, or direct APIs. If your stack has an API, we can almost certainly wire it in.',
   },
   {
     q: 'What happens when something breaks?',
@@ -76,7 +76,9 @@ export default function Faq() {
       <div className="wrap wrap--narrow">
         <Reveal as="p" className="eyebrow">FAQ</Reveal>
         <Reveal as="h2" className="section__title" id="faq-title" delay={0.04}>
-          Everything people ask<br className="br-desk" /> before booking.
+          <a href="#faq" className="title-link">
+            Everything people ask<br className="br-desk" /> before booking.
+          </a>
         </Reveal>
 
         <Reveal delay={0.08}>
