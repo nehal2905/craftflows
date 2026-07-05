@@ -37,7 +37,7 @@ export default function Book() {
             <span>Hours-back guarantee</span>
           </div>
 
-          <a className="book__email" href="mailto:hello@craftedflows.com">hello@craftedflows.com</a>
+          <a className="book__email" href="mailto:admin@craftedflows.com">admin@craftedflows.com</a>
         </Reveal>
       </div>
     </section>

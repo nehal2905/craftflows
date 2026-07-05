@@ -15,7 +15,7 @@ export default function LeadMagnet() {
     if (!email.trim()) return;
     // No backend yet — hand off to the inbox so no lead is lost.
     window.location.href =
-      `mailto:hello@craftedflows.com?subject=${encodeURIComponent('Send me the Business Automation Checklist')}` +
+      `mailto:admin@craftedflows.com?subject=${encodeURIComponent('Send me the Business Automation Checklist')}` +
       `&body=${encodeURIComponent(`Please send the checklist to: ${email}`)}`;
     setSent(true);
   };

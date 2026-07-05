@@ -55,7 +55,7 @@ reveals render statically.
 | What | Where | Current placeholder |
 |---|---|---|
 | Cal.com booking link | `src/components/Book.jsx` | `https://cal.com/craftedflows/audit` |
-| Email | `Book.jsx` + `Footer.jsx` | `hello@craftedflows.com` |
+| Email | `Book.jsx` + `Footer.jsx` | `admin@craftedflows.com` |
 | LinkedIn | `Footer.jsx` | `https://www.linkedin.com/company/craftedflows` |
 | Domain | `index.html` `og:url`, `Footer.jsx` | `craftedflows.com` |
 | Favicon assets | `index.html` references `/assets/*` | not yet added — drop files in `public/assets/` |
