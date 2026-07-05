@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:5173/)",
+      "Bash(curl -s http://localhost:5173/src/main.jsx)",
+      "Bash(curl -s \"http://localhost:5173/src/components/InfinityMark.jsx\")",
+      "Bash(mkdir -p public/assets)",
+      "Bash(command -v magick)",
+      "Bash(command -v convert)",
+      "Bash(command -v rsvg-convert)",
+      "Bash(command -v inkscape)"
+    ]
+  }
+}
