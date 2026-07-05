@@ -204,18 +204,6 @@ export default function Hero() {
           </div>
         </m.div>
       </m.div>
-
-      <m.a
-        className="hero__scroll"
-        href="#problem"
-        aria-label="Scroll to see the problem we solve"
-        initial={reduce ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.9, delay: 0.9 }}
-      >
-        <span>the problem</span>
-        <span className="hero__scroll-line" aria-hidden="true"></span>
-      </m.a>
     </section>
   );
 }
