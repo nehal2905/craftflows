@@ -1,9 +1,13 @@
+import { useLocation } from 'react-router';
+
 export default function Footer() {
   const year = new Date().getFullYear();
+  const { pathname } = useLocation();
+  const base = pathname === '/' ? '' : '/';
   return (
     <footer className="footer">
       <div className="wrap footer__inner">
-        <a className="footer__brand" href="#top" aria-label="Crafted Flows&mdash;back to top">
+        <a className="footer__brand" href={`${base}#top`} aria-label="Crafted Flows&mdash;back to top">
           <svg className="footer__mark" viewBox="0 0 120 60" fill="none" aria-hidden="true">
             <path
               d="M60 30 C 76 6 108 6 108 30 C 108 54 76 54 60 30 C 44 6 12 6 12 30 C 12 54 44 54 60 30 Z"

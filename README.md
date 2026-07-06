@@ -13,7 +13,26 @@ npm run build    # production build → dist/
 npm run preview  # preview the built site
 ```
 
-Deploy the `dist/` folder to any static host (Netlify / Vercel / GitHub Pages / Cloudflare Pages).
+Deploy the `dist/` folder to Netlify (publish directory: `dist`, build command: `npm run build`).
+SPA routing is handled by `public/_redirects`, which ships into `dist/` on every build.
+
+## Publishing a blog post
+
+Drop a Markdown file into `content/blog/` — that's it. No code changes.
+
+- The filename becomes the URL slug (`my-post.md` → `/blog/my-post`).
+- Frontmatter drives everything: `title`, `description`, `date`, `updated`,
+  `author`, `category`, `tags`, `image`, `imageAlt`, `draft`.
+- Set `draft: true` to keep a post out of the index, routes, and sitemap.
+- Put post images in `public/assets/blog/` and reference them as
+  `/assets/blog/name.svg` (or .png/.webp) in frontmatter and body.
+- GitHub Flavored Markdown is supported (tables, task lists, strikethrough),
+  with build-time syntax highlighting for fenced code blocks.
+- `sitemap.xml` and `rss.xml` regenerate on every build and include all
+  published posts automatically.
+
+Markdown compiles at build time (`plugins/blog.js`) — no markdown parser
+ships to the browser, and each post is its own lazy-loaded chunk.
 
 ```
 CraftFlows/

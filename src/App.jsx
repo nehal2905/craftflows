@@ -1,43 +1,43 @@
 import { lazy, Suspense } from 'react';
-import ScrollProgress from './components/ScrollProgress.jsx';
-import TopBar from './components/TopBar.jsx';
-import Hero from './components/Hero.jsx';
+import { createBrowserRouter, RouterProvider } from 'react-router';
+import Layout from './components/Layout.jsx';
+import Home from './pages/Home.jsx';
 
-/* Everything below the fold loads as a separate chunk so the hero (the
-   LCP content) isn't gated on parsing code the visitor can't see yet. */
-const Problem = lazy(() => import('./components/Problem.jsx'));
-const HowItWorks = lazy(() => import('./components/HowItWorks.jsx'));
-const RoiCalculator = lazy(() => import('./components/RoiCalculator.jsx'));
-const Offer = lazy(() => import('./components/Offer.jsx'));
-const Faq = lazy(() => import('./components/Faq.jsx'));
-const LeadMagnet = lazy(() => import('./components/LeadMagnet.jsx'));
-const Book = lazy(() => import('./components/Book.jsx'));
-const Footer = lazy(() => import('./components/Footer.jsx'));
+/* Home stays in the entry chunk (it owns the LCP); every other route is
+   its own chunk and only downloads when someone visits it. */
+const About = lazy(() => import('./pages/About.jsx'));
+const Services = lazy(() => import('./pages/Services.jsx'));
+const Service = lazy(() => import('./pages/Service.jsx'));
+const CaseStudies = lazy(() => import('./pages/CaseStudies.jsx'));
+const Contact = lazy(() => import('./pages/Contact.jsx'));
+const Blog = lazy(() => import('./pages/Blog.jsx'));
+const BlogPost = lazy(() => import('./pages/BlogPost.jsx'));
+const NotFound = lazy(() => import('./pages/NotFound.jsx'));
+
+const page = (Page) => (
+  <Suspense fallback={null}>
+    <Page />
+  </Suspense>
+);
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: 'about', element: page(About) },
+      { path: 'services', element: page(Services) },
+      { path: 'services/:slug', element: page(Service) },
+      { path: 'case-studies', element: page(CaseStudies) },
+      { path: 'contact', element: page(Contact) },
+      { path: 'blog', element: page(Blog) },
+      { path: 'blog/:slug', element: page(BlogPost) },
+      { path: '*', element: page(NotFound) },
+    ],
+  },
+]);
 
 export default function App() {
-  return (
-    <>
-      <div className="grain" aria-hidden="true"></div>
-
-      <ScrollProgress />
-      <TopBar />
-
-      <main id="top">
-        <Hero />
-        <Suspense fallback={null}>
-          <Problem />
-          <HowItWorks />
-          <RoiCalculator />
-          <Offer />
-          <Faq />
-          <LeadMagnet />
-          <Book />
-        </Suspense>
-      </main>
-
-      <Suspense fallback={null}>
-        <Footer />
-      </Suspense>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }

@@ -1,0 +1,4 @@
+# SPA fallback: serve index.html for client-side routes (/services/*, /about, ...).
+# Real files (assets, fonts, scorecard.html, sitemap.xml, robots.txt) still take
+# precedence because this rule is not forced (no "!" on the status).
+/*  /index.html  200

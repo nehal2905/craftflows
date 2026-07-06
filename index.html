@@ -3,15 +3,31 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Crafted Flows&mdash;Done-for-you automations for businesses</title>
-  <meta name="description" content="Crafted Flows builds custom automations that run your client reporting, onboarding, and lead routing&mdash;using the tools you already use. Done for you, or you don't pay." />
+  <title>Crafted Flows | Business Automation &amp; AI Workflows, Done For You</title>
+  <meta name="description" content="Crafted Flows builds custom business automation and AI workflows that run your client reporting, onboarding, and lead routing&mdash;using the tools you already use. Done for you, or you don't pay." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://craftedflows.com/" />
+  <link rel="alternate" type="application/rss+xml" title="Crafted Flows Blog" href="https://craftedflows.com/rss.xml" />
   <meta name="theme-color" content="#0A0A0A" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Crafted Flows&mdash;Done-for-you automations for businesses" />
-  <meta property="og:description" content="Custom automations for client reporting, onboarding, and lead routing&mdash;wired into the tools you already use. Done for you, or you don't pay." />
-  <meta property="og:url" content="https://craftedflows.com" />
+  <meta property="og:site_name" content="Crafted Flows" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Crafted Flows | Business Automation &amp; AI Workflows, Done For You" />
+  <meta property="og:description" content="Custom business automation and AI workflows for client reporting, onboarding, and lead routing&mdash;wired into the tools you already use. Done for you, or you don't pay." />
+  <meta property="og:url" content="https://craftedflows.com/" />
+  <meta property="og:image" content="https://craftedflows.com/assets/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Crafted Flows&mdash;Business Automation and AI Workflows, done for you" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Crafted Flows | Business Automation &amp; AI Workflows, Done For You" />
+  <meta name="twitter:description" content="Custom business automation and AI workflows for client reporting, onboarding, and lead routing&mdash;wired into the tools you already use. Done for you, or you don't pay." />
+  <meta name="twitter:image" content="https://craftedflows.com/assets/og.png" />
+  <meta name="twitter:image:alt" content="Crafted Flows&mdash;Business Automation and AI Workflows, done for you" />
 
   <!-- Favicon: SVG mark with PNG fallback -->
   <link rel="icon" type="image/svg+xml" href="/assets/mark.svg" />
@@ -24,6 +40,116 @@
   <link rel="preload" as="font" type="font/woff2" href="/fonts/satoshi-500.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/satoshi-400.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="/fonts/satoshi-700.woff2" crossorigin />
+  <!-- JetBrains Mono paints the hero badge + proof labels (above the fold) -->
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/jetbrains-mono-latin.woff2" crossorigin />
+
+  <!-- Structured data: Organization + ContactPoint, WebSite, Service.
+       FAQ answers mirror src/components/Faq.jsx — keep both in sync. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://craftedflows.com/#organization",
+    "name": "Crafted Flows",
+    "url": "https://craftedflows.com/",
+    "logo": "https://craftedflows.com/assets/favicon-512.png",
+    "description": "Done-for-you business automation studio. Custom automations and AI workflows for client reporting, onboarding, and lead routing.",
+    "email": "admin@craftedflows.com",
+    "sameAs": [
+      "https://www.linkedin.com/company/craftedflowsai/",
+      "https://www.instagram.com/crafted.flows"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "email": "admin@craftedflows.com",
+      "availableLanguage": "English"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://craftedflows.com/#website",
+    "url": "https://craftedflows.com/",
+    "name": "Crafted Flows",
+    "description": "Business automation and AI workflows, done for you.",
+    "publisher": { "@id": "https://craftedflows.com/#organization" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://craftedflows.com/#service",
+    "name": "Business Automation & AI Workflow Development",
+    "serviceType": "Business process automation",
+    "provider": { "@id": "https://craftedflows.com/#organization" },
+    "description": "Custom-built business automations and AI workflows: client reporting, onboarding, lead routing, invoicing, and internal operations—wired into the tools you already use. Fixed build fee plus monthly retainer, delivered in 14 days.",
+    "areaServed": "Worldwide",
+    "offers": {
+      "@type": "Offer",
+      "description": "Fixed build fee plus a monthly retainer for monitoring and maintenance. If the automation doesn't save the promised hours, you don't pay."
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does it cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A fixed build fee—quoted up front after the audit, based on the workflow's complexity—plus a monthly retainer for monitoring and maintenance. No hourly billing, no surprises. And if the automation doesn't save the hours we promised, you don't pay."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a build take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most automations ship in one to three weeks from kickoff. The audit itself takes 15 minutes, and you'll have a scoped proposal within two business days of it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What software do you work with?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The tools businesses already run: Slack, Notion, HubSpot, Airtable, Google Workspace, Asana, ClickUp, Stripe, and hundreds more via Zapier, Make, or direct APIs. If your stack has an API, we can almost certainly wire it in."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens when something breaks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "That's what the retainer covers. Every flow is monitored around the clock—when an upstream tool changes its API or a step fails, we're alerted and usually have it fixed before your team notices anything."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What kind of support do we get?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A dedicated Slack channel with the people who built your automation—no ticket queues, no outsourced support desk. Questions, tweaks, and small adjustments are part of the retainer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you build custom integrations?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. When an off-the-shelf connector doesn't exist, we write custom API integrations—internal tools, legacy systems, or niche software included. That's scoped and quoted in the same fixed-fee proposal."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <div id="root"></div>

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Lead magnet is intentionally unlisted (noindex meta on the page itself)
+Disallow: /scorecard.html
+
+Sitemap: https://craftedflows.com/sitemap.xml

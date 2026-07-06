@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import blogPlugin from './plugins/blog.js';
 
 /**
  * Inlines the emitted CSS bundle directly into index.html.
@@ -31,14 +32,20 @@ function inlineCss() {
 }
 
 export default defineConfig({
-  plugins: [react(), inlineCss()],
+  plugins: [blogPlugin(), react(), inlineCss()],
   build: {
+    // Every production visitor runs a modern browser (the site already
+    // requires ES modules); es2022 skips legacy transpilation helpers,
+    // shipping slightly less JS to parse.
+    target: 'es2022',
+    // No source maps in production: smaller deploy, nothing extra to fetch.
+    sourcemap: false,
     // Stable vendor chunks: app-code changes don't invalidate the
     // (much larger) React/Framer Motion chunks in visitors' caches.
     rollupOptions: {
       output: {
         manualChunks: {
-          react: ['react', 'react-dom'],
+          react: ['react', 'react-dom', 'react-router'],
           motion: ['framer-motion'],
         },
       },

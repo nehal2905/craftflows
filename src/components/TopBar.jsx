@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router';
 import Magnetic from './Magnetic.jsx';
 
 const LINKS = [
@@ -17,6 +18,10 @@ const LINKS = [
  */
 export default function TopBar() {
   const [active, setActive] = useState('top');
+  const { pathname } = useLocation();
+  // On the landing page plain hash links keep the native smooth scroll;
+  // from any other route they point back to the home page sections.
+  const base = pathname === '/' ? '' : '/';
 
   useEffect(() => {
     let raf = 0;
@@ -46,7 +51,7 @@ export default function TopBar() {
   return (
     <header className="topbar">
       <div className="wrap topbar__inner">
-        <a className="topbar__brand" href="#top" aria-label="Crafted Flows&mdash;top of page">
+        <a className="topbar__brand" href={`${base}#top`} aria-label="Crafted Flows&mdash;top of page">
           <svg className="topbar__mark" viewBox="0 0 120 60" fill="none" aria-hidden="true">
             <path
               d="M60 30 C 76 6 108 6 108 30 C 108 54 76 54 60 30 C 44 6 12 6 12 30 C 12 54 44 54 60 30 Z"
@@ -63,7 +68,7 @@ export default function TopBar() {
           {LINKS.map(({ id, label }) => (
             <a
               key={id}
-              href={`#${id}`}
+              href={`${base}#${id}`}
               className={active === id ? 'is-active' : undefined}
               aria-current={active === id ? 'true' : undefined}
             >

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Two connected automation nodes illustration">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0C0C0E"/>
+      <stop offset="1" stop-color="#070708"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg2)"/>
+  <g stroke="#1C1C1F" stroke-width="1">
+    <path d="M0 157.5H1200M0 315H1200M0 472.5H1200"/>
+    <path d="M300 0V630M600 0V630M900 0V630"/>
+  </g>
+  <path d="M420 315 H 780" stroke="#2A2A2E" stroke-width="3"/>
+  <path d="M420 315 H 780" stroke="#E8C57E" stroke-width="3" stroke-dasharray="18 26" stroke-linecap="round"/>
+  <circle cx="330" cy="315" r="120" fill="#141416" stroke="#2A2A2E" stroke-width="2"/>
+  <circle cx="870" cy="315" r="120" fill="#141416" stroke="#E8C57E" stroke-width="2"/>
+  <path d="M330 245 L300 330 L330 330 L330 385 L360 300 L330 300 Z" fill="#FAFAFA"/>
+  <g stroke="#E8C57E" stroke-width="5" fill="none" stroke-linecap="round">
+    <circle cx="870" cy="315" r="34"/>
+    <path d="M870 245v24M870 377v24M800 315h24M916 315h24M821 266l17 17M902 347l17 17M919 266l-17 17M838 347l-17 17"/>
+  </g>
+  <circle cx="600" cy="315" r="14" fill="#FAFAFA"/>
+</svg>
