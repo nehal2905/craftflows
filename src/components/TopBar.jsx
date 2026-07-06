@@ -75,7 +75,7 @@ export default function TopBar() {
         <Magnetic strength={0.2} className="topbar__cta-wrap">
           <a
             className="btn btn--accent btn--sm"
-            href="https://cal.com/craftedflows/audit"
+            href="https://cal.com/crafted-flows/automation-audit"
             target="_blank"
             rel="noopener"
           >

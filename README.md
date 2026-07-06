@@ -54,7 +54,7 @@ reveals render statically.
 
 | What | Where | Current placeholder |
 |---|---|---|
-| Cal.com booking link | `src/components/Book.jsx` | `https://cal.com/craftedflows/audit` |
+| Cal.com booking link | `src/components/Book.jsx` | `https://cal.com/crafted-flows/automation-audit` |
 | Email | `Book.jsx` + `Footer.jsx` | `admin@craftedflows.com` |
 | LinkedIn | `Footer.jsx` | `https://www.linkedin.com/company/craftedflows` |
 | Domain | `index.html` `og:url`, `Footer.jsx` | `craftedflows.com` |

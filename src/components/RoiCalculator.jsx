@@ -152,7 +152,7 @@ export default function RoiCalculator() {
                 <Magnetic strength={0.15}>
                   <a
                     className="btn btn--primary"
-                    href="https://cal.com/craftedflows/audit"
+                    href="https://cal.com/crafted-flows/automation-audit"
                     target="_blank"
                     rel="noopener"
                   >

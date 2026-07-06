@@ -21,7 +21,7 @@ export default function Book() {
           <Magnetic>
             <a
               className="btn btn--primary btn--lg"
-              href="https://cal.com/craftedflows/audit"
+              href="https://cal.com/crafted-flows/automation-audit"
               target="_blank"
               rel="noopener"
             >
