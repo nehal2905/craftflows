@@ -9,15 +9,36 @@ export default function LeadMagnet() {
   const reduce = useReducedMotion();
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    if (!email.trim()) return;
-    // No backend yet — hand off to the inbox so no lead is lost.
-    window.location.href =
-      `mailto:admin@craftedflows.com?subject=${encodeURIComponent('Send me the Business Automation Checklist')}` +
-      `&body=${encodeURIComponent(`Please send the checklist to: ${email}`)}`;
-    setSent(true);
+    const address = email.trim();
+    if (!address || sending) return;
+    setSending(true);
+    try {
+      // FormSubmit relays the submission to the inbox — no backend needed.
+      const res = await fetch('https://formsubmit.co/ajax/hello@craftedflows.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          email: address,
+          _subject: 'New checklist request — Crafted Flows',
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      });
+      if (!res.ok) throw new Error('relay failed');
+      setSent(true);
+    } catch {
+      // Relay unreachable — fall back to a pre-filled email so the lead isn't lost.
+      window.location.href =
+        `mailto:hello@craftedflows.com?subject=${encodeURIComponent('Send me the Business Automation Checklist')}` +
+        `&body=${encodeURIComponent(`Please send the checklist to: ${address}`)}`;
+      setSent(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -57,7 +78,7 @@ export default function LeadMagnet() {
                       <circle cx="12" cy="12" r="9" />
                       <path d="m8.5 12.5 2.5 2.5 5-5.5" />
                     </svg>
-                    Check your email client&mdash;your checklist request is ready to send.
+                    Request received&mdash;the checklist is on its way to your inbox.
                   </m.p>
                 ) : (
                   <m.form
@@ -80,8 +101,8 @@ export default function LeadMagnet() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
-                    <button className="btn btn--primary" type="submit">
-                      Send me the checklist
+                    <button className="btn btn--primary" type="submit" disabled={sending}>
+                      {sending ? 'Sending…' : 'Send me the checklist'}
                       <span className="btn__arrow" aria-hidden="true">→</span>
                     </button>
                     <p className="magnet__privacy">
