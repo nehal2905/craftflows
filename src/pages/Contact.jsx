@@ -6,7 +6,7 @@ export default function Contact() {
     <>
       <Seo
         title="Contact | Crafted Flows"
-        description="Get in touch with Crafted Flows — book a free automation audit or email the team directly."
+        description="Get in touch with Crafted Flows - book a free automation audit or email the team directly."
         path="/contact"
         noindex
       />

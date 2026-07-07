@@ -5,7 +5,7 @@ import Spotlight from './Spotlight.jsx';
 const STATS = [
   { literal: 'Most', label: 'business hours sunk into unbillable admin work' },
   { value: 10, prefix: '+', suffix: 'h', label: 'lost every single week to copy-paste reporting', pain: true },
-  { literal: 'Zero', label: 'new tools your team has to learn\u2014we use your stack' },
+  { literal: 'Zero', label: 'new tools your team has to learn, we use your stack' },
 ];
 
 export default function Problem() {
@@ -23,7 +23,7 @@ export default function Problem() {
 
         <Reveal as="p" className="lead" delay={0.08}>
           Manual reporting. Copy-pasting between dashboards. Onboarding checklists chased by hand.
-          It quietly eats <strong>10+ hours a week</strong>&mdash;and every one of those hours is a
+          It quietly eats <strong>10+ hours a week</strong>, and every one of those hours is a
           mistake waiting to happen.
         </Reveal>
 

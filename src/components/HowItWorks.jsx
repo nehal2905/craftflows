@@ -32,7 +32,7 @@ const STEPS = [
     icon: 'audit',
     title: 'Audit',
     body:
-      "We map the repetitive workflow costing you the most hours\u2014the one you've stopped noticing because it's just \"how things are.\"",
+      "We map the repetitive workflow costing you the most hours, the one you've stopped noticing because it's just \"how things are.\"",
   },
   {
     index: '02',
@@ -46,11 +46,11 @@ const STEPS = [
     icon: 'maintain',
     title: 'Maintain',
     body:
-      'We monitor it and fix it when something upstream changes\u2014so it just keeps running, quietly, in the background.',
+      'We monitor it and fix it when something upstream changes, so it just keeps running, quietly, in the background.',
   },
 ];
 
-/** Animated connector — the line draws itself as the row scrolls into view. */
+/** Animated connector - the line draws itself as the row scrolls into view. */
 function Connector({ delay }) {
   const reduce = useReducedMotion();
   return (
@@ -86,7 +86,7 @@ export default function HowItWorks() {
             </a>
           </Reveal>
           <Reveal as="p" className="section__sub" delay={0.08}>
-            Three steps. No new software to buy, no team retraining&mdash;just the busywork, gone.
+            Three steps. No new software to buy, no team retraining, just the busywork, gone.
           </Reveal>
         </div>
 

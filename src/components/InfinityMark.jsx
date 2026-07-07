@@ -8,7 +8,7 @@ const EASE = [0.22, 1, 0.36, 1];
 /**
  * The infinity mark: draws itself in once (Framer Motion pathLength),
  * then a single lit segment flows around the loop forever (Web Animations
- * API — seamless because the period equals the total path length).
+ * API - seamless because the period equals the total path length).
  * Fully calm under prefers-reduced-motion.
  */
 export default function InfinityMark() {

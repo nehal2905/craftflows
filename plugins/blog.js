@@ -2,15 +2,15 @@
  * Crafted Flows blog plugin.
  *
  * Compiles /content/blog/*.md at BUILD time (Node), so the browser never
- * downloads a markdown parser or highlighter — posts ship as prerendered
+ * downloads a markdown parser or highlighter - posts ship as prerendered
  * HTML strings in tiny per-post chunks.
  *
  * Provides:
- *  1. `virtual:blog-index` — metadata array for every published post
+ *  1. `virtual:blog-index` - metadata array for every published post
  *     (frontmatter + reading time), sorted newest-first. Powers /blog.
- *  2. A transform for `content/blog/*.md` imports — each post becomes a
+ *  2. A transform for `content/blog/*.md` imports - each post becomes a
  *     JS module exporting { frontmatter, headings, html }.
- *  3. `sitemap.xml` generation on build — "/", "/blog", and every
+ *  3. `sitemap.xml` generation on build - "/", "/blog", and every
  *     published post are included automatically.
  *
  * Publishing a post = dropping a .md file into content/blog. Nothing else.
@@ -198,7 +198,7 @@ ${categories}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>Crafted Flows Blog</title>
-    <description>Practical writing on business automation, AI workflows, and the tools we build with\u2014from the team at Crafted Flows.</description>
+    <description>Practical writing on business automation, AI workflows, and the tools we build with, from the team at Crafted Flows.</description>
     <link>${ORIGIN}/blog</link>
     <atom:link href="${ORIGIN}/rss.xml" rel="self" type="application/rss+xml" />
     <language>en</language>

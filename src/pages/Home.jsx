@@ -20,7 +20,7 @@ export default function Home() {
       <Seo
         title="Crafted Flows | Business Automation & AI Workflows, Done For You"
         description={
-          'Crafted Flows builds custom business automation and AI workflows that run your client reporting, onboarding, and lead routing\u2014using the tools you already use. Done for you, or you don\u2019t pay.'
+          "Crafted Flows builds custom business automation and AI workflows: client reporting, onboarding, and lead routing, done for you. Save hours or you don't pay."
         }
         path="/"
       />

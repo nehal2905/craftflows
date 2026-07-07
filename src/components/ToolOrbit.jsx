@@ -36,7 +36,7 @@ const RINGS = [
 const ALL_TOOLS = RINGS.flatMap((r) => r.tools);
 
 /**
- * Integration constellation — full-color app tiles revolve around a phone
+ * Integration constellation - full-color app tiles revolve around a phone
  * running the Crafted Flows brand. Two counter-spinning circular rings,
  * gentle per-tile bob, sequential gold data pulses, and a glowing core.
  * Hovering pauses the system; hovered tiles lift with a gold glow and a

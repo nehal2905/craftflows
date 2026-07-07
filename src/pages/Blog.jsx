@@ -55,7 +55,7 @@ export default function Blog() {
     <>
       <Seo
         title="Automation Blog | Crafted Flows"
-        description="Practical writing on business automation, AI workflows, and the tools we build with—from the team at Crafted Flows."
+        description="Practical writing on business automation, AI workflows, and the tools we build with, from the team at Crafted Flows."
         path="/blog"
       />
       <JsonLd

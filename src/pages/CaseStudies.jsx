@@ -6,7 +6,7 @@ export default function CaseStudies() {
     <>
       <Seo
         title="Case Studies | Crafted Flows"
-        description="Real results from Crafted Flows automation projects — the hours saved, the workflows replaced, and how we did it."
+        description="Real results from Crafted Flows automation projects - the hours saved, the workflows replaced, and how we did it."
         path="/case-studies"
         noindex
       />

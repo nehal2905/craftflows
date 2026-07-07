@@ -71,7 +71,7 @@ function ShareRow({ url, title }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      /* clipboard unavailable (http, permissions) — leave button as-is */
+      /* clipboard unavailable (http, permissions) - leave button as-is */
     }
   };
 

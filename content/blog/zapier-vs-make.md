@@ -12,7 +12,7 @@ draft: false
 
 We build automations on both Zapier and Make every week, so we don't have
 a horse in this race. The honest answer to "which is better" is *it
-depends on the shape of your workflow*—but the decision is simpler than
+depends on the shape of your workflow*, but the decision is simpler than
 most comparisons make it sound.
 
 ## The one-sentence answer
@@ -24,8 +24,8 @@ and cost at volume.** Everything below is detail on that sentence.
 
 ### App coverage
 
-Zapier connects to roughly 6,000+ apps. If you use niche software—a
-regional accounting tool, an industry-specific CRM—Zapier is more likely
+Zapier connects to roughly 6,000+ apps. If you use niche software (a
+regional accounting tool, an industry-specific CRM), Zapier is more likely
 to have a ready-made connector. Checking this takes two minutes and can
 settle the whole decision.
 
@@ -48,7 +48,7 @@ whoever built the scenario.
 Make's visual canvas supports routers (branching), iterators (looping
 over line items), and aggregators (merging data back together) as
 first-class concepts. In Zapier, complex branching means duplicating Zaps
-or fighting with Paths—possible, but painful past a certain point.
+or fighting with Paths. Possible, but painful past a certain point.
 
 ### Cost at volume
 
@@ -65,7 +65,7 @@ At low volume the difference is noise. At high volume it's a budget line.
 ### Data transformation
 
 Make handles JSON, arrays, and data mapping natively. If your workflow
-reshapes data—splitting line items, restructuring API responses—Make does
+reshapes data, splitting line items, restructuring API responses, Make does
 in one module what Zapier needs Code steps for.
 
 ## The decision rule we use
@@ -75,7 +75,7 @@ Ask two questions:
 1. **Does the workflow branch or loop?** If yes, lean Make.
 2. **Will it run more than ~2,000 times a month?** If yes, lean Make.
 
-If the answer to both is no—and your apps are covered—Zapier's simplicity
+If the answer to both is no, and your apps are covered, Zapier's simplicity
 is worth more than Make's power. Plenty of our client builds use both:
 Zapier for simple high-coverage glue, Make for the heavy scenarios.
 
@@ -83,13 +83,13 @@ Zapier for simple high-coverage glue, Make for the heavy scenarios.
 
 The tool matters less than the build quality. A well-architected Zap with
 error handling beats a sloppy Make scenario, and vice versa. The failures
-we get called in to fix are almost never "wrong tool"—they're missing
+we get called in to fix are almost never "wrong tool", they're missing
 error paths, no alerting, and nobody watching the thing.
 
 Whichever tool you pick, treat the automation like production software:
 version it, monitor it, and document it.
 
-Not sure which fits your workflow? We'll tell you in 15 minutes—
+Not sure which fits your workflow? We'll tell you in 15 minutes, 
 [book a free automation audit](https://cal.com/crafted-flows/automation-audit).
 We'll map the workflow and recommend the stack, even if you build it
 yourself.

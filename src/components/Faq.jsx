@@ -7,7 +7,7 @@ const EASE = [0.22, 1, 0.36, 1];
 const FAQS = [
   {
     q: 'How much does it cost?',
-    a: 'A fixed build fee\u2014quoted up front after the audit, based on the workflow\u2019s complexity\u2014plus a monthly retainer for monitoring and maintenance. No hourly billing, no surprises. And if the automation doesn\u2019t save the hours we promised, you don\u2019t pay.',
+    a: 'A fixed build fee, quoted up front after the audit, based on the workflow\u2019s complexity, plus a monthly retainer for monitoring and maintenance. No hourly billing, no surprises. And if the automation doesn\u2019t save the hours we promised, you don\u2019t pay.',
   },
   {
     q: 'How long does a build take?',
@@ -19,15 +19,15 @@ const FAQS = [
   },
   {
     q: 'What happens when something breaks?',
-    a: 'That\u2019s what the retainer covers. Every flow is monitored around the clock\u2014when an upstream tool changes its API or a step fails, we\u2019re alerted and usually have it fixed before your team notices anything.',
+    a: 'That\u2019s what the retainer covers. Every flow is monitored around the clock, when an upstream tool changes its API or a step fails, we\u2019re alerted and usually have it fixed before your team notices anything.',
   },
   {
     q: 'What kind of support do we get?',
-    a: 'A dedicated Slack channel with the people who built your automation\u2014no ticket queues, no outsourced support desk. Questions, tweaks, and small adjustments are part of the retainer.',
+    a: 'A dedicated Slack channel with the people who built your automation, no ticket queues, no outsourced support desk. Questions, tweaks, and small adjustments are part of the retainer.',
   },
   {
     q: 'Can you build custom integrations?',
-    a: 'Yes. When an off-the-shelf connector doesn\u2019t exist, we write custom API integrations\u2014internal tools, legacy systems, or niche software included. That\u2019s scoped and quoted in the same fixed-fee proposal.',
+    a: 'Yes. When an off-the-shelf connector doesn\u2019t exist, we write custom API integrations, internal tools, legacy systems, or niche software included. That\u2019s scoped and quoted in the same fixed-fee proposal.',
   },
 ];
 

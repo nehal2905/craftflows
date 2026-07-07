@@ -17,7 +17,7 @@ export default function Service() {
 
   return (
     <>
-      {/* noindex while service.draft is true (placeholder copy) —
+      {/* noindex while service.draft is true (placeholder copy) , 
           flip the flag in src/data/services.js once copy is final. */}
       <Seo
         title={service.seo.title}

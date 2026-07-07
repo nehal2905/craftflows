@@ -87,7 +87,7 @@ export default function Hero() {
   const ref = useRef(null);
 
   // Gentle parallax: content drifts up slightly as you scroll away.
-  // No opacity fade — it dimmed the integration cloud while it was still
+  // No opacity fade - it dimmed the integration cloud while it was still
   // in view (the hero is taller than the viewport).
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
   const contentY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -70]);
@@ -123,7 +123,7 @@ export default function Hero() {
 
         {/*
           LCP-critical content: the title and subtitle render statically so
-          they paint on the very first frame — no opacity/transform entrance.
+          they paint on the very first frame - no opacity/transform entrance.
           Word spacing stays deterministic: each word is an inline-block with
           a fixed 0.24em right margin, no whitespace characters injected.
         */}
@@ -148,7 +148,7 @@ export default function Hero() {
 
         <p className="hero__sub">
           Crafted Flows builds custom automations that run your client reporting, onboarding,
-          and lead routing&mdash;using the tools you already use. <strong>Done for you, or you
+          and lead routing, using the tools you already use. <strong>Done for you, or you
           don&rsquo;t pay.</strong>
         </p>
 

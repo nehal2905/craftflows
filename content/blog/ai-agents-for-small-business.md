@@ -21,7 +21,7 @@ A normal automation follows a fixed recipe: *when X happens, do Y, then
 Z.* An agent is different in one specific way: **you give it a goal and
 tools, and it decides the steps.**
 
-That flexibility is the whole value—and the whole risk. An automation
+That flexibility is the whole value, and the whole risk. An automation
 can only fail in ways you anticipated. An agent can fail creatively.
 
 ## Three places agents genuinely work today
@@ -43,7 +43,7 @@ and easy to verify at a glance. Agents doing prep work consistently save
 ### 3. Internal operations with approval gates
 
 Drafting the invoice, preparing the onboarding checklist, assembling the
-weekly ops summary—anything where the agent does 95% of the work and a
+weekly ops summary. Anything where the agent does 95% of the work and a
 human clicks "approve" on the result. The approval gate converts agent
 risk from "what did it just send?" to "is this draft good?"
 
@@ -61,11 +61,11 @@ risk from "what did it just send?" to "is this draft good?"
 
 Every agent we ship has all five of these:
 
-- [x] **Scoped tool access** — the agent can only touch the systems its job requires
-- [x] **Approval gates** — irreversible actions wait for a human click
-- [x] **Spending limits** — hard caps on model usage per day
-- [x] **Audit log** — every action recorded with its reasoning
-- [x] **Kill switch** — one button that pauses the agent entirely
+- [x] **Scoped tool access** - the agent can only touch the systems its job requires
+- [x] **Approval gates** - irreversible actions wait for a human click
+- [x] **Spending limits** - hard caps on model usage per day
+- [x] **Audit log** - every action recorded with its reasoning
+- [x] **Kill switch** - one button that pauses the agent entirely
 
 If a vendor can't show you all five, the agent isn't production-ready,
 whatever the demo looked like.
@@ -81,5 +81,5 @@ Agents compound. A small win that runs reliably beats an ambitious one
 that gets unplugged.
 
 Want to know which job in your business an agent should own first?
-[Book a free automation audit](https://cal.com/crafted-flows/automation-audit)—
+[Book a free automation audit](https://cal.com/crafted-flows/automation-audit), 
 we'll point at it in 15 minutes.

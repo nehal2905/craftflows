@@ -4,7 +4,7 @@ import Reveal from './Reveal.jsx';
 
 const EASE = [0.22, 1, 0.36, 1];
 
-/** Low-friction secondary CTA — email capture for the automation checklist. */
+/** Low-friction secondary CTA - email capture for the automation checklist. */
 export default function LeadMagnet() {
   const reduce = useReducedMotion();
   const [email, setEmail] = useState('');
@@ -17,13 +17,13 @@ export default function LeadMagnet() {
     if (!address || sending) return;
     setSending(true);
     try {
-      // FormSubmit relays the submission to the inbox — no backend needed.
+      // FormSubmit relays the submission to the inbox - no backend needed.
       const res = await fetch('https://formsubmit.co/ajax/hello@craftedflows.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           email: address,
-          _subject: 'New checklist request — Crafted Flows',
+          _subject: 'New checklist request - Crafted Flows',
           _template: 'table',
           _captcha: 'false',
         }),
@@ -31,7 +31,7 @@ export default function LeadMagnet() {
       if (!res.ok) throw new Error('relay failed');
       setSent(true);
     } catch {
-      // Relay unreachable — fall back to a pre-filled email so the lead isn't lost.
+      // Relay unreachable - fall back to a pre-filled email so the lead isn't lost.
       window.location.href =
         `mailto:hello@craftedflows.com?subject=${encodeURIComponent('Send me the Business Automation Checklist')}` +
         `&body=${encodeURIComponent(`Please send the checklist to: ${address}`)}`;
@@ -53,7 +53,7 @@ export default function LeadMagnet() {
                 Get the Business Automation Checklist.
               </h2>
               <p className="magnet__sub">
-                The exact 21-point checklist we run in every audit&mdash;find the workflows
+                The exact 21-point checklist we run in every audit. Find the workflows
                 silently draining your week, ranked by hours recovered.
               </p>
               <ul className="magnet__list">
@@ -78,7 +78,7 @@ export default function LeadMagnet() {
                       <circle cx="12" cy="12" r="9" />
                       <path d="m8.5 12.5 2.5 2.5 5-5.5" />
                     </svg>
-                    Request received&mdash;the checklist is on its way to your inbox.
+                    Request received. The checklist is on its way to your inbox.
                   </m.p>
                 ) : (
                   <m.form

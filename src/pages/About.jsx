@@ -6,7 +6,7 @@ export default function About() {
     <>
       <Seo
         title="About | Crafted Flows"
-        description="The team and thinking behind Crafted Flows — custom business automation and AI workflows, done for you."
+        description="The team and thinking behind Crafted Flows - custom business automation and AI workflows, done for you."
         path="/about"
         noindex
       />

@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { m, useMotionValue, useSpring, useReducedMotion } from 'framer-motion';
 
 /**
- * Magnetic wrapper — children gently gravitate toward the cursor while
+ * Magnetic wrapper - children gently gravitate toward the cursor while
  * hovered, springing back on leave. Disabled for reduced motion and on
  * touch-only devices (no mousemove events fire there anyway).
  */

@@ -7,7 +7,7 @@ import {
 } from 'framer-motion';
 
 /**
- * Animated number — counts from 0 to `value` when scrolled into view.
+ * Animated number - counts from 0 to `value` when scrolled into view.
  * Renders the final value immediately under prefers-reduced-motion.
  */
 export default function Counter({ value, prefix = '', suffix = '', decimals = 0 }) {

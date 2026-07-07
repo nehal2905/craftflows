@@ -76,7 +76,7 @@ export default function RoiCalculator() {
           <a href="#roi" className="title-link">What is the busywork costing you?</a>
         </Reveal>
         <Reveal as="p" className="section__sub" delay={0.08}>
-          Drag the sliders to match your business. The numbers update as you move&mdash;and they
+          Drag the sliders to match your business. The numbers update as you move, and they
           assume automation only takes over 70% of the repetitive work, which is conservative.
         </Reveal>
 
@@ -140,7 +140,7 @@ export default function RoiCalculator() {
                 <span className="tip">
                   <button type="button" className="tip__btn" aria-describedby="roi-tip">?</button>
                   <span className="tip__pop" id="roi-tip" role="tooltip">
-                    Why 70%? Some steps still need human judgment&mdash;approvals, edge cases,
+                    Why 70%? Some steps still need human judgment, approvals, edge cases,
                     client nuance. We only count what&rsquo;s reliably repeatable, so the
                     estimate stays honest rather than impressive.
                   </span>

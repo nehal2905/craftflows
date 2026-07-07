@@ -7,7 +7,7 @@ import { SERVICES } from '../data/services.js';
 const ORIGIN = 'https://craftedflows.com';
 
 /**
- * Services index — links to every service page. Stays noindex while the
+ * Services index - links to every service page. Stays noindex while the
  * service pages carry placeholder copy; flip alongside the service
  * `draft` flags in src/data/services.js.
  */
@@ -47,7 +47,7 @@ export default function Services() {
             </Reveal>
             <Reveal as="p" className="section__sub" delay={0.12}>
               {/* [PLACEHOLDER] intro copy for the services index */}
-              Six ways we take repetitive work off your team&rsquo;s plate&mdash;each one
+              Six ways we take repetitive work off your team&rsquo;s plate, each one
               designed, built, and maintained for you.
             </Reveal>
 

@@ -2,12 +2,12 @@ const INFINITY_PATH =
   'M60 30 C 76 6 108 6 108 30 C 108 54 76 54 60 30 C 44 6 12 6 12 30 C 12 54 44 54 60 30 Z';
 
 /**
- * Circular guarantee seal — the ring of type rotates slowly around a
+ * Circular guarantee seal - the ring of type rotates slowly around a
  * static core. Rendered in the accent gold; static under reduced motion.
  */
 export default function GuaranteeSeal() {
   return (
-    <div className="seal" role="img" aria-label="Hours-back guarantee&mdash;or you don't pay">
+    <div className="seal" role="img" aria-label="Hours-back guarantee, or you don't pay">
       <svg className="seal__spin" viewBox="0 0 120 120" aria-hidden="true">
         <defs>
           <path
