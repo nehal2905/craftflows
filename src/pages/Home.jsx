@@ -18,7 +18,7 @@ export default function Home() {
       {/* Mirrors the static tags in index.html so returning to "/" from
           another route restores the original metadata. */}
       <Seo
-        title="Crafted Flows | Business Automation & AI Workflows, Done For You"
+        title="Crafted Flows"
         description={
           "Crafted Flows builds custom business automation and AI workflows: client reporting, onboarding, and lead routing, done for you. Save hours or you don't pay."
         }
