@@ -1,7 +1,7 @@
 import { useParams } from 'react-router';
 import Seo from '../components/Seo.jsx';
 import JsonLd from '../components/JsonLd.jsx';
-import ServicePageLayout from '../components/ServicePageLayout.jsx';
+import ServiceLayout from '../components/ServiceLayout.jsx';
 import NotFound from './NotFound.jsx';
 import { getService } from '../data/services.js';
 
@@ -68,7 +68,7 @@ export default function Service() {
         }}
       />
 
-      <ServicePageLayout service={service} />
+      <ServiceLayout service={service} />
     </>
   );
 }

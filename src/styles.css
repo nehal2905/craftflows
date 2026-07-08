@@ -1187,7 +1187,106 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 }
 
 /* ---------- service pages (/services/:slug) ---------- */
-/* first section sits under the fixed topbar, so it needs extra headroom */
+.svc-page { background: var(--bg); }
+
+/* Hero: mirrors homepage grid + orb, generous vertical rhythm */
+.svc-page-hero {
+  position: relative;
+  padding: clamp(8.5rem, 16vw, 11rem) var(--gutter) clamp(5.5rem, 11vw, 7.5rem);
+  text-align: center;
+  overflow: hidden;
+}
+.svc-page-hero__bg {
+  position: absolute; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
+}
+.svc-page-hero__inner {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center;
+  max-width: var(--maxw); margin-inline: auto;
+}
+.svc-page-hero__inner > * { max-width: 100%; }
+
+.svc-page-hero__title {
+  font-size: clamp(2.35rem, 5.8vw, 4.1rem);
+  font-weight: 500; line-height: 1.06; letter-spacing: -0.036em;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+.svc-page-hero__title em { font-style: normal; font-weight: 700; }
+
+.svc-page-hero__sub {
+  margin-top: clamp(1.4rem, 2.8vw, 1.9rem);
+  max-width: 56ch;
+  font-size: clamp(1.05rem, 1.65vw, 1.28rem);
+  line-height: 1.62; color: var(--ink-2);
+  text-wrap: pretty;
+}
+.svc-page-hero__sub strong { color: var(--ink); font-weight: 700; }
+
+.crumbs--center { justify-content: center; }
+
+/* Section rhythm: full homepage padding, not tight */
+.svc-page-section { padding-block: clamp(5rem, 11vw, 8.5rem); }
+
+.svc-page-section__head {
+  margin-bottom: clamp(2.75rem, 5.5vw, 4rem);
+  max-width: 42ch;
+}
+.svc-page-section__head--center {
+  margin-inline: auto;
+  text-align: center;
+  max-width: 52ch;
+}
+
+.svc-page-prose {
+  max-width: 64ch;
+  margin-inline: auto;
+}
+.svc-page-prose .lead + .lead { margin-top: 1.25rem; }
+
+/* Benefits: spotlight cards with accent icons (matches step cards) */
+.svc-page-benefits {
+  display: grid; gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) { .svc-page-benefits { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .svc-page-benefits { grid-template-columns: repeat(4, 1fr); } }
+
+.svc-page-benefit {
+  height: 100%;
+  padding: clamp(1.8rem, 3.4vw, 2.5rem);
+  border-radius: var(--r-lg);
+}
+.svc-page-benefit__icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 13px;
+  border: 1px solid rgba(232, 197, 126, 0.35);
+  background: rgba(232, 197, 126, 0.08);
+  margin-bottom: 1.3rem;
+  color: var(--accent);
+}
+.svc-page-benefit__icon svg { width: 20px; height: 20px; }
+.svc-page-benefit__title {
+  margin: 0 0 0.65rem;
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-weight: 700; letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.svc-page-benefit__body {
+  margin: 0;
+  font-size: 1.02rem; line-height: 1.65;
+  color: var(--ink-2);
+}
+
+/* Related services row */
+.svc-page-related {
+  display: grid; gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px) { .svc-page-related { grid-template-columns: repeat(3, 1fr); } }
+
+/* Legacy hero padding for /services index + blog pages */
 .svc-hero { padding-top: clamp(8.5rem, 16vw, 11.5rem); padding-bottom: clamp(3.5rem, 7vw, 5.5rem); }
 
 .crumbs {
