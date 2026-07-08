@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import Magnetic from './Magnetic.jsx';
 
 const LINKS = [
@@ -51,7 +51,14 @@ export default function TopBar() {
   return (
     <header className="topbar">
       <div className="wrap topbar__inner">
-        <a className="topbar__brand" href={`${base}#top`} aria-label="Crafted Flows, top of page">
+        <Link
+          className="topbar__brand"
+          to="/"
+          aria-label="Crafted Flows, home"
+          onClick={() => {
+            if (pathname === '/') window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        >
           <svg className="topbar__mark" viewBox="0 0 120 60" fill="none" aria-hidden="true">
             <path
               d="M60 30 C 76 6 108 6 108 30 C 108 54 76 54 60 30 C 44 6 12 6 12 30 C 12 54 44 54 60 30 Z"
@@ -62,7 +69,7 @@ export default function TopBar() {
             />
           </svg>
           <span><b>crafted</b> flows</span>
-        </a>
+        </Link>
 
         <nav className="topbar__nav" aria-label="Primary">
           {LINKS.map(({ id, label }) => (

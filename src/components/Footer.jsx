@@ -1,13 +1,11 @@
-import { useLocation } from 'react-router';
+import { Link } from 'react-router';
 
 export default function Footer() {
   const year = new Date().getFullYear();
-  const { pathname } = useLocation();
-  const base = pathname === '/' ? '' : '/';
   return (
     <footer className="footer">
       <div className="wrap footer__inner">
-        <a className="footer__brand" href={`${base}#top`} aria-label="Crafted Flows, back to top">
+        <Link className="footer__brand" to="/" aria-label="Crafted Flows, home">
           <svg className="footer__mark" viewBox="0 0 120 60" fill="none" aria-hidden="true">
             <path
               d="M60 30 C 76 6 108 6 108 30 C 108 54 76 54 60 30 C 44 6 12 6 12 30 C 12 54 44 54 60 30 Z"
@@ -18,7 +16,7 @@ export default function Footer() {
             />
           </svg>
           <span><b>crafted</b> flows</span>
-        </a>
+        </Link>
 
         <nav className="footer__links" aria-label="Footer">
           <a href="https://craftedflows.com">craftedflows.com</a>
@@ -47,7 +45,7 @@ export default function Footer() {
             </a>
             <a
               className="footer__icon"
-              href="https://www.instagram.com/crafted.flows"
+              href="https://www.instagram.com/crafted.flows?igsh=MWRzeW95am9iank5NQ%3D%3D&utm_source=qr"
               target="_blank"
               rel="noopener"
               aria-label="Crafted Flows on Instagram"
