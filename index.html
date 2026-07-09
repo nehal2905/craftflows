@@ -29,10 +29,13 @@
   <meta name="twitter:image" content="https://craftedflows.com/assets/og.png" />
   <meta name="twitter:image:alt" content="Crafted Flows, Business Automation and AI Workflows, done for you" />
 
-  <!-- Favicon: SVG mark with PNG fallback -->
-  <link rel="icon" type="image/svg+xml" href="/assets/mark.svg" />
+  <!-- Favicon: PNG first for Google Search (48px+), SVG for modern browsers -->
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
-  <link rel="apple-touch-icon" href="/assets/favicon-180.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png" />
+  <link rel="icon" type="image/svg+xml" href="/assets/mark.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png" />
 
   <!-- Fonts are self-hosted (declared in the bundled CSS): zero third-party
        connections. Preload the weights the hero paints with so the swap
