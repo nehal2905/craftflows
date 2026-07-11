@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Business Automation Scorecard - Crafted Flows</title>
-<meta name="description" content="Find the hidden workflows costing your business time and money. A 10-minute self-audit by Crafted Flows." />
+<title>Operational Efficiency Diagnostic - Crafted Flows</title>
+<meta name="description" content="A consulting framework for exposing hidden operational waste. 21 diagnostic points, cost model, and priority matrix by Crafted Flows." />
 <meta name="robots" content="noindex" />
 <style>
   /* ---------- fonts (self-hosted, same as the site) ---------- */
@@ -283,7 +283,8 @@
   .band__text b { color: var(--ink); }
   .top3 { margin-top: 9mm; }
   .top3 h3 { font-size: 13pt; font-weight: 900; margin-bottom: 4mm; }
-  .top3__row { display: flex; align-items: baseline; gap: 4mm; margin-bottom: 5mm; }
+  .top3__row { display: flex; align-items: baseline; gap: 3mm; margin-bottom: 5mm; }
+  .top3__row .badge { flex-shrink: 0; }
   .top3__n { font-family: var(--mono); font-size: 10pt; font-weight: 700; color: var(--gold); }
   .top3__row .writeline { flex: 1; height: 7.5mm; }
 
@@ -342,6 +343,78 @@
     font-family: var(--sans); font-size: 14px; font-weight: 700;
     padding: 12px 22px; border-radius: 999px; box-shadow: 0 4px 18px rgba(0,0,0,0.3);
   }
+
+  /* ---------- consulting framework components ---------- */
+  .insight, .myth, .observation, .warning {
+    border-radius: 2.5mm; padding: 4.5mm 6mm; margin: 5mm 0;
+    font-size: 9pt; line-height: 1.5;
+  }
+  .insight { background: var(--gold-soft); border: 0.5pt solid var(--gold-line); color: var(--ink-2); }
+  .myth { background: rgba(120, 120, 130, 0.08); border: 0.5pt solid var(--line-2); color: var(--ink-2); }
+  .observation { background: var(--wash); border-left: 1.2mm solid var(--gold); padding-left: 5mm; color: var(--ink-2); }
+  .warning { background: rgba(217, 136, 115, 0.08); border: 0.5pt solid rgba(217, 136, 115, 0.35); color: var(--ink-2); }
+  .insight__tag, .myth__tag, .observation__tag, .warning__tag {
+    font-family: var(--mono); font-size: 6.8pt; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; display: block; margin-bottom: 1.5mm;
+  }
+  .insight__tag { color: var(--gold); }
+  .myth__tag { color: var(--muted); }
+  .observation__tag { color: var(--gold); }
+  .warning__tag { color: #D98873; }
+  .insight b, .myth b, .observation b, .warning b { color: var(--ink); }
+
+  .stat-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm;
+    margin: 6mm 0 7mm; border: 0.9pt solid var(--ink); border-radius: 2.5mm; overflow: hidden;
+  }
+  .stat-grid__cell { padding: 4.5mm 4mm; text-align: center; border-right: 0.5pt solid var(--line); }
+  .stat-grid__cell:last-child { border-right: none; }
+  .stat-grid__n { font-size: 16pt; font-weight: 900; letter-spacing: -0.02em; display: block; }
+  .stat-grid__label { font-family: var(--mono); font-size: 6.8pt; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 1mm; display: block; }
+  .stat-grid__hrs { font-size: 9pt; color: var(--gold); font-weight: 700; margin-top: 1.5mm; display: block; }
+
+  .badge { font-family: var(--mono); font-size: 6.5pt; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 1mm 2.5mm; border-radius: 999px; border: 0.5pt solid var(--line-2); color: var(--muted); white-space: nowrap; }
+  .badge--high { border-color: rgba(217, 136, 115, 0.5); color: #D98873; background: rgba(217, 136, 115, 0.08); }
+  .badge--med { border-color: var(--gold-line); color: var(--gold); background: var(--gold-soft); }
+  .badge--low { border-color: var(--line-2); color: var(--faint); }
+
+  .score-track { display: flex; gap: 1.5mm; align-items: center; }
+  .score-dot { width: 4mm; height: 4mm; border-radius: 50%; border: 0.8pt solid var(--line-2); background: var(--wash); }
+  .score-dot--on { background: var(--gold); border-color: var(--gold); }
+
+  .progress-bar { height: 2.5mm; background: var(--line); border-radius: 999px; overflow: hidden; margin-top: 2mm; }
+  .progress-bar__fill { height: 100%; background: var(--gold); width: 0; transition: width 0.3s; }
+
+  .risk-item { padding: 3mm 0; border-bottom: 0.5pt dotted var(--line-2); }
+  .risk-item__q { font-size: 9.5pt; font-weight: 500; margin-bottom: 2mm; }
+  .risk-item__opts { display: flex; gap: 5mm; font-size: 8pt; color: var(--muted); flex-wrap: wrap; }
+  .risk-item__opts label { display: flex; align-items: center; gap: 1.5mm; cursor: pointer; }
+  @media print { .risk-item__opts input { display: none; } .risk-item__opts label::before { content: ''; display: inline-block; width: 3mm; height: 3mm; border: 0.8pt solid var(--ink-2); border-radius: 0.5mm; } }
+
+  .calc-summary { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3mm; margin-top: 6mm; }
+  .calc-card { border: 0.5pt solid var(--line-2); border-radius: 2.5mm; padding: 4.5mm 5mm; background: var(--wash); }
+  .calc-card--gold { background: var(--gold-soft); border-color: var(--gold-line); }
+  .calc-card__label { font-family: var(--mono); font-size: 6.8pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5mm; }
+  .calc-card__val { font-size: 14pt; font-weight: 900; letter-spacing: -0.02em; min-height: 6mm; }
+  .calc-card__val input { background: none; border: none; border-bottom: 0.6pt dotted var(--line-2); color: var(--ink); font: inherit; width: 100%; outline: none; }
+  .calc-card__hint { font-size: 7.5pt; color: var(--faint); margin-top: 1mm; }
+
+  .deliverables { margin: 6mm 0 0; }
+  .deliverables li { display: flex; gap: 3mm; align-items: baseline; font-size: 10pt; color: var(--ink-2); padding: 2mm 0; border-top: 0.5pt solid var(--line); list-style: none; }
+  .deliverables li:first-child { border-top: none; }
+  .deliverables li::before { content: '✓'; color: var(--gold); font-weight: 700; font-size: 11pt; }
+
+  .readiness-row { display: flex; align-items: center; gap: 4mm; margin-bottom: 4mm; }
+  .readiness-row__label { font-size: 9pt; font-weight: 500; min-width: 38mm; }
+  .readiness-row__track { flex: 1; }
+  .readiness-row__score { font-family: var(--mono); font-size: 8pt; color: var(--gold); min-width: 12mm; text-align: right; }
+
+  .audit-item__name { font-size: 9pt; }
+  .audit-exposed { accent-color: var(--gold); width: 3mm; height: 3mm; margin-right: 1mm; vertical-align: -0.4mm; }
+  @media print { .audit-exposed { display: none; } .audit-item__boxes .cb { display: inline-block; } }
+
+  .compact-howto ol { margin: 0; }
+  .compact-howto li { padding: 2mm 0; font-size: 9pt; }
 </style>
 </head>
 <body>
@@ -359,13 +432,13 @@
   </div>
 
   <div class="cover__mid">
-    <p class="cover__label">Self-Audit &middot; Workbook</p>
-    <h1>Business Automation Scorecard</h1>
-    <p class="cover__sub">Find the hidden workflows costing your business time and money.</p>
-    <p class="cover__intro">Every growing business reaches a point where repetitive work quietly becomes the biggest bottleneck. This scorecard helps you identify the manual processes consuming your team&rsquo;s time, estimate their true cost, and prioritize the automations that will have the biggest impact.</p>
+    <p class="cover__label">Confidential &middot; Consulting Framework</p>
+    <h1>Operational Efficiency Diagnostic</h1>
+    <p class="cover__sub">Find the workflows running on memory, not systems.</p>
+    <p class="cover__intro">Prepared for business owners who suspect manual work is costing more than it shows on a P&amp;L. This is not a tutorial. It is a diagnostic: 21 exposure points, a cost model, and a priority framework we use on every client engagement.</p>
     <div class="cover__meta">
-      <span>Completion time <b>&asymp; 10 minutes</b></span>
-      <span>Format <b>Print or annotate</b></span>
+      <span>Completion <b>&asymp; 12 min</b></span>
+      <span>Format <b>Print or digital</b></span>
       <span>Pages <b>10</b></span>
     </div>
   </div>
@@ -379,441 +452,459 @@
 <!-- ================================================== PAGE 2 - INTRODUCTION -->
 <section class="page">
   <div class="pagehead">
-    <h2 class="pagetitle">Why this matters</h2>
-    <span class="brand-sm">01 / Introduction</span>
+    <h2 class="pagetitle">What this diagnostic exposes</h2>
+    <span class="brand-sm">01 / Framework</span>
   </div>
 
-  <div class="intro-grid">
-    <div class="intro-block">
-      <span class="n">01</span>
-      <h3>Where the hours actually go</h3>
-      <p>Very little time is lost to big, visible failures. It disappears in small increments: re-typing a lead into the CRM, chasing a client for a document, assembling the same Monday report. Each task takes minutes. Together, they routinely consume 10&ndash;20% of a team&rsquo;s working week, and because no single task feels expensive, nobody measures the total.</p>
-    </div>
-    <div class="intro-block">
-      <span class="n">02</span>
-      <h3>Repetitive work compounds</h3>
-      <p>Manual processes scale linearly with growth: twice the clients means twice the onboarding emails, invoices, and status updates. Headcount usually grows slower than workload, so the gap is absorbed as overtime, delays, and errors. The processes that were &ldquo;fine&rdquo; at 5 employees quietly become the bottleneck at 20.</p>
-    </div>
-    <div class="intro-block">
-      <span class="n">03</span>
-      <h3>This is not about replacing people</h3>
-      <p>Automation removes the work nobody was hired to do. Your accountant wasn&rsquo;t hired to copy numbers between spreadsheets, and your account manager wasn&rsquo;t hired to send reminder emails. Removing that layer returns people to the judgment-heavy work that actually justifies their role, and that clients actually pay for.</p>
-    </div>
-    <div class="intro-block">
-      <span class="n">04</span>
-      <h3>Small tasks first, always</h3>
-      <p>The instinct is to automate the biggest, most complex process. In practice, the highest ROI comes from small, frequent, rule-based tasks: they&rsquo;re cheap to automate, quick to ship, and their savings recur daily. A 10-minute task performed 15 times a week is 130 hours a year, from one workflow.</p>
-    </div>
+  <p class="lede">Manual work rarely fails loudly. It compounds in <strong>5-minute tasks repeated 40 times a week</strong>, in handoffs nobody documented, and in processes that stop when one person is away.</p>
+
+  <div class="stat-grid">
+    <div class="stat-grid__cell"><span class="stat-grid__n">5</span><span class="stat-grid__label">Employees</span><span class="stat-grid__hrs">&asymp; 6 hrs/wk lost</span></div>
+    <div class="stat-grid__cell"><span class="stat-grid__n">10</span><span class="stat-grid__label">Employees</span><span class="stat-grid__hrs">&asymp; 15 hrs/wk lost</span></div>
+    <div class="stat-grid__cell"><span class="stat-grid__n">20</span><span class="stat-grid__label">Employees</span><span class="stat-grid__hrs">&asymp; 32 hrs/wk lost</span></div>
+    <div class="stat-grid__cell"><span class="stat-grid__n">50</span><span class="stat-grid__label">Employees</span><span class="stat-grid__hrs">&asymp; 90 hrs/wk lost</span></div>
   </div>
 
-  <div class="howto">
-    <h3>How to use this scorecard</h3>
+  <div class="insight">
+    <span class="insight__tag">Crafted Insight</span>
+    <b>Businesses automate marketing before operations.</b> Operations usually delivers higher ROI. The workflows nobody talks about in standups are often the most expensive.
+  </div>
+
+  <div class="observation">
+    <span class="observation__tag">Operator Observation</span>
+    The biggest bottleneck is rarely the software. It is <b>information moving between software</b>: the copy-paste, the export, the &ldquo;can you send me that again?&rdquo;
+  </div>
+
+  <div class="howto compact-howto">
+    <h3>How to run this diagnostic</h3>
     <ol>
-      <li><b>Run the 21-point audit</b> (page 3) to see which standard workflows are still manual in your business.</li>
-      <li><b>Inventory your own workflows</b> (page 4) and quantify what they cost you every week (page 5).</li>
-      <li><b>Score your top five</b> against the priority matrix (page 6) and read your overall result (page 7).</li>
-      <li><b>Plan the rollout</b> on the roadmap (page 8), then read the field notes on page 9 before you build anything.</li>
+      <li><b>Mark exposures</b> on page 3 (21 points) and page 4 (risk scan).</li>
+      <li><b>Name the workflows</b> on page 5 and <b>quantify the cost</b> on page 6.</li>
+      <li><b>Score priority</b> on page 7, read your result on page 8, plan on page 9.</li>
+      <li><b>Bring your completed workbook</b> to your follow-up session (page 10).</li>
     </ol>
   </div>
 
   <div class="pagefoot">
-    <span>Business Automation Scorecard</span>
+    <span>Operational Efficiency Diagnostic</span>
     <span>Page 2 of 10</span>
   </div>
 </section>
 
-<!-- ================================================== PAGE 3 - 21-POINT AUDIT -->
+<!-- ================================================== PAGE 3 - 21-POINT DIAGNOSTIC -->
 <section class="page">
   <div class="pagehead">
-    <h2 class="pagetitle">The 21-point automation audit</h2>
-    <span class="brand-sm">02 / Audit</span>
+    <h2 class="pagetitle">21-point exposure diagnostic</h2>
+    <span class="brand-sm">02 / Exposure</span>
   </div>
-  <p class="lede">For each item, check <strong>Yes</strong> only if it happens automatically today, without a person touching it. Be honest; the gaps are the point.</p>
+  <p class="lede">Check <strong>Exposed</strong> if this describes your business today. Each mark is a workflow running on a person, not a system.</p>
 
   <div class="audit-cols">
     <div>
-      <p class="audit-cat">Lead Management</p>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">01</span><span class="audit-item__name">Leads automatically enter your CRM</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">02</span><span class="audit-item__name">Leads are qualified without manual review</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">03</span><span class="audit-item__name">Follow-up emails send automatically</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">04</span><span class="audit-item__name">Prospects book appointments themselves</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">05</span><span class="audit-item__name">Your team is notified of new leads instantly</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
+      <p class="audit-cat">Revenue &amp; Leads</p>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">01</span><span class="audit-item__name">The same customer data is copied between 2+ systems per new lead</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">02</span><span class="audit-item__name">A lead sits in an inbox before anyone enters the CRM</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">03</span><span class="audit-item__name">Follow-ups depend on someone &ldquo;remembering later&rdquo;</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">04</span><span class="audit-item__name">Booking a call requires email back-and-forth</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">05</span><span class="audit-item__name">New-lead alerts are typed manually (Slack, WhatsApp, text)</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
 
-      <p class="audit-cat">Sales</p>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">06</span><span class="audit-item__name">Proposals are generated from templates</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">07</span><span class="audit-item__name">Contracts are generated and sent for e-signature</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">08</span><span class="audit-item__name">Quotes are created without re-typing data</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">09</span><span class="audit-item__name">Pipeline stages update themselves</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
+      <p class="audit-cat">Sales &amp; Closing</p>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">06</span><span class="audit-item__name">Proposals are rebuilt from scratch instead of generated</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">07</span><span class="audit-item__name">Contracts wait on a person to chase the signature</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">08</span><span class="audit-item__name">Quote data is re-typed from email or spreadsheets</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">09</span><span class="audit-item__name">Pipeline stages update only when someone drags a card</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
 
-      <p class="audit-cat">Client Operations</p>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">10</span><span class="audit-item__name">New clients are onboarded via a set sequence</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">11</span><span class="audit-item__name">Welcome emails go out without a person sending them</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
+      <p class="audit-cat">Client Delivery</p>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">10</span><span class="audit-item__name">Client onboarding stops if one person is on leave</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">11</span><span class="audit-item__name">Welcome or kickoff emails are written one at a time</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
     </div>
 
     <div>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">12</span><span class="audit-item__name">Client documents are collected automatically</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">13</span><span class="audit-item__name">Project tasks are created from templates</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">14</span><span class="audit-item__name">Payment reminders are chased by software, not staff</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">12</span><span class="audit-item__name">Client documents are chased by email, not an automated request</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">13</span><span class="audit-item__name">Project tasks are created manually for every engagement</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">14</span><span class="audit-item__name">Overdue invoices are chased by a person, not a system</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
 
       <p class="audit-cat">Internal Operations</p>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">15</span><span class="audit-item__name">Internal notifications route to the right person</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">16</span><span class="audit-item__name">Weekly reports assemble themselves</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">17</span><span class="audit-item__name">Dashboards update without copy-paste</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">18</span><span class="audit-item__name">Files are named and filed consistently, automatically</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">15</span><span class="audit-item__name">The team asks &ldquo;who handles this?&rdquo; in a group chat weekly</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">16</span><span class="audit-item__name">The weekly report requires copy-paste from 3+ tools</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">17</span><span class="audit-item__name">Someone exports CSVs just to update a dashboard</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">18</span><span class="audit-item__name">File naming and folder structure depend on whoever saves it</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
 
       <p class="audit-cat">Finance</p>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">19</span><span class="audit-item__name">Invoices are created from deal or project data</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">20</span><span class="audit-item__name">Expenses are captured and categorized as they occur</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
-      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">21</span><span class="audit-item__name">Payments are reconciled against invoices automatically</span><span class="audit-item__boxes"><span><i class="cb"></i> Yes</span><span><i class="cb"></i> No</span></span></div><div class="audit-note">Notes: ____________________________________________</div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">19</span><span class="audit-item__name">Invoices are typed manually instead of generated from deal data</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">20</span><span class="audit-item__name">Expenses are categorized in a monthly batch, not at capture</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
+      <div class="audit-item"><div class="audit-item__row"><span class="audit-item__n">21</span><span class="audit-item__name">Payment reconciliation is a spreadsheet exercise</span><span class="audit-item__boxes"><label><input type="checkbox" class="audit-exposed" /> Exposed</label></span></div></div>
 
-      <div class="audit-bonus"><b>+ The one everyone forgets (HR):</b> is employee onboarding (accounts, access, equipment, first-week schedule) a checklist a human runs, or a sequence that runs itself? &nbsp;<i class="cb"></i> Runs itself &nbsp;<i class="cb"></i> A human runs it</div>
+      <div class="audit-bonus"><b>+ HR exposure:</b> Employee onboarding (accounts, access, equipment, week-one schedule): <i class="cb"></i> Runs itself &nbsp; <i class="cb"></i> One person&rsquo;s checklist</div>
     </div>
   </div>
 
+  <div class="myth" style="margin-top:5mm;">
+    <span class="myth__tag">Automation Myth</span>
+    <b>AI is not where most ROI comes from.</b> Simple workflow automation beats AI in most businesses. Fix the handoffs first.
+  </div>
+
   <div class="audit-score">
-    <span class="audit-score__label">Count your &ldquo;No&rdquo; answers: ______ / 22</span>
-    <span class="audit-score__hint">Each &ldquo;No&rdquo; is a workflow a person is doing by hand today. Carry the biggest ones into the inventory on the next page.</span>
+    <span class="audit-score__label">Exposures marked: <strong id="exposure-count">0</strong> / 21</span>
+    <span class="audit-score__hint">8+ exposures = significant operational drag. Carry the highest-risk items to page 5.</span>
   </div>
 
   <div class="pagefoot">
-    <span>Business Automation Scorecard</span>
+    <span>Operational Efficiency Diagnostic</span>
     <span>Page 3 of 10</span>
   </div>
 </section>
 
-<!-- ================================================== PAGE 4 - WORKFLOW INVENTORY -->
+<!-- ================================================== PAGE 4 - RISK EXPOSURE SCAN -->
 <section class="page">
   <div class="pagehead">
-    <h2 class="pagetitle">Workflow inventory</h2>
-    <span class="brand-sm">03 / Inventory</span>
+    <h2 class="pagetitle">Operational risk scan</h2>
+    <span class="brand-sm">03 / Risk</span>
   </div>
-  <p class="lede">List every repetitive process you flagged, plus any the audit didn&rsquo;t cover. Don&rsquo;t filter yet; small tasks belong here too. <strong>If it happens more than once a week and follows the same steps, write it down.</strong></p>
+  <p class="lede">These questions expose <strong>concentration risk</strong>: workflows that work until they don&rsquo;t. Answer honestly. The uncomfortable ones are usually the most valuable.</p>
 
-  <table>
-    <thead>
-      <tr>
-        <th class="t-num">#</th>
-        <th style="width:34%">Workflow</th>
-        <th style="width:15%">Who owns it?</th>
-        <th style="width:12%">How often?</th>
-        <th style="width:12%">Minutes per task</th>
-        <th style="width:11%">Can software do this?</th>
-        <th>Notes</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td class="t-num">01</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">02</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">03</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">04</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">05</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">06</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">07</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">08</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">09</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">10</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-    </tbody>
-  </table>
+  <div class="warning">
+    <span class="warning__tag">Concentration Risk</span>
+    If your operations manager disappeared tomorrow, <b>what breaks first?</b> Write it here: <span class="writeline" style="display:inline-block;width:55mm;margin-left:2mm;"></span>
+  </div>
 
-  <div class="tip">
-    <span class="tip__flag">Field note</span>
-    <span>The workflows people forget to list are the ones they&rsquo;ve done so long they no longer register as work: status updates, file renaming, calendar wrangling, &ldquo;quick&rdquo; data pulls. Ask each team member what they do <em>every</em> Monday, that question alone usually surfaces three rows for this table.</span>
+  <div class="risk-item">
+    <p class="risk-item__q">Which task can only one employee perform?</p>
+    <div class="risk-item__opts">
+      <label><input type="radio" name="r1" /> None</label>
+      <label><input type="radio" name="r1" /> 1 task</label>
+      <label><input type="radio" name="r1" /> 2–3 tasks</label>
+      <label><input type="radio" name="r1" /> 4+ tasks <span class="badge badge--high">High risk</span></label>
+    </div>
+  </div>
+  <div class="risk-item">
+    <p class="risk-item__q">How many client-facing emails are sent manually per week?</p>
+    <div class="risk-item__opts">
+      <label><input type="radio" name="r2" /> &lt; 10</label>
+      <label><input type="radio" name="r2" /> 10–30</label>
+      <label><input type="radio" name="r2" /> 30–75</label>
+      <label><input type="radio" name="r2" /> 75+ <span class="badge badge--high">High risk</span></label>
+    </div>
+  </div>
+  <div class="risk-item">
+    <p class="risk-item__q">How often do clients or staff ask &ldquo;what&rsquo;s the status?&rdquo;</p>
+    <div class="risk-item__opts">
+      <label><input type="radio" name="r3" /> Rarely</label>
+      <label><input type="radio" name="r3" /> Weekly</label>
+      <label><input type="radio" name="r3" /> Daily</label>
+      <label><input type="radio" name="r3" /> Constantly <span class="badge badge--med">Visibility gap</span></label>
+    </div>
+  </div>
+  <div class="risk-item">
+    <p class="risk-item__q">How many approvals happen inside WhatsApp or personal texts?</p>
+    <div class="risk-item__opts">
+      <label><input type="radio" name="r4" /> None</label>
+      <label><input type="radio" name="r4" /> Occasional</label>
+      <label><input type="radio" name="r4" /> Frequent</label>
+      <label><input type="radio" name="r4" /> Primary channel <span class="badge badge--high">Audit gap</span></label>
+    </div>
+  </div>
+  <div class="risk-item">
+    <p class="risk-item__q">Which process always gets delayed on Mondays?</p>
+    <div class="risk-item__opts"><span class="writeline" style="width:100%;display:block;height:7mm;margin-top:1mm;"></span></div>
+  </div>
+  <div class="risk-item">
+    <p class="risk-item__q">Which workflow depends entirely on &ldquo;I&rsquo;ll do it later&rdquo;?</p>
+    <div class="risk-item__opts"><span class="writeline" style="width:100%;display:block;height:7mm;margin-top:1mm;"></span></div>
+  </div>
+
+  <div class="insight" style="margin-top:6mm;">
+    <span class="insight__tag">Crafted Insight</span>
+    <b>73% of operational delays</b> we audit trace back to a missing handoff, not a missing tool. The fix is usually routing and triggers, not new software.
   </div>
 
   <div class="pagefoot">
-    <span>Business Automation Scorecard</span>
+    <span>Operational Efficiency Diagnostic</span>
     <span>Page 4 of 10</span>
   </div>
 </section>
 
-<!-- ================================================== PAGE 5 - TIME WASTE CALCULATOR -->
+<!-- ================================================== PAGE 5 - WORKFLOW INVENTORY -->
 <section class="page">
   <div class="pagehead">
-    <h2 class="pagetitle">Time waste calculator</h2>
-    <span class="brand-sm">04 / Cost</span>
+    <h2 class="pagetitle">Workflow inventory</h2>
+    <span class="brand-sm">04 / Inventory</span>
   </div>
-  <p class="lede">Take your workflows from the inventory and put numbers on them. Estimate conservatively, <strong>an honest low estimate is more persuasive than an inflated one.</strong></p>
+  <p class="lede">Transfer every <strong>Exposed</strong> item from pages 3–4. Add anything that happens weekly and follows the same steps.</p>
 
   <table>
     <thead>
       <tr>
         <th class="t-num">#</th>
-        <th style="width:42%">Workflow</th>
-        <th style="width:16%">Minutes each time</th>
-        <th style="width:18%">Occurrences per week</th>
-        <th>Hours lost / week<br><span style="font-weight:400; letter-spacing:0.04em; text-transform:none;">(min &times; occurrences &divide; 60)</span></th>
+        <th style="width:28%">Workflow</th>
+        <th style="width:13%">Owner</th>
+        <th style="width:11%">Frequency</th>
+        <th style="width:10%">Min/task</th>
+        <th style="width:12%">Risk</th>
+        <th style="width:12%">Readiness</th>
+        <th>Notes</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td class="t-num">01</td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">02</td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">03</td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">04</td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">05</td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">06</td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">07</td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">08</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="t-num">01</td><td></td><td></td><td></td><td></td><td><span class="badge">L/M/H</span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td></td></tr>
+      <tr><td class="t-num">02</td><td></td><td></td><td></td><td></td><td><span class="badge">L/M/H</span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td></td></tr>
+      <tr><td class="t-num">03</td><td></td><td></td><td></td><td></td><td><span class="badge">L/M/H</span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td></td></tr>
+      <tr><td class="t-num">04</td><td></td><td></td><td></td><td></td><td><span class="badge">L/M/H</span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td></td></tr>
+      <tr><td class="t-num">05</td><td></td><td></td><td></td><td></td><td><span class="badge">L/M/H</span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td></td></tr>
+      <tr><td class="t-num">06</td><td></td><td></td><td></td><td></td><td><span class="badge">L/M/H</span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td></td></tr>
+      <tr><td class="t-num">07</td><td></td><td></td><td></td><td></td><td><span class="badge">L/M/H</span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td></td></tr>
+      <tr><td class="t-num">08</td><td></td><td></td><td></td><td></td><td><span class="badge">L/M/H</span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td></td></tr>
     </tbody>
   </table>
 
-  <div class="formulas">
-    <div class="formula">
-      <p class="formula__name">Weekly hours lost</p>
-      <p class="formula__calc">Sum of the last column</p>
-      <div class="formula__ans"><span class="writeline"></span><span class="formula__unit">hrs / week</span></div>
-    </div>
-    <div class="formula">
-      <p class="formula__name">Monthly hours lost</p>
-      <p class="formula__calc">Weekly hours &times; 4.33</p>
-      <div class="formula__ans"><span class="writeline"></span><span class="formula__unit">hrs / month</span></div>
-    </div>
-    <div class="formula">
-      <p class="formula__name">Yearly hours lost</p>
-      <p class="formula__calc">Weekly hours &times; 52</p>
-      <div class="formula__ans"><span class="writeline"></span><span class="formula__unit">hrs / year</span></div>
-    </div>
-    <div class="formula formula--gold">
-      <p class="formula__name">Opportunity cost</p>
-      <p class="formula__calc">Yearly hours &times; average hourly rate</p>
-      <div class="formula__ans"><span class="writeline"></span><span class="formula__unit">per year</span></div>
-    </div>
-  </div>
-
-  <div class="tip">
-    <span class="tip__flag">Field note</span>
-    <span>Opportunity cost understates the real damage: it ignores errors from manual entry, delays that cost deals, and the hiring you did to absorb work software could carry. Treat this figure as the floor, not the ceiling.</span>
+  <div class="observation">
+    <span class="observation__tag">Field Note</span>
+    Ask each team member: <b>&ldquo;What do you do every Monday?&rdquo;</b> That question alone surfaces 3 workflows people no longer register as work.
   </div>
 
   <div class="pagefoot">
-    <span>Business Automation Scorecard</span>
+    <span>Operational Efficiency Diagnostic</span>
     <span>Page 5 of 10</span>
   </div>
 </section>
 
-<!-- ================================================== PAGE 6 - PRIORITY MATRIX -->
+<!-- ================================================== PAGE 6 - COST MODEL -->
+<section class="page">
+  <div class="pagehead">
+    <h2 class="pagetitle">Operational cost model</h2>
+    <span class="brand-sm">05 / Cost</span>
+  </div>
+  <p class="lede">Put numbers on your top workflows. Use conservative estimates. <strong>An honest low number is more credible than an inflated one.</strong></p>
+
+  <table id="calc-table">
+    <thead>
+      <tr>
+        <th class="t-num">#</th>
+        <th style="width:26%">Workflow</th>
+        <th style="width:9%">Min</th>
+        <th style="width:9%">/wk</th>
+        <th style="width:10%">Hrs/wk</th>
+        <th style="width:10%">Complexity</th>
+        <th style="width:10%">Priority</th>
+        <th style="width:10%">$/yr saved</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="calc-row"><td class="t-num">01</td><td><input type="text" class="calc-in" data-col="name" style="width:100%;background:none;border:none;color:inherit;font:inherit;" /></td><td><input type="number" class="calc-in" data-col="min" min="0" style="width:100%;background:none;border:none;color:inherit;font:inherit;" /></td><td><input type="number" class="calc-in" data-col="freq" min="0" style="width:100%;background:none;border:none;color:inherit;font:inherit;" /></td><td class="calc-hrs">—</td><td><span class="badge">L/M/H</span></td><td><span class="badge badge--med">P1–P3</span></td><td class="calc-saved">—</td></tr>
+      <tr class="calc-row"><td class="t-num">02</td><td><input type="text" class="calc-in" data-col="name" style="width:100%;background:none;border:none;color:inherit;font:inherit;" /></td><td><input type="number" class="calc-in" data-col="min" min="0" style="width:100%;background:none;border:none;color:inherit;font:inherit;" /></td><td><input type="number" class="calc-in" data-col="freq" min="0" style="width:100%;background:none;border:none;color:inherit;font:inherit;" /></td><td class="calc-hrs">—</td><td><span class="badge">L/M/H</span></td><td><span class="badge badge--med">P1–P3</span></td><td class="calc-saved">—</td></tr>
+      <tr class="calc-row"><td class="t-num">03</td><td><input type="text" class="calc-in" data-col="name" style="width:100%;background:none;border:none;color:inherit;font:inherit;" /></td><td><input type="number" class="calc-in" data-col="min" min="0" style="width:100%;background:none;border:none;color:inherit;font:inherit;" /></td><td><input type="number" class="calc-in" data-col="freq" min="0" style="width:100%;background:none;border:none;color:inherit;font:inherit;" /></td><td class="calc-hrs">—</td><td><span class="badge">L/M/H</span></td><td><span class="badge badge--med">P1–P3</span></td><td class="calc-saved">—</td></tr>
+      <tr class="calc-row"><td class="t-num">04</td><td><input type="text" class="calc-in" data-col="name" style="width:100%;background:none;border:none;color:inherit;font:inherit;" /></td><td><input type="number" class="calc-in" data-col="min" min="0" style="width:100%;background:none;border:none;color:inherit;font:inherit;" /></td><td><input type="number" class="calc-in" data-col="freq" min="0" style="width:100%;background:none;border:none;color:inherit;font:inherit;" /></td><td class="calc-hrs">—</td><td><span class="badge">L/M/H</span></td><td><span class="badge badge--med">P1–P3</span></td><td class="calc-saved">—</td></tr>
+      <tr class="calc-row"><td class="t-num">05</td><td><input type="text" class="calc-in" data-col="name" style="width:100%;background:none;border:none;color:inherit;font:inherit;" /></td><td><input type="number" class="calc-in" data-col="min" min="0" style="width:100%;background:none;border:none;color:inherit;font:inherit;" /></td><td><input type="number" class="calc-in" data-col="freq" min="0" style="width:100%;background:none;border:none;color:inherit;font:inherit;" /></td><td class="calc-hrs">—</td><td><span class="badge">L/M/H</span></td><td><span class="badge badge--med">P1–P3</span></td><td class="calc-saved">—</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:8.5pt;color:var(--muted);margin-top:3mm;">Avg. hourly cost (loaded): $<input type="number" id="hourly-rate" value="45" min="0" style="width:12mm;background:var(--wash);border:0.5pt solid var(--line-2);border-radius:1mm;color:var(--ink);font-family:var(--mono);font-size:8pt;padding:1mm 2mm;" /> &nbsp;·&nbsp; Assumes 80% recoverable via automation</p>
+
+  <div class="calc-summary">
+    <div class="calc-card"><p class="calc-card__label">Annual hours lost</p><p class="calc-card__val" id="sum-annual-hrs">—</p><p class="calc-card__hint">Weekly hrs × 52</p></div>
+    <div class="calc-card"><p class="calc-card__label">Salary cost / year</p><p class="calc-card__val" id="sum-salary">—</p><p class="calc-card__hint">Annual hrs × hourly rate</p></div>
+    <div class="calc-card calc-card--gold"><p class="calc-card__label">Potential savings / year</p><p class="calc-card__val" id="sum-savings">—</p><p class="calc-card__hint">80% recoverable</p></div>
+    <div class="calc-card"><p class="calc-card__label">Est. build investment</p><p class="calc-card__val"><span class="writeline" style="height:5mm;display:inline-block;width:100%;"></span></p><p class="calc-card__hint">One-time automation cost</p></div>
+    <div class="calc-card calc-card--gold"><p class="calc-card__label">Est. ROI</p><p class="calc-card__val" id="sum-roi">—</p><p class="calc-card__hint">Savings ÷ investment</p></div>
+    <div class="calc-card"><p class="calc-card__label">Payback period</p><p class="calc-card__val"><span class="writeline" style="height:5mm;display:inline-block;width:100%;"></span></p><p class="calc-card__hint">Months to break even</p></div>
+  </div>
+
+  <div class="myth" style="margin-top:5mm;">
+    <span class="myth__tag">Field Note</span>
+    Dollar figures are the <b>floor</b>. They exclude error cost, delayed deals, and the hire you made to absorb work software should carry.
+  </div>
+
+  <div class="pagefoot">
+    <span>Operational Efficiency Diagnostic</span>
+    <span>Page 6 of 10</span>
+  </div>
+</section>
+
+<!-- ================================================== PAGE 7 - PRIORITY MATRIX -->
 <section class="page">
   <div class="pagehead">
     <h2 class="pagetitle">Automation priority matrix</h2>
-    <span class="brand-sm">05 / Priority</span>
+    <span class="brand-sm">06 / Priority</span>
   </div>
-  <p class="lede">Pick your <strong>five most expensive workflows</strong> from the calculator and score each criterion from 1 to 5. The total tells you what to build first, and what to leave alone.</p>
+  <p class="lede">Score your <strong>top 5 workflows</strong> from the cost model. Circle dots 1–5 per row. Total out of 20 determines build order.</p>
 
   <div class="criteria">
-    <div><b>Frequency</b> - 1 = rare, 5 = daily or more</div>
-    <div><b>Business impact</b> - 1 = low, 5 = critical to revenue or clients</div>
-    <div><b>Manual effort</b> - 1 = easy, 5 = tedious and error-prone</div>
-    <div><b>Ease of automation</b> - 1 = hard, 5 = standard tools can do it</div>
+    <div><b>Frequency</b> · 1 = rare · 5 = daily+</div>
+    <div><b>Revenue impact</b> · 1 = low · 5 = critical</div>
+    <div><b>Manual burden</b> · 1 = easy · 5 = tedious</div>
+    <div><b>Build feasibility</b> · 1 = hard · 5 = standard tools</div>
   </div>
 
   <table>
     <thead>
       <tr>
         <th class="t-num">#</th>
-        <th style="width:34%">Workflow</th>
-        <th style="width:11%">Frequency<br>(1&ndash;5)</th>
-        <th style="width:11%">Impact<br>(1&ndash;5)</th>
-        <th style="width:11%">Effort<br>(1&ndash;5)</th>
-        <th style="width:13%">Ease of autom.<br>(1&ndash;5)</th>
-        <th>Total<br>( /20)</th>
+        <th style="width:28%">Workflow</th>
+        <th style="width:14%">Frequency</th>
+        <th style="width:14%">Impact</th>
+        <th style="width:14%">Burden</th>
+        <th style="width:14%">Feasibility</th>
+        <th>Total /20</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td class="t-num">01</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">02</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">03</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">04</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      <tr><td class="t-num">05</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="t-num">01</td><td></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td></td></tr>
+      <tr><td class="t-num">02</td><td></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td></td></tr>
+      <tr><td class="t-num">03</td><td></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td></td></tr>
+      <tr><td class="t-num">04</td><td></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td></td></tr>
+      <tr><td class="t-num">05</td><td></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td><span class="score-track"><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span><span class="score-dot"></span></span></td><td></td></tr>
     </tbody>
   </table>
 
   <div class="keyband">
-    <div>
-      <p class="kb__range">16&ndash;20</p>
-      <p class="kb__label">Automate immediately</p>
-      <p class="kb__hint">High cost, high feasibility. Every week of delay has a price.</p>
-    </div>
-    <div>
-      <p class="kb__range">11&ndash;15</p>
-      <p class="kb__label">High priority</p>
-      <p class="kb__hint">Strong candidate, schedule it within the quarter.</p>
-    </div>
-    <div>
-      <p class="kb__range">6&ndash;10</p>
-      <p class="kb__label">Nice to have</p>
-      <p class="kb__hint">Worth doing once the big wins are shipped.</p>
-    </div>
-    <div>
-      <p class="kb__range">1&ndash;5</p>
-      <p class="kb__label">Leave manual</p>
-      <p class="kb__hint">Too rare or too nuanced, and automation won&rsquo;t pay back.</p>
-    </div>
+    <div><p class="kb__range">16–20</p><p class="kb__label"><span class="badge badge--high">P1</span> Build now</p><p class="kb__hint">Every week of delay has a price tag.</p></div>
+    <div><p class="kb__range">11–15</p><p class="kb__label"><span class="badge badge--med">P2</span> This quarter</p><p class="kb__hint">Strong ROI. Schedule after P1 wins.</p></div>
+    <div><p class="kb__range">6–10</p><p class="kb__label">P3 · Backlog</p><p class="kb__hint">Worth doing once quick wins ship.</p></div>
+    <div><p class="kb__range">1–5</p><p class="kb__label">Skip</p><p class="kb__hint">Too rare or too nuanced to automate.</p></div>
   </div>
 
-  <div class="tip">
-    <span class="tip__flag">Field note</span>
-    <span>If two workflows tie, break the tie with &ldquo;ease of automation.&rdquo; An early, visible win builds the internal trust you&rsquo;ll need for the harder builds later.</span>
+  <div class="insight">
+    <span class="insight__tag">Crafted Insight</span>
+    Tie-break with <b>feasibility</b>. An early visible win builds the internal trust you need for harder builds later.
   </div>
 
   <div class="pagefoot">
-    <span>Business Automation Scorecard</span>
-    <span>Page 6 of 10</span>
-  </div>
-</section>
-
-<!-- ================================================== PAGE 7 - RESULTS -->
-<section class="page">
-  <div class="pagehead">
-    <h2 class="pagetitle">Your efficiency result</h2>
-    <span class="brand-sm">06 / Results</span>
-  </div>
-  <p class="lede">Add the five totals from the priority matrix into a single score out of 100, then read your band below.</p>
-
-  <div class="totalbox">
-    <span class="totalbox__label">Combined score</span>
-    <span class="writeline totalbox__line"></span>
-    <span class="totalbox__max">/ 100</span>
-  </div>
-
-  <div class="bands">
-    <div class="band"><span class="band__range">0&ndash;20</span><span class="band__text"><b>You&rsquo;re already fairly efficient.</b> Your manual work is either rare or genuinely requires judgment. Re-run this scorecard in six months, growth changes the answer.</span></div>
-    <div class="band"><span class="band__range">21&ndash;40</span><span class="band__text"><b>Several repetitive processes could be improved.</b> You likely have one or two workflows quietly costing a few hours a week each. Start with the single highest scorer.</span></div>
-    <div class="band"><span class="band__range">41&ndash;60</span><span class="band__text"><b>Automation will noticeably improve operations.</b> The hours are real and recurring. A focused build on your top two workflows typically pays for itself within the first quarter.</span></div>
-    <div class="band"><span class="band__range">61&ndash;80</span><span class="band__text"><b>Significant efficiency gains available.</b> Manual work is shaping how your team spends its week. Prioritize ruthlessly, three well-chosen automations will change how the business feels to run.</span></div>
-    <div class="band"><span class="band__range">81+</span><span class="band__text"><b>You&rsquo;re likely spending dozens of unnecessary hours every month.</b> At this level the question isn&rsquo;t whether to automate but what to automate first, and the calculator on page 5 has already answered that.</span></div>
-  </div>
-
-  <div class="top3">
-    <h3>Top 3 workflows to automate first</h3>
-    <div class="top3__row"><span class="top3__n">01</span><span class="writeline"></span></div>
-    <div class="top3__row"><span class="top3__n">02</span><span class="writeline"></span></div>
-    <div class="top3__row"><span class="top3__n">03</span><span class="writeline"></span></div>
-  </div>
-
-  <div class="pagefoot">
-    <span>Business Automation Scorecard</span>
+    <span>Operational Efficiency Diagnostic</span>
     <span>Page 7 of 10</span>
   </div>
 </section>
 
-<!-- ================================================== PAGE 8 - ROADMAP -->
+<!-- ================================================== PAGE 8 - RESULTS -->
 <section class="page">
   <div class="pagehead">
-    <h2 class="pagetitle">Automation roadmap</h2>
-    <span class="brand-sm">07 / Plan</span>
+    <h2 class="pagetitle">Your diagnostic result</h2>
+    <span class="brand-sm">07 / Results</span>
   </div>
-  <p class="lede">Place your workflows on a timeline. Anything scoring 16&ndash;20 belongs in <strong>This month</strong>; 11&ndash;15 in <strong>Next quarter</strong>; the rest can wait, deliberately.</p>
+  <p class="lede">Sum your five priority scores (max 100). Read your band. Name your top 3.</p>
+
+  <div class="totalbox">
+    <span class="totalbox__label">Opportunity score</span>
+    <span class="writeline totalbox__line"></span>
+    <span class="totalbox__max">/ 100</span>
+  </div>
+
+  <div class="readiness-row">
+    <span class="readiness-row__label">Automation readiness</span>
+    <div class="readiness-row__track"><div class="progress-bar"><div class="progress-bar__fill" style="width:0%;" id="readiness-bar"></div></div></div>
+    <span class="readiness-row__score">___ / 100</span>
+  </div>
+  <div class="readiness-row">
+    <span class="readiness-row__label">Operational exposure</span>
+    <div class="readiness-row__track"><div class="progress-bar"><div class="progress-bar__fill" style="width:0%;background:#D98873;" id="exposure-bar"></div></div></div>
+    <span class="readiness-row__score" id="exposure-result">___ / 21</span>
+  </div>
+
+  <div class="bands">
+    <div class="band"><span class="band__range">0–20</span><span class="band__text"><b>Low exposure.</b> Manual work is rare or genuinely requires judgment. Re-run in 6 months; growth changes the answer.</span></div>
+    <div class="band"><span class="band__range">21–40</span><span class="band__text"><b>Moderate drag.</b> 1–2 workflows costing hours weekly. Start with your highest P1 scorer.</span></div>
+    <div class="band"><span class="band__range">41–60</span><span class="band__text"><b>Material opportunity.</b> Savings typically pay back within one quarter on the top two workflows.</span></div>
+    <div class="band"><span class="band__range">61–80</span><span class="band__text"><b>Significant gap.</b> Manual work is shaping how the team spends its week. Three well-chosen automations change how the business feels to run.</span></div>
+    <div class="band"><span class="band__range">81+</span><span class="band__text"><b>Critical.</b> The question is not whether to automate but what first. Page 6 already answered that.</span></div>
+  </div>
+
+  <div class="top3">
+    <h3>Top 3 workflows to fix first</h3>
+    <div class="top3__row"><span class="top3__n">01</span><span class="badge badge--high">P1</span><span class="writeline"></span></div>
+    <div class="top3__row"><span class="top3__n">02</span><span class="badge badge--med">P2</span><span class="writeline"></span></div>
+    <div class="top3__row"><span class="top3__n">03</span><span class="badge">P3</span><span class="writeline"></span></div>
+  </div>
+
+  <div class="pagefoot">
+    <span>Operational Efficiency Diagnostic</span>
+    <span>Page 8 of 10</span>
+  </div>
+</section>
+
+<!-- ================================================== PAGE 9 - ROADMAP + RULES -->
+<section class="page">
+  <div class="pagehead">
+    <h2 class="pagetitle">Implementation roadmap</h2>
+    <span class="brand-sm">08 / Plan</span>
+  </div>
+  <p class="lede">Place workflows by priority badge. <strong>P1 = this month.</strong> P2 = next quarter. P3 = backlog.</p>
 
   <div class="kanban">
     <div class="kanban__col">
       <div class="kanban__head">
         <p class="kanban__title">This month</p>
-        <p class="kanban__hint">Score 16&ndash;20 &middot; ship fast</p>
+        <p class="kanban__hint"><span class="badge badge--high">P1</span> · ship fast</p>
       </div>
       <div class="kanban__cards">
-        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner &middot; Tool &middot; Deadline</span></div>
-        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner &middot; Tool &middot; Deadline</span></div>
-        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner &middot; Tool &middot; Deadline</span></div>
-        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner &middot; Tool &middot; Deadline</span></div>
+        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner · Tool · Est. savings</span></div>
+        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner · Tool · Est. savings</span></div>
+        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner · Tool · Est. savings</span></div>
       </div>
     </div>
     <div class="kanban__col">
       <div class="kanban__head kanban__head--wash">
         <p class="kanban__title">Next quarter</p>
-        <p class="kanban__hint">Score 11&ndash;15 &middot; schedule it</p>
+        <p class="kanban__hint"><span class="badge badge--med">P2</span> · schedule</p>
       </div>
       <div class="kanban__cards">
-        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner &middot; Tool &middot; Deadline</span></div>
-        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner &middot; Tool &middot; Deadline</span></div>
-        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner &middot; Tool &middot; Deadline</span></div>
-        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner &middot; Tool &middot; Deadline</span></div>
+        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner · Tool · Est. savings</span></div>
+        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner · Tool · Est. savings</span></div>
+        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner · Tool · Est. savings</span></div>
       </div>
     </div>
     <div class="kanban__col">
       <div class="kanban__head kanban__head--wash">
-        <p class="kanban__title">Later</p>
-        <p class="kanban__hint">Score &le;10 &middot; revisit quarterly</p>
+        <p class="kanban__title">Backlog</p>
+        <p class="kanban__hint">P3 · revisit quarterly</p>
       </div>
       <div class="kanban__cards">
-        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner &middot; Tool &middot; Deadline</span></div>
-        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner &middot; Tool &middot; Deadline</span></div>
-        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner &middot; Tool &middot; Deadline</span></div>
-        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner &middot; Tool &middot; Deadline</span></div>
+        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner · Tool · Est. savings</span></div>
+        <div class="kanban__card"><span class="writeline"></span><span class="kanban__cardmeta">Owner · Tool · Est. savings</span></div>
       </div>
     </div>
   </div>
 
-  <div class="pagefoot">
-    <span>Business Automation Scorecard</span>
-    <span>Page 8 of 10</span>
-  </div>
-</section>
+  <hr class="rule-gold" />
 
-<!-- ================================================== PAGE 9 - BEFORE YOU AUTOMATE -->
-<section class="page">
-  <div class="pagehead">
-    <h2 class="pagetitle">Before you automate</h2>
-    <span class="brand-sm">08 / Field notes</span>
-  </div>
-  <p class="lede">Six rules we apply on every build. They&rsquo;re the difference between automation that quietly compounds and automation that quietly breaks.</p>
-
-  <div class="principles">
-    <div class="principle">
-      <span class="principle__n">RULE 01</span>
-      <h3>Don&rsquo;t automate broken processes</h3>
-      <p>Automation is an amplifier. A messy workflow made faster is just mess at scale. If a process produces bad output today, fix the process first, then automate the fixed version.</p>
-    </div>
-    <div class="principle">
-      <span class="principle__n">RULE 02</span>
-      <h3>Standardize first</h3>
-      <p>If three people do the same task three different ways, there&rsquo;s nothing to automate yet. Agree on the one right way, run it manually for two weeks, then encode it.</p>
-    </div>
-    <div class="principle">
-      <span class="principle__n">RULE 03</span>
-      <h3>Document workflows</h3>
-      <p>Write the steps down before building: every input, decision, and hand-off. Documentation surfaces the edge cases that break automations, while they&rsquo;re still cheap to handle.</p>
-    </div>
-    <div class="principle">
-      <span class="principle__n">RULE 04</span>
-      <h3>Measure current time spent</h3>
-      <p>You can&rsquo;t prove ROI without a baseline. Track a week of the manual version, honestly, so that six months from now the savings are a number, not a feeling.</p>
-    </div>
-    <div class="principle">
-      <span class="principle__n">RULE 05</span>
-      <h3>Automate repetitive decisions</h3>
-      <p>The biggest wins usually aren&rsquo;t tasks but decisions made by rule: routing, approving under a threshold, prioritizing. If a decision follows &ldquo;if X then Y,&rdquo; software should be making it.</p>
-    </div>
-    <div class="principle">
-      <span class="principle__n">RULE 06</span>
-      <h3>Review every automation quarterly</h3>
-      <p>Tools change, teams change, edge cases accumulate. A 30-minute quarterly review of what&rsquo;s running, and whether it still matches reality, keeps automations an asset instead of a liability.</p>
-    </div>
+  <p class="kicker">Before you build</p>
+  <div class="principles" style="grid-template-columns:1fr 1fr 1fr;">
+    <div class="principle"><span class="principle__n">RULE 01</span><h3>Fix, then automate</h3><p>Automation amplifies what exists. Standardize the process manually for two weeks first.</p></div>
+    <div class="principle"><span class="principle__n">RULE 02</span><h3>Measure the baseline</h3><p>Track one week of the manual version. ROI must be a number, not a feeling.</p></div>
+    <div class="principle"><span class="principle__n">RULE 03</span><h3>Review quarterly</h3><p>Tools change. Teams change. 30 minutes per quarter keeps automations an asset.</p></div>
   </div>
 
   <div class="pagefoot">
-    <span>Business Automation Scorecard</span>
+    <span>Operational Efficiency Diagnostic</span>
     <span>Page 9 of 10</span>
   </div>
 </section>
 
-<!-- ================================================== PAGE 10 - CTA -->
+<!-- ================================================== PAGE 10 - NEXT STEP -->
 <section class="page cta-page">
   <div>
     <div class="pagehead">
-      <h2 class="pagetitle">Next step</h2>
+      <h2 class="pagetitle">Your next step</h2>
       <span class="brand-sm">09 / Crafted Flows</span>
     </div>
 
     <div class="cta-hero">
-      <h2>You&rsquo;ve identified the opportunities. Now prioritize the right ones.</h2>
-      <p>Most businesses don&rsquo;t need dozens of automations. They usually need three or four well-designed workflows that eliminate the bulk of their repetitive work, built carefully, monitored properly, and left to run.</p>
-      <p>Crafted Flows designs and builds custom business automations using the tools you already use, so your team spends less time on repetitive work and more time on the high-value tasks clients actually pay for.</p>
+      <h2>We&rsquo;ll spend 15 minutes identifying the three workflows costing your business the most money.</h2>
+      <p>Bring this completed diagnostic to your follow-up session. We&rsquo;ll map your exposures to a concrete build plan using the tools you already have.</p>
     </div>
 
+    <ul class="deliverables">
+      <li>Priority roadmap (what to build first, second, third)</li>
+      <li>Automation opportunities ranked by annual savings</li>
+      <li>Estimated annual savings from your cost model</li>
+      <li>Recommended tech stack (no unnecessary tools)</li>
+      <li>Implementation strategy and timeline</li>
+    </ul>
+    <p style="font-size:9.5pt;color:var(--muted);margin-top:4mm;"><b style="color:var(--ink);">Whether you hire us or not.</b> You leave with a plan either way.</p>
+
     <div class="ctabox">
-      <h3>Book a free 15-minute Automation Audit</h3>
-      <p>We&rsquo;ll review your completed scorecard, identify the highest-impact opportunities, and outline what can realistically be automated for your business. No pitch deck. You leave with a plan either way.</p>
-      <a class="ctabox__btn" href="https://cal.com/crafted-flows/automation-audit">Book the audit &rarr;</a>
-      <p class="ctabox__link">cal.com/crafted-flows/automation-audit &nbsp;&middot;&nbsp; or write to <a href="mailto:admin@craftedflows.com">admin@craftedflows.com</a></p>
+      <h3>Schedule your 15-minute Workflow Review</h3>
+      <p>We&rsquo;ll review your completed diagnostic, validate your top 3 priorities, and pressure-test the ROI. No pitch deck. No obligation.</p>
+      <a class="ctabox__btn" href="https://cal.com/crafted-flows/automation-audit">Schedule the review &rarr;</a>
+      <p class="ctabox__link">cal.com/crafted-flows/automation-audit &nbsp;&middot;&nbsp; <a href="mailto:hello@craftedflows.com">hello@craftedflows.com</a></p>
     </div>
   </div>
 
@@ -827,10 +918,70 @@
     </div>
     <div class="cta-footer__contact">
       craftedflows.com<br />
-      <a href="mailto:admin@craftedflows.com">admin@craftedflows.com</a>
+      <a href="mailto:hello@craftedflows.com">hello@craftedflows.com</a>
     </div>
   </div>
 </section>
+
+<script>
+(function () {
+  /* Exposure counter (page 3) */
+  var boxes = document.querySelectorAll('.audit-exposed');
+  var countEl = document.getElementById('exposure-count');
+  var expBar = document.getElementById('exposure-bar');
+  var expResult = document.getElementById('exposure-result');
+  function updateExposure() {
+    var n = 0;
+    boxes.forEach(function (b) { if (b.checked) n++; });
+    if (countEl) countEl.textContent = n;
+    if (expResult) expResult.textContent = n + ' / 21';
+    if (expBar) expBar.style.width = Math.round((n / 21) * 100) + '%';
+  }
+  boxes.forEach(function (b) { b.addEventListener('change', updateExposure); });
+  updateExposure();
+
+  /* Cost model (page 6) */
+  var rateEl = document.getElementById('hourly-rate');
+  function fmt(n) { return isFinite(n) ? n.toLocaleString('en-US', { maximumFractionDigits: 0 }) : '—'; }
+  function fmtMoney(n) { return isFinite(n) ? '$' + fmt(n) : '—'; }
+  function recalc() {
+    var rate = parseFloat(rateEl && rateEl.value) || 45;
+    var weekly = 0;
+    document.querySelectorAll('.calc-row').forEach(function (row) {
+      var min = parseFloat(row.querySelector('[data-col="min"]').value) || 0;
+      var freq = parseFloat(row.querySelector('[data-col="freq"]').value) || 0;
+      var hrs = (min * freq) / 60;
+      var saved = hrs * 52 * rate * 0.8;
+      row.querySelector('.calc-hrs').textContent = hrs ? hrs.toFixed(1) : '—';
+      row.querySelector('.calc-saved').textContent = saved ? fmtMoney(saved) : '—';
+      weekly += hrs;
+    });
+    var annual = weekly * 52;
+    var salary = annual * rate;
+    var savings = salary * 0.8;
+    var sumHrs = document.getElementById('sum-annual-hrs');
+    var sumSal = document.getElementById('sum-salary');
+    var sumSav = document.getElementById('sum-savings');
+    if (sumHrs) sumHrs.textContent = weekly ? fmt(annual) + ' hrs' : '—';
+    if (sumSal) sumSal.textContent = weekly ? fmtMoney(salary) : '—';
+    if (sumSav) sumSav.textContent = weekly ? fmtMoney(savings) : '—';
+  }
+  document.querySelectorAll('.calc-in, #hourly-rate').forEach(function (el) {
+    el.addEventListener('input', recalc);
+  });
+
+  /* Score dots (click to set 1–5) */
+  document.querySelectorAll('.score-track').forEach(function (track) {
+    var dots = track.querySelectorAll('.score-dot');
+    dots.forEach(function (dot, i) {
+      dot.style.cursor = 'pointer';
+      dot.addEventListener('click', function () {
+        dots.forEach(function (d, j) { d.classList.toggle('score-dot--on', j <= i); });
+      });
+    });
+  });
+})();
+</script>
 
 </body>
 </html>

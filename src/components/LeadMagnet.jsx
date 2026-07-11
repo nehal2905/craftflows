@@ -4,7 +4,7 @@ import Reveal from './Reveal.jsx';
 
 const EASE = [0.22, 1, 0.36, 1];
 
-/** Low-friction secondary CTA - email capture for the automation checklist. */
+/** Low-friction secondary CTA - email capture for the Operational Efficiency Diagnostic. */
 export default function LeadMagnet() {
   const reduce = useReducedMotion();
   const [email, setEmail] = useState('');
@@ -23,7 +23,7 @@ export default function LeadMagnet() {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           email: address,
-          _subject: 'New checklist request - Crafted Flows',
+          _subject: 'New diagnostic workbook request - Crafted Flows',
           _template: 'table',
           _captcha: 'false',
         }),
@@ -33,8 +33,8 @@ export default function LeadMagnet() {
     } catch {
       // Relay unreachable - fall back to a pre-filled email so the lead isn't lost.
       window.location.href =
-        `mailto:hello@craftedflows.com?subject=${encodeURIComponent('Send me the Business Automation Checklist')}` +
-        `&body=${encodeURIComponent(`Please send the checklist to: ${address}`)}`;
+        `mailto:hello@craftedflows.com?subject=${encodeURIComponent('Send me the Operational Efficiency Diagnostic')}` +
+        `&body=${encodeURIComponent(`Please send the diagnostic workbook to: ${address}`)}`;
       setSent(true);
     } finally {
       setSending(false);
@@ -50,16 +50,17 @@ export default function LeadMagnet() {
             <div>
               <p className="eyebrow">Not ready for a call?</p>
               <h2 className="magnet__title" id="magnet-title">
-                Get the Business Automation Checklist.
+                Get the Operational Efficiency Diagnostic.
               </h2>
               <p className="magnet__sub">
-                The exact 21-point checklist we run in every audit. Find the workflows
-                silently draining your week, ranked by hours recovered.
+                The same 21-point exposure framework we use on client engagements.
+                Find the workflows running on memory, not systems, and what they
+                cost you per year.
               </p>
               <ul className="magnet__list">
-                <li>The 8 workflows businesses most commonly overspend on</li>
-                <li>A scoring sheet to rank them by hours saved</li>
-                <li>Which ones to automate first (and which to skip)</li>
+                <li>21-point exposure diagnostic + operational risk scan</li>
+                <li>Cost model with annual hours and salary impact</li>
+                <li>Priority matrix to rank what to fix first</li>
               </ul>
             </div>
 
@@ -78,7 +79,7 @@ export default function LeadMagnet() {
                       <circle cx="12" cy="12" r="9" />
                       <path d="m8.5 12.5 2.5 2.5 5-5.5" />
                     </svg>
-                    Request received. The checklist is on its way to your inbox.
+                    Request received. The diagnostic workbook is on its way to your inbox.
                   </m.p>
                 ) : (
                   <m.form
@@ -102,7 +103,7 @@ export default function LeadMagnet() {
                       onChange={(e) => setEmail(e.target.value)}
                     />
                     <button className="btn btn--primary" type="submit" disabled={sending}>
-                      {sending ? 'Sending…' : 'Send me the checklist'}
+                      {sending ? 'Sending…' : 'Send me the diagnostic'}
                       <span className="btn__arrow" aria-hidden="true">→</span>
                     </button>
                     <p className="magnet__privacy">
@@ -110,7 +111,7 @@ export default function LeadMagnet() {
                         <rect x="5" y="11" width="14" height="9" rx="2" />
                         <path d="M8 11V8a4 4 0 0 1 8 0v3" />
                       </svg>
-                      No spam, no drip sequence. One email with the checklist, that&rsquo;s it.
+                      No spam, no drip sequence. One email with the workbook, that&rsquo;s it.
                     </p>
                   </m.form>
                 )}
