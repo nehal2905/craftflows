@@ -19,7 +19,7 @@ export default function Footer() {
         </Link>
 
         <nav className="footer__links" aria-label="Footer">
-          <a href="https://craftedflows.com">craftedflows.com</a>
+          <a href="https://www.craftedflows.com">craftedflows.com</a>
 
           <div className="footer__social">
             <a

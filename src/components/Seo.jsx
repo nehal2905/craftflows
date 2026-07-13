@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 
-const ORIGIN = 'https://craftedflows.com';
-const CANONICAL_ORIGIN = 'https://www.craftedflows.com';
+const ORIGIN = 'https://www.craftedflows.com';
 
 function setMeta(attr, key, content) {
   let el = document.head.querySelector(`meta[${attr}="${key}"]`);
@@ -40,7 +39,7 @@ export default function Seo({
       canonical.setAttribute('rel', 'canonical');
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', CANONICAL_ORIGIN + path);
+    canonical.setAttribute('href', url);
 
     const imageUrl = image.startsWith('http') ? image : ORIGIN + image;
     setMeta('property', 'og:type', type);

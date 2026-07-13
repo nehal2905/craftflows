@@ -13,7 +13,7 @@ import {
   formatDate,
 } from '../lib/blog.js';
 
-const ORIGIN = 'https://craftedflows.com';
+const ORIGIN = 'https://www.craftedflows.com';
 
 /* ── Table of contents with scrollspy ─────────────────────────── */
 function Toc({ headings }) {

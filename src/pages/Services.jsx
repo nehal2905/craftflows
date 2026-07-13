@@ -4,7 +4,7 @@ import JsonLd from '../components/JsonLd.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { SERVICES } from '../data/services.js';
 
-const ORIGIN = 'https://craftedflows.com';
+const ORIGIN = 'https://www.craftedflows.com';
 
 /**
  * Services index - links to every service page. Stays noindex while the

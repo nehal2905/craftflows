@@ -5,7 +5,7 @@ import ServiceLayout from '../components/ServiceLayout.jsx';
 import NotFound from './NotFound.jsx';
 import { getService } from '../data/services.js';
 
-const ORIGIN = 'https://craftedflows.com';
+const ORIGIN = 'https://www.craftedflows.com';
 
 export default function Service() {
   const { slug } = useParams();

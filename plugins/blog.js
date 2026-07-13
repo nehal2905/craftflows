@@ -28,8 +28,7 @@ import hljs from 'highlight.js';
 const CONTENT_DIR = path.resolve(process.cwd(), 'content', 'blog');
 const VIRTUAL_ID = 'virtual:blog-index';
 const RESOLVED_VIRTUAL_ID = '\0' + VIRTUAL_ID;
-const ORIGIN = 'https://craftedflows.com';
-const SITEMAP_ORIGIN = 'https://www.craftedflows.com';
+const ORIGIN = 'https://www.craftedflows.com';
 
 const slugify = (s) =>
   s
@@ -141,10 +140,10 @@ function compilePost(file) {
 function sitemapXml() {
   const today = new Date().toISOString().slice(0, 10);
   const urls = [
-    { loc: `${SITEMAP_ORIGIN}/`, lastmod: today, changefreq: 'monthly', priority: '1.0' },
-    { loc: `${SITEMAP_ORIGIN}/blog`, lastmod: today, changefreq: 'weekly', priority: '0.8' },
+    { loc: `${ORIGIN}/`, lastmod: today, changefreq: 'monthly', priority: '1.0' },
+    { loc: `${ORIGIN}/blog`, lastmod: today, changefreq: 'weekly', priority: '0.8' },
     ...publishedPosts().map((p) => ({
-      loc: `${SITEMAP_ORIGIN}/blog/${p.slug}`,
+      loc: `${ORIGIN}/blog/${p.slug}`,
       lastmod: p.updated,
       changefreq: 'monthly',
       priority: '0.7',

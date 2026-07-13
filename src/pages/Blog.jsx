@@ -4,7 +4,7 @@ import JsonLd from '../components/JsonLd.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { POSTS, formatDate } from '../lib/blog.js';
 
-const ORIGIN = 'https://craftedflows.com';
+const ORIGIN = 'https://www.craftedflows.com';
 const PER_PAGE = 9;
 
 export function PostCard({ post, eager = false, headingLevel: H = 'h2' }) {
