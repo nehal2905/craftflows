@@ -64,6 +64,11 @@ md.renderer.rules.image = (tokens, idx, options, env, self) => {
   return defaultImage(tokens, idx, options, env, self);
 };
 
+/* Tables scroll sideways inside their own box on narrow screens
+   instead of pushing the page wider than the phone. */
+md.renderer.rules.table_open = () => '<div class="table-wrap"><table>\n';
+md.renderer.rules.table_close = () => '</table></div>\n';
+
 /* External links open in a new tab, matching the rest of the site. */
 const defaultLinkOpen =
   md.renderer.rules.link_open ||
@@ -88,7 +93,8 @@ function postFiles() {
 function readMeta(file) {
   const raw = fs.readFileSync(file, 'utf8');
   const { data, content } = matter(raw);
-  const words = content.split(/\s+/).filter(Boolean).length;
+  // raw HTML blocks (figures, clips) are markup, not reading
+  const words = content.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
   return {
     slug: path.basename(file, '.md'),
     title: data.title ?? path.basename(file, '.md'),
@@ -101,6 +107,7 @@ function readMeta(file) {
     image: data.image ?? '/assets/og.png',
     imageAlt: data.imageAlt ?? data.title ?? '',
     draft: Boolean(data.draft),
+    featured: Boolean(data.featured),
     readingTime: Math.max(1, Math.round(words / 220)),
   };
 }
@@ -214,7 +221,7 @@ ${categories}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>Crafted Flows Blog</title>
-    <description>Practical writing on business automation, AI workflows, and the tools we build with, from the team at Crafted Flows.</description>
+    <description>Practical writing on promo videos, business automation and the tools we build with, from the team at Crafted Flows.</description>
     <link>${ORIGIN}/blog</link>
     <atom:link href="${ORIGIN}/rss.xml" rel="self" type="application/rss+xml" />
     <language>en</language>

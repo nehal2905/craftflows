@@ -4,8 +4,9 @@ import Seo from '../components/Seo.jsx';
 import JsonLd from '../components/JsonLd.jsx';
 import Reveal from '../components/Reveal.jsx';
 import NotFound from './NotFound.jsx';
-import { PostCard } from './Blog.jsx';
-import { AuthorByline, AuthorCard } from '../components/Author.jsx';
+import { PostCard, topicOf } from './Blog.jsx';
+import { AuthorByline } from '../components/Author.jsx';
+import { VideoCta, AuditCta } from '../components/Cta.jsx';
 import {
   getPostMeta,
   loadPost,
@@ -59,6 +60,34 @@ function Toc({ headings }) {
         ))}
       </ul>
     </nav>
+  );
+}
+
+/* ── End-of-article call to action, matched to the topic ─────────── */
+function PostCta({ topic }) {
+  const video = topic === 'video';
+  return (
+    <aside className="post-cta" aria-label="Work with Crafted Flows">
+      <p className="kicker">Work with us</p>
+      <p className="post-cta__title">
+        {video ? 'Want a film like this for your product?' : 'Want this running in your business?'}
+      </p>
+      <p className="post-cta__text">
+        {video
+          ? 'We write the script, design every frame in your real brand, and deliver it ready to post on every platform.'
+          : 'We build the automation inside the tools you already use. Done for you, or you don’t pay.'}
+      </p>
+      <div className="post-cta__actions">
+        {video ? (
+          <VideoCta location="blog_post_cta" className="btn btn--primary" />
+        ) : (
+          <AuditCta location="blog_post_cta" className="btn btn--primary" />
+        )}
+        <Link className="textlink" to={video ? '/work' : '/automation'}>
+          {video ? 'See our films' : 'See how it works'} <span aria-hidden="true">→</span>
+        </Link>
+      </div>
+    </aside>
   );
 }
 
@@ -135,6 +164,16 @@ export default function BlogPost() {
     };
   }, [slug]);
 
+  /* Film clips in an article autoplay muted; respect reduced motion. */
+  useEffect(() => {
+    if (!body || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.querySelectorAll('.prose video[autoplay]').forEach((v) => {
+      v.removeAttribute('autoplay');
+      v.pause();
+      v.controls = true;
+    });
+  }, [body]);
+
   if (!meta) return <NotFound />;
 
   const url = `${ORIGIN}/blog/${meta.slug}`;
@@ -186,9 +225,12 @@ export default function BlogPost() {
       <main id="top">
         {/* ── Hero ────────────────────────────────────────────── */}
         <section className="section svc-hero post-hero">
-          <div className="wrap wrap--narrow">
-            <Reveal as="p" className="eyebrow" delay={0.04}>{meta.category}</Reveal>
-            <Reveal as="h1" className="section__title post-hero__title" delay={0.08}>
+          <div className="post-hero__glow" aria-hidden="true" />
+          <div className="wrap wrap--narrow head--center">
+            <Reveal as="p" className="kicker" delay={0.04}>
+              <Link className="post-hero__cat" to={`/blog?topic=${topicOf(meta)}`}>{meta.category}</Link>
+            </Reveal>
+            <Reveal as="h1" className="post-hero__title" delay={0.08}>
               {meta.title}
             </Reveal>
             <Reveal as="p" className="section__sub" delay={0.12}>
@@ -202,7 +244,7 @@ export default function BlogPost() {
         </section>
 
         {/* ── Featured image ──────────────────────────────────── */}
-        <div className="wrap">
+        <div className="wrap post-cover">
           <Reveal className="post-figure">
             <img
               src={meta.image}
@@ -225,7 +267,7 @@ export default function BlogPost() {
               >
                 {body ? undefined : <p className="prose__loading">Loading article…</p>}
               </article>
-              <AuthorCard />
+              <PostCta topic={topicOf(meta)} />
             </div>
 
             <aside className="post-aside">
@@ -272,9 +314,9 @@ export default function BlogPost() {
           <section className="section section--tight" aria-labelledby="related-title">
             <div className="divider" aria-hidden="true" />
             <div className="wrap">
-              <Reveal as="p" className="eyebrow">Keep reading</Reveal>
+              <Reveal as="p" className="kicker">Keep reading</Reveal>
               <Reveal as="h2" className="section__title" id="related-title" delay={0.04}>
-                Related articles.
+                More from the blog.
               </Reveal>
               <div className="blog-grid">
                 {related.map((post, i) => (
