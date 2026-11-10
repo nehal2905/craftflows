@@ -1,24 +1,26 @@
 import Reveal from './Reveal.jsx';
 import Spotlight from './Spotlight.jsx';
-import { FOUNDERS } from '../data/founders.js';
+import { FOUNDERS, FOUNDERS_READY } from '../data/founders.js';
 
 /**
- * "Who builds this" — founder identity between Process and ROI.
- * Deliberately quiet: two cards, real photos, one bio each. Not in
- * the main nav by design.
+ * "Who builds this": founder identity. Deliberately quiet: one card per
+ * founder, real photos, one bio each.
+ *
+ * Renders nothing until FOUNDERS_READY is true in src/data/founders.js,
+ * so placeholder names and bios can never reach the live site.
  */
-export default function Founders() {
+export default function Founders({ heading = true }) {
+  if (!FOUNDERS_READY) return null;
+
   return (
     <section className="section who" id="who" aria-labelledby="who-title">
       <div className="divider" aria-hidden="true" />
       <div className="wrap">
-        <Reveal as="p" className="eyebrow">Who builds this</Reveal>
-
-        <Reveal as="h2" className="section__title" id="who-title" delay={0.04}>
-          <a href="#who" className="title-link">
-            Founder-led.<br className="br-desk" /> Backed by a full team.
-          </a>
-        </Reveal>
+        {heading && (
+          <Reveal as="h2" className="section__title" id="who-title" delay={0.04}>
+            <a href="#who" className="title-link">A founder-led studio.</a>
+          </Reveal>
+        )}
 
         <div className="who__grid">
           {FOUNDERS.map((f, i) => (

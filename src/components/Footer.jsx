@@ -1,14 +1,16 @@
 import { Link } from 'react-router';
 import POSTS from 'virtual:blog-index';
 import { COMPANY } from '../data/founders.js';
+import { SITE } from '../data/site.js';
+import { publishedProjects } from '../data/work.js';
 
+/* Work joins once there is published portfolio to show. */
 const NAV = [
-  { id: 'problem', label: 'The Problem' },
-  { id: 'how', label: 'Process' },
-  { id: 'roi', label: 'ROI' },
-  { id: 'offer', label: 'The Offer' },
-  { id: 'faq', label: 'FAQ' },
-];
+  { to: '/video', label: 'Video promotions' },
+  { to: '/automation', label: 'Automation' },
+  publishedProjects().length > 0 && { to: '/work', label: 'Work' },
+  { to: '/contact', label: 'Contact' },
+].filter(Boolean);
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -55,7 +57,7 @@ export default function Footer() {
               </a>
               <a
                 className="footer__icon"
-                href="https://www.instagram.com/crafted.flows?igsh=MWRzeW95am9iank5NQ%3D%3D&utm_source=qr"
+                href={SITE.instagram}
                 target="_blank"
                 rel="noopener"
                 aria-label="Crafted Flows on Instagram"
@@ -72,8 +74,8 @@ export default function Footer() {
           {/* 2 · Navigate */}
           <nav className="footer__col" aria-label="Navigate">
             <span className="footer__col-title">Navigate</span>
-            {NAV.map(({ id, label }) => (
-              <a key={id} href={`/#${id}`}>{label}</a>
+            {NAV.map(({ to, label }) => (
+              <Link key={to} to={to}>{label}</Link>
             ))}
           </nav>
 

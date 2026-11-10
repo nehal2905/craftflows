@@ -21,7 +21,7 @@ function Resize-Png([string]$source, [string]$dest, [int]$size) {
 Resize-Png $src (Join-Path $public 'assets\favicon-48.png') 48
 Resize-Png $src (Join-Path $public 'assets\favicon-192.png') 192
 
-# Root favicon.ico (48px) — crawlers and Google check /favicon.ico first
+# Root favicon.ico (48px) - crawlers and Google check /favicon.ico first
 $img48 = [System.Drawing.Image]::FromFile((Join-Path $public 'assets\favicon-48.png'))
 $bmp48 = New-Object System.Drawing.Bitmap($img48)
 $icon = [System.Drawing.Icon]::FromHandle($bmp48.GetHicon())

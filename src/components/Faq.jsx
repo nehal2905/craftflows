@@ -1,35 +1,9 @@
 import { useState } from 'react';
 import { m, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Reveal from './Reveal.jsx';
+import { AUTOMATION_FAQS } from '../data/faqs.js';
 
 const EASE = [0.22, 1, 0.36, 1];
-
-const FAQS = [
-  {
-    q: 'How much does it cost?',
-    a: 'A fixed build fee, quoted up front after the audit, based on the workflow\u2019s complexity, plus a monthly retainer for monitoring and maintenance. No hourly billing, no surprises. And if the automation doesn\u2019t save the hours we promised, you don\u2019t pay.',
-  },
-  {
-    q: 'How long does a build take?',
-    a: 'Most automations ship in one to three weeks from kickoff. The audit itself takes 15 minutes, and you\u2019ll have a scoped proposal within two business days of it.',
-  },
-  {
-    q: 'What software do you work with?',
-    a: 'The tools businesses already run: Slack, Notion, HubSpot, Airtable, Google Workspace, Asana, ClickUp, Stripe, and hundreds more via Zapier, Make, or direct APIs. If your stack has an API, we can almost certainly wire it in.',
-  },
-  {
-    q: 'What happens when something breaks?',
-    a: 'That\u2019s what the retainer covers. Every flow is monitored around the clock, when an upstream tool changes its API or a step fails, we\u2019re alerted and usually have it fixed before your team notices anything.',
-  },
-  {
-    q: 'What kind of support do we get?',
-    a: 'A dedicated Slack channel with the people who built your automation, no ticket queues, no outsourced support desk. Questions, tweaks, and small adjustments are part of the retainer.',
-  },
-  {
-    q: 'Can you build custom integrations?',
-    a: 'Yes. When an off-the-shelf connector doesn\u2019t exist, we write custom API integrations, internal tools, legacy systems, or niche software included. That\u2019s scoped and quoted in the same fixed-fee proposal.',
-  },
-];
 
 function FaqItem({ item, isOpen, onToggle, id }) {
   const reduce = useReducedMotion();
@@ -67,26 +41,44 @@ function FaqItem({ item, isOpen, onToggle, id }) {
   );
 }
 
-export default function Faq() {
+/**
+ * FAQ accordion. Defaults reproduce the original automation FAQ exactly;
+ * other pages pass their own `items`, `id`, `title` and tone.
+ */
+export default function Faq({
+  items = AUTOMATION_FAQS,
+  id = 'faq',
+  eyebrow = 'Frequently asked questions',
+  title = (
+    <>
+      Everything people ask<br className="br-desk" /> before booking.
+    </>
+  ),
+  light = false,
+}) {
   const [open, setOpen] = useState(0);
 
+  if (items.length === 0) return null;
+
   return (
-    <section className="section faq" id="faq" aria-labelledby="faq-title">
-      <div className="divider" aria-hidden="true" />
+    <section
+      className={`section faq${light ? ' section--light' : ''}`}
+      id={id}
+      aria-labelledby={`${id}-title`}
+    >
+      {!light && <div className="divider" aria-hidden="true" />}
       <div className="wrap wrap--narrow">
-        <Reveal as="p" className="eyebrow eyebrow--strong">Frequently asked questions</Reveal>
-        <Reveal as="h2" className="section__title" id="faq-title" delay={0.04}>
-          <a href="#faq" className="title-link">
-            Everything people ask<br className="br-desk" /> before booking.
-          </a>
+        {eyebrow && <Reveal as="p" className="eyebrow eyebrow--strong">{eyebrow}</Reveal>}
+        <Reveal as="h2" className="section__title" id={`${id}-title`} delay={0.04}>
+          <a href={`#${id}`} className="title-link">{title}</a>
         </Reveal>
 
         <Reveal delay={0.08}>
-          <ul className="faq__list" style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-            {FAQS.map((item, i) => (
+          <ul className="faq__list">
+            {items.map((item, i) => (
               <FaqItem
                 key={i}
-                id={i}
+                id={`${id}-${i}`}
                 item={item}
                 isOpen={open === i}
                 onToggle={() => setOpen(open === i ? -1 : i)}

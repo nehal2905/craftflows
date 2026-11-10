@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 import { m, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Reveal from './Reveal.jsx';
+import { trackEvent } from '../lib/analytics.js';
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -30,6 +31,7 @@ export default function LeadMagnet() {
         }),
       });
       if (!res.ok) throw new Error('relay failed');
+      trackEvent('form_submit', { service: 'automation', form: 'diagnostic' });
       setSent(true);
     } catch {
       // Relay unreachable - fall back to a pre-filled email so the lead isn't lost.

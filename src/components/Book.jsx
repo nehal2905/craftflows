@@ -1,5 +1,6 @@
 import Reveal from './Reveal.jsx';
 import Magnetic from './Magnetic.jsx';
+import { AuditCta } from './Cta.jsx';
 
 export default function Book() {
   return (
@@ -19,15 +20,9 @@ export default function Book() {
 
         <Reveal className="book__actions" delay={0.14}>
           <Magnetic>
-            <a
-              className="btn btn--primary btn--lg"
-              href="https://cal.com/crafted-flows/automation-audit"
-              target="_blank"
-              rel="noopener"
-            >
+            <AuditCta location="automation_final_cta" className="btn btn--primary btn--lg">
               Book your automation audit
-              <span className="btn__arrow" aria-hidden="true">→</span>
-            </a>
+            </AuditCta>
           </Magnetic>
 
           <div className="book__meta">

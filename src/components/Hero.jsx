@@ -1,17 +1,10 @@
-import {
-  m,
-  useMotionValue,
-  useSpring,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { m, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import InfinityMark from './InfinityMark.jsx';
 import Magnetic from './Magnetic.jsx';
 import ToolOrbit from './ToolOrbit.jsx';
-
-import { FOUNDERS } from '../data/founders.js';
+import { CursorMist, InteractiveOrb } from './HeroBackdrop.jsx';
+import { AuditCta } from './Cta.jsx';
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -24,65 +17,6 @@ const TOOLS = [
   'Slack', 'Notion', 'HubSpot', 'Airtable', 'Google Sheets',
   'Zapier', 'Make', 'Asana', 'ClickUp', 'Stripe',
 ];
-
-/**
- * Cursor smoke: two soft mist plumes follow the pointer across the hero
- * grid. The small wisp tracks closely; the large plume trails on a
- * heavier spring, creating a smoky drift. Desktop pointers only.
- */
-function CursorMist({ reduce }) {
-  const ref = useRef(null);
-  const mx = useMotionValue(-1000);
-  const my = useMotionValue(-1000);
-  const ax = useSpring(mx, { stiffness: 140, damping: 22, mass: 0.5 });
-  const ay = useSpring(my, { stiffness: 140, damping: 22, mass: 0.5 });
-  const bx = useSpring(mx, { stiffness: 32, damping: 15, mass: 1.2 });
-  const by = useSpring(my, { stiffness: 32, damping: 15, mass: 1.2 });
-
-  useEffect(() => {
-    if (reduce || !window.matchMedia('(pointer: fine)').matches) return;
-    const onMove = (e) => {
-      const el = ref.current;
-      if (!el) return;
-      const r = el.getBoundingClientRect();
-      // only react while the hero is under / near the pointer
-      if (e.clientY < r.top - 100 || e.clientY > r.bottom + 100) return;
-      mx.set(e.clientX - r.left);
-      my.set(e.clientY - r.top);
-    };
-    window.addEventListener('mousemove', onMove, { passive: true });
-    return () => window.removeEventListener('mousemove', onMove);
-  }, [reduce, mx, my]);
-
-  if (reduce) return null;
-  return (
-    <div className="hero__mist" ref={ref} aria-hidden="true">
-      <m.div className="hero__mist-blob hero__mist-blob--b" style={{ x: bx, y: by }} />
-      <m.div className="hero__mist-blob hero__mist-blob--a" style={{ x: ax, y: ay }} />
-    </div>
-  );
-}
-
-/** Mouse-reactive orb: drifts opposite the cursor (reverse parallax). */
-function InteractiveOrb({ reduce }) {
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const x = useSpring(mx, { stiffness: 38, damping: 18, mass: 0.6 });
-  const y = useSpring(my, { stiffness: 38, damping: 18, mass: 0.6 });
-
-  useEffect(() => {
-    if (reduce) return;
-    const onMove = (e) => {
-      mx.set((e.clientX - window.innerWidth / 2) * -0.05);
-      my.set((e.clientY - window.innerHeight / 2) * -0.05);
-    };
-    window.addEventListener('mousemove', onMove, { passive: true });
-    return () => window.removeEventListener('mousemove', onMove);
-  }, [reduce, mx, my]);
-
-  if (reduce) return <div className="hero__orb" />;
-  return <m.div className="hero__orb" style={{ x, y }} />;
-}
 
 export default function Hero() {
   const reduce = useReducedMotion();
@@ -161,53 +95,13 @@ export default function Hero() {
           transition={{ duration: 0.55, ease: EASE, delay: 0.15 }}
         >
           <Magnetic>
-            <a
-              className="btn btn--primary btn--lg"
-              href="https://cal.com/crafted-flows/automation-audit"
-              target="_blank"
-              rel="noopener"
-            >
+            <AuditCta location="automation_hero" className="btn btn--primary btn--lg">
               Book a 15-min automation audit
-              <span className="btn__arrow" aria-hidden="true">→</span>
-            </a>
+            </AuditCta>
           </Magnetic>
           <Magnetic strength={0.15}>
             <a className="btn btn--lg" href="#how">How it works</a>
           </Magnetic>
-        </m.div>
-
-        <m.div
-          className="hero__founders"
-          initial={reduce ? false : { opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: EASE, delay: 0.3 }}
-        >
-          <span className="hero__founders-avatars">
-            {FOUNDERS.map((f) => (
-              <span className="hero__founders-avatar" key={f.name}>
-                <span aria-hidden="true">{f.initials}</span>
-                <img
-                  src={f.avatar}
-                  alt={`${f.name}, co-founder of Crafted Flows`}
-                  width="40"
-                  height="40"
-                  loading="lazy"
-                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                />
-              </span>
-            ))}
-          </span>
-          <span className="hero__founders-text">
-            Founded by{' '}
-            <a href={FOUNDERS[0].linkedin} target="_blank" rel="noopener noreferrer">
-              {FOUNDERS[0].name}
-            </a>{' '}
-            and{' '}
-            <a href={FOUNDERS[1].linkedin} target="_blank" rel="noopener noreferrer">
-              {FOUNDERS[1].name}
-            </a>
-            , leading the team behind every build.
-          </span>
         </m.div>
 
         <m.div

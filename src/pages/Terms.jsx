@@ -2,8 +2,10 @@
  * ⚠ LEGAL REVIEW REQUIRED BEFORE GOING LIVE.
  * The guarantee wording, payment structure, IP terms, and liability cap
  * below describe how we actually work, but they need counsel's sign-off.
- * The governing jurisdiction is a bracketed placeholder — replace it
- * with the real jurisdiction before launch.
+ * The governing-law section stays hidden until COMPANY.jurisdiction is
+ * set in src/data/founders.js. These terms describe the automation
+ * service; video engagements need their own terms once the owner
+ * confirms ownership, revisions and licensing.
  */
 import Seo from '../components/Seo.jsx';
 import Reveal from '../components/Reveal.jsx';
@@ -103,14 +105,19 @@ export default function Terms() {
                 where an automation was involved in the chain of events.
               </p>
 
-              <h2>Governing law</h2>
-              <p>
-                These terms are governed by the laws of{' '}
-                <strong>[JURISDICTION, to be confirmed before launch]</strong>,
-                and any dispute falls to the courts there. We&rsquo;d rather solve a
-                problem over a call than in a courtroom, and we&rsquo;ll always try
-                that first.
-              </p>
+              {/* Renders only once COMPANY.jurisdiction is filled in
+                  (src/data/founders.js). No placeholder reaches the site. */}
+              {COMPANY.jurisdiction && (
+                <>
+                  <h2>Governing law</h2>
+                  <p>
+                    These terms are governed by the laws of{' '}
+                    <strong>{COMPANY.jurisdiction}</strong>, and any dispute falls
+                    to the courts there. We&rsquo;d rather solve a problem over a
+                    call than in a courtroom, and we&rsquo;ll always try that first.
+                  </p>
+                </>
+              )}
 
               <h2>Changes and contact</h2>
               <p>

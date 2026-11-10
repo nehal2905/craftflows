@@ -24,7 +24,7 @@ import MarkdownIt from 'markdown-it';
 import anchor from 'markdown-it-anchor';
 import taskLists from 'markdown-it-task-lists';
 import hljs from 'highlight.js';
-import { getAuthor } from '../src/data/founders.js';
+import { publishedProjects } from '../src/data/work.js';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content', 'blog');
 const VIRTUAL_ID = 'virtual:blog-index';
@@ -140,11 +140,24 @@ function compilePost(file) {
 
 function sitemapXml() {
   const today = new Date().toISOString().slice(0, 10);
+  const work = publishedProjects();
   const urls = [
     { loc: `${ORIGIN}/`, lastmod: today, changefreq: 'monthly', priority: '1.0' },
+    { loc: `${ORIGIN}/video`, lastmod: today, changefreq: 'monthly', priority: '0.9' },
+    { loc: `${ORIGIN}/automation`, lastmod: today, changefreq: 'monthly', priority: '0.9' },
+    { loc: `${ORIGIN}/contact`, lastmod: today, changefreq: 'yearly', priority: '0.5' },
     { loc: `${ORIGIN}/blog`, lastmod: today, changefreq: 'weekly', priority: '0.8' },
     { loc: `${ORIGIN}/privacy`, lastmod: today, changefreq: 'yearly', priority: '0.3' },
     { loc: `${ORIGIN}/terms`, lastmod: today, changefreq: 'yearly', priority: '0.3' },
+    ...(work.length > 0
+      ? [{ loc: `${ORIGIN}/work`, lastmod: today, changefreq: 'weekly', priority: '0.8' }]
+      : []),
+    ...work.map((p) => ({
+      loc: `${ORIGIN}/work/${p.slug}`,
+      lastmod: p.date || today,
+      changefreq: 'monthly',
+      priority: '0.7',
+    })),
     ...publishedPosts().map((p) => ({
       loc: `${ORIGIN}/blog/${p.slug}`,
       lastmod: p.updated,
@@ -191,7 +204,7 @@ function rssXml() {
       <link>${url}</link>
       <guid isPermaLink="true">${url}</guid>
       <pubDate>${rfc822(p.date)}</pubDate>
-      <dc:creator>${escapeXml(getAuthor(p.author).name)}</dc:creator>
+      <dc:creator>Crafted Flows</dc:creator>
 ${categories}
     </item>`;
     })

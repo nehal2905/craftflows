@@ -6,13 +6,13 @@ import Reveal from '../components/Reveal.jsx';
 import NotFound from './NotFound.jsx';
 import { PostCard } from './Blog.jsx';
 import { AuthorByline, AuthorCard } from '../components/Author.jsx';
-import { getAuthor } from '../data/founders.js';
 import {
   getPostMeta,
   loadPost,
   getAdjacent,
   getRelated,
 } from '../lib/blog.js';
+
 
 const ORIGIN = 'https://www.craftedflows.com';
 
@@ -138,7 +138,6 @@ export default function BlogPost() {
   if (!meta) return <NotFound />;
 
   const url = `${ORIGIN}/blog/${meta.slug}`;
-  const author = getAuthor(meta.author);
   const { prev, next } = getAdjacent(slug);
   const related = getRelated(slug);
 
@@ -160,7 +159,7 @@ export default function BlogPost() {
           image: `${ORIGIN}${meta.image}`,
           datePublished: meta.date,
           dateModified: meta.updated,
-          author: { '@type': 'Person', name: author.name, url: author.linkedin },
+          author: { '@type': 'Organization', name: 'Crafted Flows', url: ORIGIN },
           publisher: {
             '@type': 'Organization',
             name: 'Crafted Flows',
@@ -188,14 +187,6 @@ export default function BlogPost() {
         {/* ── Hero ────────────────────────────────────────────── */}
         <section className="section svc-hero post-hero">
           <div className="wrap wrap--narrow">
-            <Reveal as="nav" className="crumbs" aria-label="Breadcrumb">
-              <Link to="/">Home</Link>
-              <span aria-hidden="true">/</span>
-              <Link to="/blog">Blog</Link>
-              <span aria-hidden="true">/</span>
-              <span aria-current="page">{meta.category}</span>
-            </Reveal>
-
             <Reveal as="p" className="eyebrow" delay={0.04}>{meta.category}</Reveal>
             <Reveal as="h1" className="section__title post-hero__title" delay={0.08}>
               {meta.title}
@@ -205,11 +196,7 @@ export default function BlogPost() {
             </Reveal>
 
             <Reveal delay={0.16}>
-              <AuthorByline
-                authorId={meta.author}
-                date={meta.date}
-                readingTime={meta.readingTime}
-              />
+              <AuthorByline date={meta.date} readingTime={meta.readingTime} />
             </Reveal>
           </div>
         </section>
@@ -238,7 +225,7 @@ export default function BlogPost() {
               >
                 {body ? undefined : <p className="prose__loading">Loading article…</p>}
               </article>
-              <AuthorCard authorId={meta.author} />
+              <AuthorCard />
             </div>
 
             <aside className="post-aside">

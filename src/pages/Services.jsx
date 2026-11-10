@@ -35,12 +35,6 @@ export default function Services() {
       <main id="top">
         <section className="section svc-hero" aria-labelledby="services-title">
           <div className="wrap">
-            <Reveal as="nav" className="crumbs" aria-label="Breadcrumb">
-              <Link to="/">Home</Link>
-              <span aria-hidden="true">/</span>
-              <span aria-current="page">Services</span>
-            </Reveal>
-
             <Reveal as="p" className="eyebrow" delay={0.04}>Services</Reveal>
             <Reveal as="h1" className="section__title" id="services-title" delay={0.08}>
               Everything we automate.

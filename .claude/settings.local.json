@@ -8,7 +8,10 @@
       "Bash(command -v magick)",
       "Bash(command -v convert)",
       "Bash(command -v rsvg-convert)",
-      "Bash(command -v inkscape)"
+      "Bash(command -v inkscape)",
+      "mcp__claude-in-chrome__tabs_context_mcp",
+      "ClaudeInChromeDomain(localhost:5173)",
+      "ClaudeInChromeDomain([::1]:5173)"
     ]
   }
 }

@@ -146,14 +146,6 @@ export default function ServiceLayout({ service }) {
         </div>
 
         <div className="wrap svc-page-hero__inner">
-          <Reveal as="nav" className="crumbs crumbs--center" aria-label="Breadcrumb">
-            <Link to="/">Home</Link>
-            <span aria-hidden="true">/</span>
-            <Link to="/services">Services</Link>
-            <span aria-hidden="true">/</span>
-            <span aria-current="page">{service.name}</span>
-          </Reveal>
-
           <Reveal as="p" className="eyebrow" delay={0.04}>{service.name}</Reveal>
 
           <Reveal as="h1" className="svc-page-hero__title" id="svc-title" delay={0.08}>

@@ -12,6 +12,7 @@
 const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
 let initialized = false;
+const pending = [];
 
 function inject() {
   window.dataLayer = window.dataLayer || [];
@@ -21,6 +22,9 @@ function inject() {
   window.gtag = gtag;
   gtag('js', new Date());
   gtag('config', GA_ID);
+
+  // Send anything clicked before the script was injected.
+  pending.splice(0).forEach(([name, params]) => gtag('event', name, params));
 
   const script = document.createElement('script');
   script.async = true;
@@ -47,10 +51,27 @@ export function initAnalytics() {
   }
 }
 
-/** Track a custom event, e.g. trackEvent('book_audit_click'). Safe no-op in dev. */
+/**
+ * Track a custom event. Safe no-op in dev.
+ *
+ * Events in use (each carries `service` and, for buttons, `location`):
+ *   start_video_project    any "Start a video project" button
+ *   book_automation_audit  any automation audit button
+ *   book_video_call        the video booking link, once one exists
+ *   showreel_play          the showreel play button
+ *   film_play              a portfolio film's play button
+ *   portfolio_open         a portfolio card opened
+ *   form_submit            a form sent (form: 'video_brief' | 'diagnostic')
+ *
+ * "Booking completed" happens on Cal.com, not on this site, so it has to
+ * be measured there (Cal.com's GA4 app or a redirect to a thank-you page).
+ */
 export function trackEvent(name, params = {}) {
   if (typeof window.gtag === 'function') {
     window.gtag('event', name, params);
+  } else if (import.meta.env.PROD && GA_ID) {
+    // gtag loads after the page is idle; hold early clicks until then.
+    pending.push([name, params]);
   }
 }
 

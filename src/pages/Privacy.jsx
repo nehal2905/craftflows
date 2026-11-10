@@ -1,15 +1,16 @@
 /**
  * ⚠ LEGAL REVIEW REQUIRED BEFORE GOING LIVE.
  * This copy was drafted to match how the site actually works today
- * (email capture via the diagnostic form, FormSubmit relay, Cal.com
- * scheduling, Netlify hosting, no analytics). Have counsel confirm it
+ * (diagnostic form + video brief form via the FormSubmit relay, Cal.com
+ * scheduling, Netlify hosting, Google Analytics 4 in production builds;
+ * GA may need a consent banner depending on where visitors are). Have counsel confirm it
  * before launch and re-confirm whenever a new processor is added.
  */
 import Seo from '../components/Seo.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { COMPANY } from '../data/founders.js';
 
-const UPDATED = 'August 6, 2026';
+const UPDATED = 'November 10, 2026';
 
 export default function Privacy() {
   return (
@@ -40,29 +41,42 @@ export default function Privacy() {
           <div className="wrap wrap--narrow">
             <div className="prose">
               <h2>What we collect</h2>
-              <p>
-                One thing: your email address, and only if you type it into the
-                Operational Efficiency Diagnostic form and press send. We don&rsquo;t
-                run visitor tracking, we don&rsquo;t use advertising pixels, and we
-                don&rsquo;t currently run analytics on this site. Browsing every page
-                of craftedflows.com leaves nothing with us.
-              </p>
+              <p>Three things, and only these:</p>
+              <ul>
+                <li>
+                  <strong>Your email address</strong>, if you type it into the
+                  Operational Efficiency Diagnostic form and press send.
+                </li>
+                <li>
+                  <strong>Your project brief</strong>, if you send the video
+                  brief form: your name, email, business, website, and what
+                  you tell us about the project.
+                </li>
+                <li>
+                  <strong>Anonymous usage statistics</strong> through Google
+                  Analytics: which pages are visited and which buttons are
+                  used. This doesn&rsquo;t tell us who you are.
+                </li>
+              </ul>
+              <p>We don&rsquo;t use advertising pixels.</p>
 
               <h2>Why we collect it</h2>
               <p>
-                To send you the diagnostic workbook you asked for, and the
-                occasional note on automation we think is genuinely worth your
-                time. That&rsquo;s the whole list. Every email includes a way to
-                unsubscribe, and unsubscribing works the first time.
+                To send you the diagnostic workbook you asked for, to reply to
+                the brief you sent, and to send the occasional note on our work
+                we think is genuinely worth your time. The usage statistics
+                tell us which pages are useful. That&rsquo;s the whole list. Every
+                email includes a way to unsubscribe, and unsubscribing works
+                the first time.
               </p>
 
               <h2>Where it lives</h2>
               <p>
-                When you submit the form, your address is relayed to our inbox
-                by FormSubmit, a form-relay service, and then lives in our
-                email account. We don&rsquo;t maintain a separate marketing database
-                or CRM of subscriber data beyond that inbox and, if we send
-                notes by an email tool, that tool&rsquo;s list.
+                When you submit a form, what you entered is relayed to our
+                inbox by FormSubmit, a form-relay service, and then lives in
+                our email account. We don&rsquo;t maintain a separate marketing
+                database or CRM of subscriber data beyond that inbox and, if we
+                send notes by an email tool, that tool&rsquo;s list.
               </p>
 
               <h2>What we never do</h2>
@@ -78,14 +92,15 @@ export default function Privacy() {
                 one narrow job:
               </p>
               <ul>
-                <li><strong>FormSubmit</strong> relays the diagnostic form submission to our inbox.</li>
+                <li><strong>FormSubmit</strong> relays form submissions to our inbox.</li>
                 <li><strong>Our email provider</strong> stores and delivers the messages we exchange with you.</li>
-                <li><strong>Cal.com</strong> handles scheduling if you book an audit call. What you enter there is covered by Cal.com&rsquo;s own privacy policy.</li>
+                <li><strong>Cal.com</strong> handles scheduling if you book a call. What you enter there is covered by Cal.com&rsquo;s own privacy policy.</li>
+                <li><strong>Google Analytics</strong> counts page visits and button clicks. It is covered by Google&rsquo;s own privacy policy.</li>
                 <li><strong>Netlify</strong> hosts this website and, like any host, keeps standard server logs.</li>
               </ul>
               <p>
-                If we ever add analytics or any other processor, we&rsquo;ll update
-                this page before it goes live.
+                If we ever add another processor, we&rsquo;ll update this page
+                before it goes live.
               </p>
 
               <h2>How long we keep it</h2>

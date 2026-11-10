@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useMotionValue, useSpring, useReducedMotion } from 'framer-motion';
 import Reveal from './Reveal.jsx';
 import Magnetic from './Magnetic.jsx';
+import { AuditCta } from './Cta.jsx';
 
 /* Assume automation reliably removes ~70% of time spent on repetitive tasks. */
 const AUTOMATION_SHARE = 0.7;
@@ -150,15 +151,9 @@ export default function RoiCalculator() {
 
               <div className="roi__cta">
                 <Magnetic strength={0.15}>
-                  <a
-                    className="btn btn--primary"
-                    href="https://cal.com/crafted-flows/automation-audit"
-                    target="_blank"
-                    rel="noopener"
-                  >
+                  <AuditCta location="roi_calculator" className="btn btn--primary">
                     Recover these hours
-                    <span className="btn__arrow" aria-hidden="true">→</span>
-                  </a>
+                  </AuditCta>
                 </Magnetic>
               </div>
             </div>

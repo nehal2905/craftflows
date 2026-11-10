@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { m, useInView, useReducedMotion } from 'framer-motion';
 import Reveal from './Reveal.jsx';
 import GuaranteeSeal from './GuaranteeSeal.jsx';
+import { SITE } from '../data/site.js';
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -23,7 +24,7 @@ export default function Offer() {
             <h2 className="offer__title" id="offer-title">
               <a href="#offer" className="title-link">
                 <strong>Fixed build fee</strong>, plus a monthly retainer.
-                Delivered in <strong>14 days</strong>.
+                Delivered in <strong>{SITE.automationDelivery}</strong>.
               </a>
             </h2>
 

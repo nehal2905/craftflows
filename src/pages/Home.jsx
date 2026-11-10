@@ -1,41 +1,31 @@
 import { lazy, Suspense } from 'react';
-import Hero from '../components/Hero.jsx';
+import HomeHero from '../components/HomeHero.jsx';
 import Seo from '../components/Seo.jsx';
+import JsonLd from '../components/JsonLd.jsx';
+import { HOME_FAQS, faqSchema } from '../data/faqs.js';
 
 /* Everything below the fold loads as a separate chunk so the hero (the
    LCP content) isn't gated on parsing code the visitor can't see yet. */
-const Problem = lazy(() => import('../components/Problem.jsx'));
-const HowItWorks = lazy(() => import('../components/HowItWorks.jsx'));
-const Founders = lazy(() => import('../components/Founders.jsx'));
-const RoiCalculator = lazy(() => import('../components/RoiCalculator.jsx'));
-const Offer = lazy(() => import('../components/Offer.jsx'));
-const Faq = lazy(() => import('../components/Faq.jsx'));
-const LeadMagnet = lazy(() => import('../components/LeadMagnet.jsx'));
-const Book = lazy(() => import('../components/Book.jsx'));
+const HomeSections = lazy(() => import('../components/HomeSections.jsx'));
 
 export default function Home() {
   return (
     <main id="top">
       {/* Mirrors the static tags in index.html so returning to "/" from
-          another route restores the original metadata. */}
+          another route restores the original metadata. The landing page
+          title stays just "Crafted Flows" (owner's choice). */}
       <Seo
         title="Crafted Flows"
         description={
-          "Crafted Flows builds custom business automation and AI workflows: client reporting, onboarding, and lead routing, done for you. Save hours or you don't pay."
+          'Crafted Flows makes promotional videos that win your business customers, and builds the automations that give your team its time back. Done for you, start to finish.'
         }
         path="/"
       />
+      <JsonLd data={faqSchema(HOME_FAQS)} />
 
-      <Hero />
+      <HomeHero />
       <Suspense fallback={null}>
-        <Problem />
-        <HowItWorks />
-        <Founders />
-        <RoiCalculator />
-        <Offer />
-        <Faq />
-        <LeadMagnet />
-        <Book />
+        <HomeSections />
       </Suspense>
     </main>
   );

@@ -5,7 +5,7 @@ import App from './App.jsx';
 import { initAnalytics } from './lib/analytics.js';
 import './styles.css';
 
-// GA4 — production builds only; loads during idle time after window load.
+// GA4 - production builds only; loads during idle time after window load.
 initAnalytics();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
