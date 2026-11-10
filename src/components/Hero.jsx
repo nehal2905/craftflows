@@ -11,6 +11,8 @@ import InfinityMark from './InfinityMark.jsx';
 import Magnetic from './Magnetic.jsx';
 import ToolOrbit from './ToolOrbit.jsx';
 
+import { FOUNDERS } from '../data/founders.js';
+
 const EASE = [0.22, 1, 0.36, 1];
 
 const TITLE_LINES = [
@@ -147,8 +149,8 @@ export default function Hero() {
         </h1>
 
         <p className="hero__sub">
-          Crafted Flows builds custom automations that run your client reporting, onboarding,
-          and lead routing, using the tools you already use. <strong>Done for you, or you
+          We build the automations that run your client reporting, onboarding,
+          and lead routing, inside the tools you already use. <strong>Done for you, or you
           don&rsquo;t pay.</strong>
         </p>
 
@@ -172,6 +174,40 @@ export default function Hero() {
           <Magnetic strength={0.15}>
             <a className="btn btn--lg" href="#how">How it works</a>
           </Magnetic>
+        </m.div>
+
+        <m.div
+          className="hero__founders"
+          initial={reduce ? false : { opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: EASE, delay: 0.3 }}
+        >
+          <span className="hero__founders-avatars">
+            {FOUNDERS.map((f) => (
+              <span className="hero__founders-avatar" key={f.name}>
+                <span aria-hidden="true">{f.initials}</span>
+                <img
+                  src={f.avatar}
+                  alt={`${f.name}, co-founder of Crafted Flows`}
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                />
+              </span>
+            ))}
+          </span>
+          <span className="hero__founders-text">
+            Founded by{' '}
+            <a href={FOUNDERS[0].linkedin} target="_blank" rel="noopener noreferrer">
+              {FOUNDERS[0].name}
+            </a>{' '}
+            and{' '}
+            <a href={FOUNDERS[1].linkedin} target="_blank" rel="noopener noreferrer">
+              {FOUNDERS[1].name}
+            </a>
+            , leading the team behind every build.
+          </span>
         </m.div>
 
         <m.div

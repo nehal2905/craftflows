@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router';
 import { m, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Reveal from './Reveal.jsx';
 
@@ -111,7 +112,11 @@ export default function LeadMagnet() {
                         <rect x="5" y="11" width="14" height="9" rx="2" />
                         <path d="M8 11V8a4 4 0 0 1 8 0v3" />
                       </svg>
-                      No spam, no drip sequence. One email with the workbook, that&rsquo;s it.
+                      <span>
+                        We&rsquo;ll email you the workbook and occasional automation
+                        notes. Unsubscribe anytime. See our{' '}
+                        <Link to="/privacy">Privacy Policy</Link>.
+                      </span>
                     </p>
                   </m.form>
                 )}

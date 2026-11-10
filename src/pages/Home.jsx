@@ -6,6 +6,7 @@ import Seo from '../components/Seo.jsx';
    LCP content) isn't gated on parsing code the visitor can't see yet. */
 const Problem = lazy(() => import('../components/Problem.jsx'));
 const HowItWorks = lazy(() => import('../components/HowItWorks.jsx'));
+const Founders = lazy(() => import('../components/Founders.jsx'));
 const RoiCalculator = lazy(() => import('../components/RoiCalculator.jsx'));
 const Offer = lazy(() => import('../components/Offer.jsx'));
 const Faq = lazy(() => import('../components/Faq.jsx'));
@@ -29,6 +30,7 @@ export default function Home() {
       <Suspense fallback={null}>
         <Problem />
         <HowItWorks />
+        <Founders />
         <RoiCalculator />
         <Offer />
         <Faq />

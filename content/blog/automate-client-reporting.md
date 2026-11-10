@@ -3,7 +3,7 @@ title: "How to Automate Client Reporting (and Get 6+ Hours Back Every Week)"
 description: "A practical, step-by-step guide to automating client reports: pulling the data, building the doc, and delivering it, without anyone touching a spreadsheet."
 date: "2026-06-24"
 updated: "2026-07-02"
-author: "Crafted Flows Team"
+author: "founder-1" # resolved via src/data/founders.js
 category: "Automation Strategy"
 tags: ["reporting", "google-sheets", "slack", "workflows"]
 image: "/assets/blog/client-reporting.svg"

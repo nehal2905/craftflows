@@ -2,7 +2,7 @@
 title: "AI Agents for Small Business: What Actually Works in 2026"
 description: "Past the hype: where AI agents genuinely earn their keep in a small business, where they fail, and the guardrails that separate useful agents from liability."
 date: "2026-05-28"
-author: "Crafted Flows Team"
+author: "founder-2" # resolved via src/data/founders.js
 category: "AI"
 tags: ["ai-agents", "ai", "operations"]
 image: "/assets/blog/ai-agents-smb.svg"
@@ -38,7 +38,7 @@ unnecessary escalation costs a few minutes, not a customer.
 "Find everything relevant about this lead before the sales call" is
 perfect agent work: time-consuming for humans, low-stakes if imperfect,
 and easy to verify at a glance. Agents doing prep work consistently save
-30–60 minutes per meeting.
+30 to 60 minutes per meeting.
 
 ### 3. Internal operations with approval gates
 

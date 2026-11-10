@@ -82,6 +82,13 @@ export default function TopBar() {
               {label}
             </a>
           ))}
+          <Link
+            to="/blog"
+            className={pathname.startsWith('/blog') ? 'is-active' : undefined}
+            aria-current={pathname.startsWith('/blog') ? 'page' : undefined}
+          >
+            Blog
+          </Link>
         </nav>
 
         <Magnetic strength={0.2} className="topbar__cta-wrap">

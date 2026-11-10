@@ -3,6 +3,7 @@ import Seo from '../components/Seo.jsx';
 import JsonLd from '../components/JsonLd.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { POSTS, formatDate } from '../lib/blog.js';
+import { getAuthor } from '../data/founders.js';
 
 const ORIGIN = 'https://www.craftedflows.com';
 const PER_PAGE = 9;
@@ -23,6 +24,7 @@ export function PostCard({ post, eager = false, headingLevel: H = 'h2' }) {
       <span className="post-card__body">
         <span className="post-card__meta">
           <span className="post-card__category">{post.category}</span>
+          <span>{getAuthor(post.author).name}</span>
           <time dateTime={post.date}>{formatDate(post.date)}</time>
           <span>{post.readingTime} min read</span>
         </span>

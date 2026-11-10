@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" width="480" height="600" role="img" aria-label="Placeholder  real working photo to be added">
+  <rect width="480" height="600" fill="#0D0D0E"/>
+  <rect x="1" y="1" width="478" height="598" fill="none" stroke="#232327" stroke-width="2"/>
+  <text x="240" y="292" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="15" letter-spacing="4" fill="#7E7E84">PHOTO</text>
+  <text x="240" y="318" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="15" letter-spacing="4" fill="#7E7E84">PENDING</text>
+</svg>

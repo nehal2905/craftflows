@@ -24,6 +24,7 @@ import MarkdownIt from 'markdown-it';
 import anchor from 'markdown-it-anchor';
 import taskLists from 'markdown-it-task-lists';
 import hljs from 'highlight.js';
+import { getAuthor } from '../src/data/founders.js';
 
 const CONTENT_DIR = path.resolve(process.cwd(), 'content', 'blog');
 const VIRTUAL_ID = 'virtual:blog-index';
@@ -94,7 +95,7 @@ function readMeta(file) {
     description: data.description ?? '',
     date: data.date ?? '1970-01-01',
     updated: data.updated ?? data.date ?? '1970-01-01',
-    author: data.author ?? 'Crafted Flows Team',
+    author: data.author ?? 'founder-1',
     category: data.category ?? 'Automation',
     tags: data.tags ?? [],
     image: data.image ?? '/assets/og.png',
@@ -142,6 +143,8 @@ function sitemapXml() {
   const urls = [
     { loc: `${ORIGIN}/`, lastmod: today, changefreq: 'monthly', priority: '1.0' },
     { loc: `${ORIGIN}/blog`, lastmod: today, changefreq: 'weekly', priority: '0.8' },
+    { loc: `${ORIGIN}/privacy`, lastmod: today, changefreq: 'yearly', priority: '0.3' },
+    { loc: `${ORIGIN}/terms`, lastmod: today, changefreq: 'yearly', priority: '0.3' },
     ...publishedPosts().map((p) => ({
       loc: `${ORIGIN}/blog/${p.slug}`,
       lastmod: p.updated,
@@ -188,7 +191,7 @@ function rssXml() {
       <link>${url}</link>
       <guid isPermaLink="true">${url}</guid>
       <pubDate>${rfc822(p.date)}</pubDate>
-      <dc:creator>${escapeXml(p.author)}</dc:creator>
+      <dc:creator>${escapeXml(getAuthor(p.author).name)}</dc:creator>
 ${categories}
     </item>`;
     })

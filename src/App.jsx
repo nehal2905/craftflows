@@ -12,6 +12,8 @@ const CaseStudies = lazy(() => import('./pages/CaseStudies.jsx'));
 const Contact = lazy(() => import('./pages/Contact.jsx'));
 const Blog = lazy(() => import('./pages/Blog.jsx'));
 const BlogPost = lazy(() => import('./pages/BlogPost.jsx'));
+const Privacy = lazy(() => import('./pages/Privacy.jsx'));
+const Terms = lazy(() => import('./pages/Terms.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 
 const page = (Page) => (
@@ -33,6 +35,8 @@ const router = createBrowserRouter([
       { path: 'contact', element: page(Contact) },
       { path: 'blog', element: page(Blog) },
       { path: 'blog/:slug', element: page(BlogPost) },
+      { path: 'privacy', element: page(Privacy) },
+      { path: 'terms', element: page(Terms) },
       { path: '*', element: page(NotFound) },
     ],
   },

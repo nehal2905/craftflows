@@ -2,7 +2,7 @@
 title: "Zapier vs Make in 2026: Which Automation Tool Fits Your Business?"
 description: "An honest comparison from a team that builds on both daily: pricing models, complexity limits, reliability, and a simple rule for choosing between Zapier and Make."
 date: "2026-06-12"
-author: "Crafted Flows Team"
+author: "founder-1" # resolved via src/data/founders.js
 category: "Tools"
 tags: ["zapier", "make", "tools", "comparison"]
 image: "/assets/blog/zapier-vs-make.svg"

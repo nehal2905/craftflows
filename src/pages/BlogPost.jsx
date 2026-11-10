@@ -5,12 +5,13 @@ import JsonLd from '../components/JsonLd.jsx';
 import Reveal from '../components/Reveal.jsx';
 import NotFound from './NotFound.jsx';
 import { PostCard } from './Blog.jsx';
+import { AuthorByline, AuthorCard } from '../components/Author.jsx';
+import { getAuthor } from '../data/founders.js';
 import {
   getPostMeta,
   loadPost,
   getAdjacent,
   getRelated,
-  formatDate,
 } from '../lib/blog.js';
 
 const ORIGIN = 'https://www.craftedflows.com';
@@ -137,6 +138,7 @@ export default function BlogPost() {
   if (!meta) return <NotFound />;
 
   const url = `${ORIGIN}/blog/${meta.slug}`;
+  const author = getAuthor(meta.author);
   const { prev, next } = getAdjacent(slug);
   const related = getRelated(slug);
 
@@ -158,7 +160,7 @@ export default function BlogPost() {
           image: `${ORIGIN}${meta.image}`,
           datePublished: meta.date,
           dateModified: meta.updated,
-          author: { '@type': 'Organization', name: meta.author, url: ORIGIN },
+          author: { '@type': 'Person', name: author.name, url: author.linkedin },
           publisher: {
             '@type': 'Organization',
             name: 'Crafted Flows',
@@ -202,10 +204,12 @@ export default function BlogPost() {
               {meta.description}
             </Reveal>
 
-            <Reveal className="post-hero__meta" delay={0.16}>
-              <span>{meta.author}</span>
-              <time dateTime={meta.date}>{formatDate(meta.date)}</time>
-              <span>{meta.readingTime} min read</span>
+            <Reveal delay={0.16}>
+              <AuthorByline
+                authorId={meta.author}
+                date={meta.date}
+                readingTime={meta.readingTime}
+              />
             </Reveal>
           </div>
         </section>
@@ -226,13 +230,16 @@ export default function BlogPost() {
         {/* ── Body + TOC ──────────────────────────────────────── */}
         <section className="section section--tight">
           <div className="wrap post-layout">
-            <article
-              className="prose"
-              /* HTML is compiled from our own markdown at build time */
-              dangerouslySetInnerHTML={body ? { __html: body.html } : undefined}
-            >
-              {body ? undefined : <p className="prose__loading">Loading article…</p>}
-            </article>
+            <div className="post-body">
+              <article
+                className="prose"
+                /* HTML is compiled from our own markdown at build time */
+                dangerouslySetInnerHTML={body ? { __html: body.html } : undefined}
+              >
+                {body ? undefined : <p className="prose__loading">Loading article…</p>}
+              </article>
+              <AuthorCard authorId={meta.author} />
+            </div>
 
             <aside className="post-aside">
               {body && <Toc headings={body.headings} />}

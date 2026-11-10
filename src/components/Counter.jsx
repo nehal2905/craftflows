@@ -1,38 +1,29 @@
-import { useEffect, useRef } from 'react';
-import {
-  useInView,
-  useMotionValue,
-  useSpring,
-  useReducedMotion,
-} from 'framer-motion';
+import { useRef } from 'react';
+import { m, useInView, useReducedMotion } from 'framer-motion';
+
+const EASE = [0.22, 1, 0.36, 1];
 
 /**
- * Animated number - counts from 0 to `value` when scrolled into view.
- * Renders the final value immediately under prefers-reduced-motion.
+ * Stat value. The final number is ALWAYS in the DOM from first render,
+ * so no failure mode (reduced motion, throttled JS, no JS) can show a
+ * zero. The only enhancement is a fade/blur-in when scrolled into view;
+ * the displayed number itself never changes.
  */
 export default function Counter({ value, prefix = '', suffix = '', decimals = 0 }) {
   const reduce = useReducedMotion();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '0px 0px -15% 0px' });
-  const mv = useMotionValue(0);
-  const spring = useSpring(mv, { stiffness: 55, damping: 18 });
-
-  useEffect(() => {
-    if (inView && !reduce) mv.set(value);
-  }, [inView, reduce, mv, value]);
-
-  useEffect(() => {
-    if (reduce) return;
-    return spring.on('change', (v) => {
-      if (ref.current) {
-        ref.current.textContent = `${prefix}${v.toFixed(decimals)}${suffix}`;
-      }
-    });
-  }, [spring, reduce, prefix, suffix, decimals]);
+  const text = `${prefix}${value.toFixed(decimals)}${suffix}`;
 
   return (
-    <span ref={ref}>
-      {reduce ? `${prefix}${value.toFixed(decimals)}${suffix}` : `${prefix}0${suffix}`}
-    </span>
+    <m.span
+      ref={ref}
+      className="counter"
+      initial={reduce ? false : { opacity: 0, filter: 'blur(6px)' }}
+      animate={inView || reduce ? { opacity: 1, filter: 'blur(0px)' } : undefined}
+      transition={{ duration: 0.7, ease: EASE }}
+    >
+      {text}
+    </m.span>
   );
 }
