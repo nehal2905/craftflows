@@ -15,7 +15,7 @@ Fifteen seconds sounds like nothing. In a promo film it is plenty, as long as ev
 
 <figure class="post-film">
 <video src="/assets/work/anywhere/preview.mp4" poster="/assets/work/anywhere/thumb.webp" autoplay muted loop playsinline preload="metadata" aria-label="A loop from the Anywhere film: a globe filling with places and plans"></video>
-<figcaption>Anywhere, a travel app. 15 seconds, 9:16. <a href="/work/anywhere">Watch the full film with sound</a>.</figcaption>
+<figcaption>Anywhere, a concept film for a travel app. 15 seconds, 9:16. <a href="/work/anywhere">Watch the full film with sound</a>.</figcaption>
 </figure>
 
 ## The five beats at a glance

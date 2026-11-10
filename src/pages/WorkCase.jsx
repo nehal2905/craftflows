@@ -71,11 +71,6 @@ export default function WorkCase() {
 
         <section className="section svc-hero" aria-labelledby="case-title">
           <div className="wrap">
-            {project.concept && (
-              <Reveal as="p" className="case__label" delay={0.02}>
-                Concept film · not commissioned by or affiliated with {project.client}
-              </Reveal>
-            )}
             <Reveal as="h1" className="case__title" id="case-title" delay={0.04}>
               {project.title}
             </Reveal>

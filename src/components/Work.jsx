@@ -10,9 +10,9 @@ import { trackEvent } from '../lib/analytics.js';
 const SHOW_DRAFTS = import.meta.env.DEV;
 
 export function ProjectCard({ project, location }) {
-  /* With a concept badge the note only says who it is not for. */
+  /* Concept films say so quietly, in the note under the title. */
   const note = project.concept
-    ? project.client && `Not affiliated with ${project.client}`
+    ? [clientLabel(project), project.industry].filter(Boolean).join(' · ')
     : clientLabel(project);
   return (
     <Link
@@ -28,9 +28,6 @@ export function ProjectCard({ project, location }) {
     >
       <div className={`work-card__media${project.aspect === '9:16' ? ' work-card__media--portrait' : ''}`}>
         <VideoPreview sources={project.preview} poster={project.poster} />
-        {project.concept && (
-          <span className="work-card__badge" aria-hidden="true">Concept</span>
-        )}
       </div>
       <div className="work-card__body">
         <h3 className="work-card__title">{project.title}</h3>

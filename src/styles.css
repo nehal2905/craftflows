@@ -2033,25 +2033,35 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   font-size: 0.82rem; line-height: 1.5; color: var(--muted);
 }
 @media (hover: none) { .only-hover { display: none; } }
+.only-touch { display: none; }
+@media (hover: none) { .only-touch { display: inline; } }
 
-/* ---------- film strip: 9:16 tiles drifting in a seamless loop ---------- */
+/* ---------- film strip: a native horizontal scroller that also drifts ----------
+   Swipe, trackpad, Shift+wheel and arrow keys all scroll it; a mouse can
+   drag it. The slow drift is driven from JS (ReelMarquee.jsx). */
 .reel-strip {
   --tile-w: clamp(138px, 12.5vw, 196px);
   --reel-gap: clamp(0.75rem, 1.1vw, 1.05rem);
   position: relative; width: 100%;
-  overflow: hidden;
+  overflow-x: auto; overflow-y: hidden;
+  overscroll-behavior-x: contain; /* a sideways swipe never triggers browser back */
+  scrollbar-width: none;
+  scroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
   padding-block: 0.9rem;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
           mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
+.reel-strip::-webkit-scrollbar { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .reel-strip { cursor: grab; }
+  .reel-strip.is-grabbing { cursor: grabbing; user-select: none; }
+  .reel-strip.is-grabbing .reel-tile { pointer-events: none; }
+}
 .reel__track {
   display: flex; width: max-content;
   margin: 0; padding: 0; list-style: none;
-  animation: reel-drift var(--reel-dur, 90s) linear infinite;
 }
-.reel-strip:hover .reel__track,
-.reel-strip:focus-within .reel__track { animation-play-state: paused; }
-@keyframes reel-drift { to { transform: translateX(-50%); } }
 
 .reel__item { flex: none; width: var(--tile-w); margin-right: var(--reel-gap); }
 
@@ -2093,14 +2103,13 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .reel-tile__cap b { font-size: 0.98rem; font-weight: 700; letter-spacing: -0.01em; }
 .reel-tile__cap span { font-size: 0.78rem; color: rgba(250, 250, 250, 0.72); }
 
-/* reduced motion: the strip stands still and scrolls by hand */
+/* reduced motion: no drift, one copy, snapping by hand */
 @media (prefers-reduced-motion: reduce) {
   .reel-strip {
-    overflow-x: auto; scroll-snap-type: x mandatory;
+    scroll-snap-type: x mandatory;
     padding-inline: var(--gutter);
     -webkit-mask-image: none; mask-image: none;
   }
-  .reel__track { animation: none; }
   .reel__item { scroll-snap-align: start; }
   .reel__item[aria-hidden="true"] { display: none; }
   .reel-tile, .reel-tile::after, .reel-tile__cap { transition: none; }
@@ -2380,6 +2389,9 @@ a.work-card:focus-visible { outline-offset: 4px; border-radius: var(--r-md); }
 .film__play:hover .film__disc { transform: scale(1.06); }
 @media (prefers-reduced-motion: reduce) { .film__disc, .film__play:hover .film__disc { transform: none; transition: none; } }
 .reel { margin-top: clamp(2.5rem, 5vw, 3.5rem); width: min(100%, 60rem); }
+/* a quiet line under a film: whose it is, and that it is a concept */
+.film-caption { margin-top: 0.85rem; font-size: 0.88rem; color: var(--ink-2); text-align: center; }
+.film-caption span, .kicker__aside { color: var(--muted); font-weight: 500; }
 
 /* ---------- case study ---------- */
 .case-hero { padding: clamp(7.5rem, 14vw, 9.5rem) 0 clamp(2rem, 4vw, 3rem); }

@@ -27,7 +27,7 @@ export default function WorkIndex() {
     <>
       <Seo
         title="Work | Crafted Flows"
-        description="Selected video and automation work from Crafted Flows. Real projects, not concepts."
+        description="Promo films and automation work from Crafted Flows: concept films in our studio style, each with the idea behind it."
         path="/work"
       />
 

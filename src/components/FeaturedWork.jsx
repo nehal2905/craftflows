@@ -38,7 +38,10 @@ export default function FeaturedWork({ location = 'home_work' }) {
         </Reveal>
 
         <div className="feature__copy">
-          <Reveal as="p" className="kicker">Selected work</Reveal>
+          <Reveal as="p" className="kicker">
+            Selected work
+            {project.concept && <span className="kicker__aside"> · Concept film</span>}
+          </Reveal>
           <Reveal as="h2" className="section__title" id="work-title" delay={0.04}>
             {project.title}
           </Reveal>
@@ -67,7 +70,7 @@ export default function FeaturedWork({ location = 'home_work' }) {
             </Link>
             {total > 1 && (
               <Link className="textlink" to="/work">
-                See all {total} films <span aria-hidden="true">→</span>
+                See other videos <span aria-hidden="true">→</span>
               </Link>
             )}
           </Reveal>

@@ -68,6 +68,8 @@ export default function Video() {
       title: featured.title,
       aspect: featured.aspect,
       slug: featured.slug,
+      client: featured.client,
+      concept: featured.concept,
     });
 
   return (
@@ -123,6 +125,12 @@ export default function Video() {
                   event="showreel_play"
                   eventParams={{ location: 'video_hero' }}
                 />
+                {reel.client && (
+                  <p className="film-caption">
+                    {reel.client}
+                    {reel.concept && <span> · Concept film</span>}
+                  </p>
+                )}
               </Reveal>
             )}
           </div>
@@ -188,7 +196,7 @@ export default function Video() {
           exclude={reel?.slug ? [reel.slug] : []}
           location="video_work"
           title="Selected video work"
-          sub="Real films. Open one to see the brief, the idea and the cut."
+          sub="Concept films from the studio. Open one to see the idea and the full cut."
           light
         />
 

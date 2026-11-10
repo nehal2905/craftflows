@@ -10,7 +10,7 @@ imageAlt: "Six opening frames from Crafted Flows promo films fanned out like a h
 draft: false
 ---
 
-On a phone, your film's first frame competes with everything else in the feed. You get one line to make someone stop. That is why we write the hook before anything else in a script, then write twenty more, then keep the one we would stop for ourselves. Here are six openers from our films, the pattern behind each one, and how to borrow it.
+On a phone, your film's first frame competes with everything else in the feed. You get one line to make someone stop. That is why we write the hook before anything else in a script, then write twenty more, then keep the one we would stop for ourselves. Here are six openers from our concept films, the pattern behind each one, and how to borrow it.
 
 <div class="still-grid">
 <figure><img src="/assets/blog/video-hooks-that-stop-the-scroll/hook-denta.webp" alt="Opening frame: Dental insurance isn't real insurance." width="540" height="960" loading="lazy" decoding="async"><figcaption><b>The uncomfortable truth</b>Denta</figcaption></figure>

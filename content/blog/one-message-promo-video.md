@@ -40,7 +40,7 @@ Everything else you want to say still has a home: your website, your sales deck,
 
 ## Four endings that show the rule
 
-The clearest place to see a film's one message is its last line before the logo. Here are four from our films. Each one is short, specific and about the customer.
+The clearest place to see a film's one message is its last line before the logo. Here are four from our concept films. Each one is short, specific and about the customer.
 
 <div class="still-grid still-grid--4">
 <figure><img src="/assets/blog/one-message-promo-video/payoff-fleety.webp" alt="Fleety end line: The right tech. Every job." width="540" height="960" loading="lazy" decoding="async"><figcaption><b>Fleety</b>Five words. An outcome, not a feature.</figcaption></figure>

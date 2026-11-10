@@ -3,7 +3,7 @@
  * Source films live in public/assets/work/<slug>/.
  *
  * status      'draft' | 'published'. Only 'published' reaches the live site.
- * concept     true adds a "Concept" badge and a not-affiliated note (none use it now)
+ * concept     true for concept films; the site labels them quietly as "Concept film"
  * permission  true only if the named brand agreed to appear; without it the
  *             site shows the industry, never the brand, in the "client" slot
  * featured    true for the one film the home page plays large
@@ -14,8 +14,9 @@
  * Order matters: the home film strip and the service-card stills follow it,
  * so the strongest, most colourful films come first.
  *
- * Owner decision (2026-11-10): the films are shown as promo films, without
- * the "concept" labelling suggested in public/assets/work/README.txt.
+ * Owner decision (2026-11-11): every film is labelled as a concept film,
+ * subtly: in captions, card notes and the case-page meta line, never as
+ * a badge over the artwork.
  */
 
 const film = (slug, duration) => ({
@@ -34,7 +35,7 @@ const promo = ({ slug, client, industry, idea, summary, featured = false, durati
   title: `${client}: promo film`,
   client,
   clientNote: '',
-  concept: false,
+  concept: true,
   permission: false,
   industry,
   format: 'Promo film · 9:16 · 10–15 s',
@@ -86,7 +87,7 @@ export const PROJECTS = [
     title: 'Clerra: launch film',
     client: 'Clerra',
     clientNote: 'Fictional product showcase',
-    concept: false,
+    concept: true,
     permission: true,
     industry: 'Product launch',
     format: 'Launch film · 9:16 · 30 s',
@@ -121,11 +122,7 @@ export const featuredProject = () => {
 export const isProjectLive = isLive;
 
 export function clientLabel(p) {
-  if (p.concept) {
-    return p.client
-      ? `Concept · not affiliated with ${p.client}`
-      : 'Concept';
-  }
+  if (p.concept) return 'Concept film';
   if (p.permission && p.client) {
     return p.clientNote ? `${p.client} · ${p.clientNote}` : p.client;
   }
