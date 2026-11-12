@@ -29,12 +29,14 @@
   <meta name="twitter:image" content="https://www.craftedflows.com/assets/og.png" />
   <meta name="twitter:image:alt" content="Crafted Flows: promotional videos and business automations, done for you" />
 
-  <!-- Favicon: PNG first for Google Search (48px+), SVG for modern browsers -->
-  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <!-- Favicon. /favicon.ico (16 to 64px, full colour) is what crawlers fetch
+       first; Google Search wants a square icon in a multiple of 48px. -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png" />
   <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png" />
   <link rel="icon" type="image/svg+xml" href="/assets/mark.svg" />
+  <link rel="manifest" href="/site.webmanifest" />
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png" />
 
   <!-- Fonts are self-hosted (declared in the bundled CSS): zero third-party
