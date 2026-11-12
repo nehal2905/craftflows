@@ -1,26 +1,43 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
 import { useReducedMotion } from 'framer-motion';
+import QuickLook from './QuickLook.jsx';
 import { trackEvent } from '../lib/analytics.js';
 
-/* Hover previews only where hover exists; touch devices keep the stills. */
-const canHover = () =>
+/* Visitors who asked for less motion or less data start with the strip paused. */
+const prefersStill = () =>
   typeof window !== 'undefined' &&
-  window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  (window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    Boolean(navigator.connection?.saveData));
 
 const SPEED = 40; // auto-drift, px per second
 const RESUME_AFTER = 1800; // ms of calm after someone scrolls before drifting again
 
-function ReelTile({ project, copy, index, location }) {
-  const [live, setLive] = useState(false);
-  const [hover, setHover] = useState(false);
+function ReelTile({ project, copy, index, location, playing, onOpen }) {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+  const [ready, setReady] = useState(false);
   // The first copy only closes the loop; the second is the real list.
   const decorative = copy === 0;
 
-  useEffect(() => setHover(canHover()), []);
+  // Is this tile inside the strip's visible window (plus a little runway)?
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), {
+      root: el.closest('.reel-strip'),
+      rootMargin: '0px 12% 0px 12%',
+      threshold: 0.15,
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
-  const on = () => hover && project.preview && setLive(true);
-  const off = () => setLive(false);
+  // Only films on screen keep a video mounted; the rest show their still.
+  const live = Boolean(playing && inView && project.preview);
+  useEffect(() => {
+    if (!live) setReady(false);
+  }, [live]);
 
   return (
     <li className="reel__item" aria-hidden={decorative || undefined}>
@@ -29,15 +46,20 @@ function ReelTile({ project, copy, index, location }) {
         to={`/work/${project.slug}`}
         tabIndex={decorative ? -1 : undefined}
         aria-label={project.concept ? `${project.title}, concept film` : project.title}
+        ref={ref}
         draggable={false}
         onDragStart={(e) => e.preventDefault()}
-        onMouseEnter={on}
-        onMouseLeave={off}
-        onFocus={on}
-        onBlur={off}
-        onClick={() =>
-          trackEvent('portfolio_open', { service: 'video', project: project.slug, location })
-        }
+        onClick={(e) => {
+          // a plain click opens the quick look; Cmd/Ctrl/middle click still opens the page
+          const plain = e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey;
+          if (onOpen && plain && project.video?.mp4) {
+            e.preventDefault();
+            onOpen(index, e.currentTarget);
+            trackEvent('film_quicklook', { service: 'video', project: project.slug, location });
+          } else {
+            trackEvent('portfolio_open', { service: 'video', project: project.slug, location });
+          }
+        }}
       >
         <img
           src={project.thumb || project.poster}
@@ -50,13 +72,15 @@ function ReelTile({ project, copy, index, location }) {
         />
         {live && (
           <video
-            className="reel-tile__loop"
+            className={`reel-tile__loop${ready ? ' is-ready' : ''}`}
             src={project.preview.mp4}
             autoPlay
             muted
             loop
             playsInline
+            preload="auto"
             disablePictureInPicture
+            onPlaying={() => setReady(true)}
           />
         )}
         <span className="reel-tile__cap">
@@ -84,6 +108,31 @@ function ReelTile({ project, copy, index, location }) {
 export default function ReelMarquee({ projects, location = 'home_reel' }) {
   const strip = useRef(null);
   const reduce = useReducedMotion();
+  const [paused, setPaused] = useState(false); // true for reduced motion or data saver
+  const [onScreen, setOnScreen] = useState(false);
+  const [viewing, setViewing] = useState(false);
+  const pausedRef = useRef(false);
+  const quickLook = useRef(null);
+
+  // Reduced motion or data saver: show stills, no drift.
+  useEffect(() => {
+    if (prefersStill()) setPaused(true);
+  }, []);
+  useEffect(() => {
+    pausedRef.current = paused || viewing;
+  }, [paused, viewing]);
+
+  // runs inside the tile's click, so the film can start with sound
+  const openFilm = (i, el) => quickLook.current?.open(i, el);
+
+  // Videos only run while the strip itself is on screen.
+  useEffect(() => {
+    const el = strip.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => setOnScreen(entry.isIntersecting));
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   useEffect(() => {
     const el = strip.current;
@@ -123,7 +172,7 @@ export default function ReelMarquee({ projects, location = 'home_reel' }) {
       raf = requestAnimationFrame(tick);
       const dt = last ? Math.min(64, t - last) : 0;
       last = t;
-      if (hovering || touching || focused || drag || t < pausedUntil) return;
+      if (pausedRef.current || hovering || touching || focused || drag || t < pausedUntil) return;
       pos += (SPEED * dt) / 1000;
       if (pos >= floor + half) pos -= half;
       el.scrollLeft = pos;
@@ -239,27 +288,49 @@ export default function ReelMarquee({ projects, location = 'home_reel' }) {
 
   if (!projects?.length) return null;
   const allConcept = projects.every((p) => p.concept);
+  const playing = !paused && onScreen && !viewing;
 
   return (
-    <div
-      className="reel-strip"
-      ref={strip}
-      role="region"
-      aria-label={allConcept ? 'Concept films we have made' : 'Films we have made'}
-    >
-      <ul className="reel__track">
-        {[0, 1].map((copy) =>
-          projects.map((project, i) => (
-            <ReelTile
-              key={`${copy}-${project.slug}`}
-              project={project}
-              copy={copy}
-              index={i}
-              location={location}
-            />
-          ))
-        )}
-      </ul>
-    </div>
+    <>
+      <div
+        className="reel-strip"
+        ref={strip}
+        tabIndex={-1}
+        role="region"
+        aria-label={allConcept ? 'Concept films we have made' : 'Films we have made'}
+      >
+        <ul className="reel__track">
+          {[0, 1].map((copy) =>
+            projects.map((project, i) => (
+              <ReelTile
+                key={`${copy}-${project.slug}`}
+                project={project}
+                copy={copy}
+                index={i}
+                location={location}
+                playing={playing}
+                onOpen={openFilm}
+              />
+            ))
+          )}
+        </ul>
+      </div>
+
+      <div className="reel-bar">
+        <p className="reel-bar__hint">
+          {allConcept && <>Concept films<span aria-hidden="true"> · </span></>}
+          <span className="only-hover">Click a film to watch it with sound, or drag to browse.</span>
+          <span className="only-touch">Tap a film to watch it, or swipe to browse.</span>
+        </p>
+      </div>
+
+      <QuickLook
+        ref={quickLook}
+        projects={projects}
+        location={location}
+        onViewingChange={setViewing}
+        fallbackFocus={strip}
+      />
+    </>
   );
 }

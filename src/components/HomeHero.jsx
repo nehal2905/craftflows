@@ -65,13 +65,6 @@ export default function HomeHero() {
       {films.length > 0 && (
         <m.div className="hero__reel-wrap" {...rise(0.25)}>
           <ReelMarquee projects={films} />
-          <p className="hero__reel-note">
-            {films.every((p) => p.concept) && (
-              <>Concept films<span aria-hidden="true"> · </span></>
-            )}
-            <span className="only-hover">Hover to preview, drag to browse.</span>
-            <span className="only-touch">Swipe to browse.</span>
-          </p>
         </m.div>
       )}
     </section>

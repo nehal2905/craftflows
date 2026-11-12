@@ -2028,10 +2028,77 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .hero--home .hero__cta { margin-top: clamp(1.9rem, 3.6vw, 2.5rem); }
 
 .hero__reel-wrap { width: 100%; margin-top: clamp(2.25rem, 4.5vw, 3.25rem); }
-.hero__reel-note {
-  margin-top: 0.9rem; padding-inline: var(--gutter);
-  font-size: 0.82rem; line-height: 1.5; color: var(--muted);
+/* ---------- quick look: a film opened over the page ---------- */
+html.ql-open { overflow: hidden; scrollbar-gutter: stable; }
+.ql {
+  width: 100vw; height: 100dvh; max-width: none; max-height: none;
+  margin: 0; padding: 0; border: 0;
+  background: transparent; color: #FAFAFA;
+  overflow: hidden;
 }
+.ql::backdrop {
+  background: rgba(6, 6, 7, 0.82);
+  -webkit-backdrop-filter: blur(16px) saturate(120%); backdrop-filter: blur(16px) saturate(120%);
+}
+.ql__inner {
+  --ql-h: min(76svh, calc((100vw - 2 * var(--gutter)) * 16 / 9));
+  height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;
+  padding: max(1rem, env(safe-area-inset-top)) var(--gutter) max(1rem, env(safe-area-inset-bottom));
+}
+.ql__frame {
+  height: var(--ql-h); aspect-ratio: 9 / 16;
+  border-radius: 28px; overflow: hidden; background: #000;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 60px 140px -40px #000;
+}
+.ql__frame video { display: block; width: 100%; height: 100%; object-fit: contain; background: #000; }
+/* the bar under the film is as wide as the film, never narrower than 28rem */
+.ql__bar {
+  width: min(100%, max(calc(var(--ql-h) * 9 / 16), 28rem));
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.ql__meta { flex: 1; min-width: 0; text-align: left; }
+.ql__title { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; }
+.ql__title, .ql__sub { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ql__sub { font-size: 0.86rem; color: #8A8A90; }
+.ql__link {
+  display: inline-flex; align-items: center; gap: 0.35rem; min-height: 44px; padding-inline: 0.4rem;
+  font-size: 0.92rem; font-weight: 700; color: #FAFAFA; white-space: nowrap;
+  text-decoration: underline; text-decoration-color: rgba(250, 250, 250, 0.3); text-underline-offset: 0.3em;
+}
+.ql__link:hover, .ql__link:focus-visible { text-decoration-color: #FAFAFA; }
+.ql__nav, .ql__close {
+  flex: none; display: inline-grid; place-items: center;
+  width: 44px; height: 44px; border-radius: 50%;
+  color: #FAFAFA; background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  transition: background-color 0.2s var(--ease-out);
+}
+.ql__nav:hover, .ql__close:hover, .ql__nav:focus-visible, .ql__close:focus-visible { background: rgba(255, 255, 255, 0.2); }
+.ql__nav svg, .ql__close svg { width: 15px; height: 15px; }
+/* shown only if a browser blocks sound: one tap turns it on */
+.ql__frame, .film { position: relative; }
+.ql__sound {
+  position: absolute; left: 50%; bottom: 4.25rem; transform: translateX(-50%); z-index: 2;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  min-height: 44px; padding: 0 1.1rem; border-radius: 999px;
+  font-size: 0.92rem; font-weight: 700; color: #0A0A0A; background: #FAFAFA;
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.7);
+}
+.ql__sound svg { width: 16px; height: 16px; }
+.ql__close { position: fixed; top: max(1rem, env(safe-area-inset-top)); right: max(1rem, env(safe-area-inset-right)); z-index: 1; }
+@media (max-width: 479.98px) { .ql__link { font-size: 0.85rem; } .ql__link span, .ql__ind { display: none; } }
+
+/* open: the film rises in gently; reduced motion gets a plain fade */
+.ql[open] .ql__inner { animation: ql-in 0.45s var(--ease-out); }
+.ql[open]::backdrop { animation: ql-fade 0.3s ease-out; }
+@keyframes ql-in { from { opacity: 0; transform: translateY(14px) scale(0.96); } }
+@keyframes ql-fade { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .ql[open] .ql__inner { animation: ql-fade 0.2s ease-out; } }
+
+/* under the strip: a quiet, centred hint */
+.reel-bar { margin-top: 0.75rem; padding-inline: var(--gutter); text-align: center; }
+.reel-bar__hint { font-size: 0.86rem; line-height: 1.5; color: var(--muted); }
 @media (hover: none) { .only-hover { display: none; } }
 .only-touch { display: none; }
 @media (hover: none) { .only-touch { display: inline; } }
@@ -2078,6 +2145,9 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   position: absolute; inset: 0;
   width: 100%; height: 100%; object-fit: cover;
 }
+/* the loop fades in over its still once frames arrive: no black flash */
+.reel-tile__loop { opacity: 0; transition: opacity 0.5s var(--ease-out); }
+.reel-tile__loop.is-ready { opacity: 1; }
 /* hairline edge + bottom scrim (the scrim shows on hover, under the caption) */
 .reel-tile::after {
   content: ""; position: absolute; inset: 0; border-radius: inherit;
@@ -2386,6 +2456,14 @@ a.work-card:focus-visible { outline-offset: 4px; border-radius: var(--r-md); }
   transition: transform 0.3s var(--ease-out);
 }
 .film__disc svg { width: 28px; height: 28px; margin-left: 3px; }
+.film__play { grid-auto-flow: row; align-content: center; gap: 0.9rem; }
+.film__label {
+  padding: 0.4rem 0.85rem; border-radius: 999px;
+  font-size: 0.9rem; font-weight: 700; color: #FAFAFA;
+  background: rgba(10, 10, 10, 0.5);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border: 1px solid rgba(250, 250, 250, 0.18);
+}
 .film__play:hover .film__disc { transform: scale(1.06); }
 @media (prefers-reduced-motion: reduce) { .film__disc, .film__play:hover .film__disc { transform: none; transition: none; } }
 .reel { margin-top: clamp(2.5rem, 5vw, 3.5rem); width: min(100%, 60rem); }
