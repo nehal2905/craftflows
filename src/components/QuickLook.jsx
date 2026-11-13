@@ -55,6 +55,8 @@ const QuickLook = forwardRef(function QuickLook(
       document.documentElement.classList.add('ql-open');
       onViewingChange?.(true);
       startFilm(i);
+      // warm the case-study page so its link opens at once
+      import('../pages/WorkCase.jsx').catch(() => {});
     },
   }));
 

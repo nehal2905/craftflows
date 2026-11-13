@@ -2028,6 +2028,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .hero--home .hero__cta { margin-top: clamp(1.9rem, 3.6vw, 2.5rem); }
 
 .hero__reel-wrap { width: 100%; margin-top: clamp(2.25rem, 4.5vw, 3.25rem); }
+/* holds the page open while a route loads, so the footer never jumps into view */
+.route-wait { min-height: 100svh; }
 /* ---------- quick look: a film opened over the page ---------- */
 html.ql-open { overflow: hidden; scrollbar-gutter: stable; }
 .ql {

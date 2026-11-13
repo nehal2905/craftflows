@@ -23,7 +23,7 @@ const Service = lazy(() => import('./pages/Service.jsx'));
 const CaseStudies = lazy(() => import('./pages/CaseStudies.jsx'));
 
 const page = (Page) => (
-  <Suspense fallback={null}>
+  <Suspense fallback={<div className="route-wait" aria-hidden="true" />}>
     <Page />
   </Suspense>
 );

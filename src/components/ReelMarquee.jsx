@@ -39,6 +39,39 @@ function ReelTile({ project, copy, index, location, playing, onOpen }) {
     if (!live) setReady(false);
   }, [live]);
 
+  /* Phones only autoplay a video that is muted at the moment it starts.
+     React sets muted too late for some of them, so set it here and start
+     the clip by hand. If the phone still refuses (Low Power Mode does),
+     start it on the visitor's first touch. */
+  const loop = useRef(null);
+  useEffect(() => {
+    const v = loop.current;
+    if (!live || !v) return;
+    v.muted = true;
+    v.defaultMuted = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    let waiting = false;
+    const retry = () => {
+      v.play().then(release).catch(() => {});
+    };
+    const release = () => {
+      if (!waiting) return;
+      waiting = false;
+      document.removeEventListener('touchend', retry);
+      document.removeEventListener('click', retry);
+    };
+    const attempt = v.play();
+    if (attempt) {
+      attempt.catch(() => {
+        waiting = true;
+        document.addEventListener('touchend', retry, { passive: true });
+        document.addEventListener('click', retry);
+      });
+    }
+    return release;
+  }, [live]);
+
   return (
     <li className="reel__item" aria-hidden={decorative || undefined}>
       <Link
@@ -72,6 +105,7 @@ function ReelTile({ project, copy, index, location, playing, onOpen }) {
         />
         {live && (
           <video
+            ref={loop}
             className={`reel-tile__loop${ready ? ' is-ready' : ''}`}
             src={project.preview.mp4}
             autoPlay

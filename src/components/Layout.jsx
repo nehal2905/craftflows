@@ -43,7 +43,7 @@ export default function Layout() {
     if (movedAnchor) return;
 
     if (!hash) {
-      if (!first) window.scrollTo(0, 0);
+      if (!first) window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       return;
     }
 
